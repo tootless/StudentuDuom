@@ -52,6 +52,17 @@ int main()
 	vidurkis = suma / (double)n; //Suskaiciuojamas vidurkis
 	A.galutinis = 0.4 * vidurkis + 0.6 * A.egzaminas;
 
+	sort(A.paz.begin(), A.paz.end());
+	//Rasti mediana
+	if (n % 2 == 0) {
+		int midLeftElem = n / 2 - 1;
+		mediana = (A.paz[midLeftElem] + A.paz[n / 2]) / 2;
+	}
+	else {
+		mediana = A.paz[n / 2];
+	}
+	//A.galutinis = 0.4 * mediana + 0.6 * A.egzaminas; Mediana
+
 	cout << "Pavarde     Vardas         Galutinis(Vid.)\n";
 	cout << "-----------------------------------------------------\n";
 	cout << A.pav << "           " << A.vardas << "              " << setprecision(2) << A.galutinis;
