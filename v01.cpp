@@ -51,4 +51,8 @@ int main()
 	//change: do while choiceRez != 1 || choiceRez != 2
 	vidurkis = suma / (double)n; //Suskaiciuojamas vidurkis
 	A.galutinis = 0.4 * vidurkis + 0.6 * A.egzaminas;
+
+	cout << "Pavarde     Vardas         Galutinis(Vid.)\n";
+	cout << "-----------------------------------------------------\n";
+	cout << A.pav << "           " << A.vardas << "              " << setprecision(2) << A.galutinis;
 }
