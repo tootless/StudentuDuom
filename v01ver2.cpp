@@ -1,8 +1,9 @@
-﻿#include <iostream>
+#include <iostream>
 #include <iomanip>
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <random>
 #include <stdlib.h>
 
 // Var. 2; Visi duomenu rinkiniai su std::vector
@@ -23,39 +24,124 @@ int main()
 	int n = 0; //Pazymiu skaicius
 	int m = 0; //Studentu skaicius
 	int suma = 0; //Pazymiu suma (Vidurkiui apskaiciuoti)
+	double vidurkis = 0, mediana = 0;
 	int choiceRez = 0; //Galutinio rez. isvedimo pasirinkimas
 	int choiceEndStud = 0; //Studentu (struct) duomenu ivesties baigties pasirinkimas
 	int choiceEndPaz = 0; //Pazymiu ivesties baigties pasirinkimas
-	double vidurkis = 0, mediana = 0;
-
+	int choiceRand = 0; //Pazymiu ivedimo / randomizavimo eigos pasirinkimas
 	///DUOMENU IVESTIS
 
 	do {
 		//change: do while vardas, pav, n, paz != exception || != null
-		cout << "Iveskite studento varda ir pavarde: \n";
+		cout << "---STUDENTU DUOMENU IVEDIMAS---\n";
+
+		cout << "Iveskite studento varda: \n";
 		cout << "Vardas: ";
 		cin >> A.vardas;
+		cout << "Iveskite studento pavarde: \n";
 		cout << "Pavarde: ";
 		cin >> A.pav;
 
-		cout << "Iveskite studento egzamino bala: ";
-		cin >> A.egzaminas;
+		cout << "---PAZYMIU IVEDIMAS---\n";
+		cout << "Pasirinkite pazymiu ivedimo buda " << m+1 << "-am studentui "
+			<< "\n(0 - Viskas ranka, 1 - Randomizuotas egz.balas, 2 - Randomizuoti nd pazymiai, 3 - Viskas randomizuota: ";
+		cin >> choiceRand;
 
-		cout << "Iveskite studento pazymius: \n";
-		do {
-			n++; //Skaiciuoti pazymiu skaiciu
-			int tempPaz;
-			cout << "Pazymys: ";
-			cin >> tempPaz;
-			A.paz.push_back(tempPaz);
-			cout << "\n";
+		if (choiceRand == 0) { //RANKA
+			cout << "Iveskite studento egzamino bala: \n";
+			cin >> A.egzaminas;
 
-			suma += tempPaz;
+			cout << "Iveskite studento pazymius:\n";
+			do {
+				n++; //Skaiciuoti pazymiu skaiciu
+				int tempPaz;
+				cout << "Pazymys: ";
+				cin >> tempPaz;
+				A.paz.push_back(tempPaz);
+				cout << "\n";
 
-			cout << "Ar vesite dar viena namu darbu pazymi? (0 - taip, 1 - ne, einame prie kito studento)\n";
-			cin >> choiceEndPaz;
-		} while (choiceEndPaz != 1);
+				suma += tempPaz;
 
+				cout << "Ar vesite dar viena namu darbu pazymi? (0 - Taip, 1 - Ne, einame prie kito studento)\n";
+				cin >> choiceEndPaz;
+			} while (choiceEndPaz != 1);
+		}
+		//Reiketu ivesti funkcijas
+		else if (choiceRand == 1) { //RND EGZAMINAS
+			cout << "\n---RANDOMIZUOTI EGZAMINO BALAI---\n";
+
+			srand(time(NULL));
+			int tempEgzPazRnd = rand() % 10 + 1;
+			A.egzaminas = tempEgzPazRnd;
+			cout << "Ivestas egzamino balas:\n";
+			cout << "{ " << tempEgzPazRnd << " }\n";
+
+			cout << "Iveskite studento pazymius:\n";
+			do {
+				n++; //Skaiciuoti pazymiu skaiciu
+				int tempPaz;
+				cout << "Pazymys: ";
+				cin >> tempPaz;
+				A.paz.push_back(tempPaz);
+				cout << "\n";
+
+				suma += tempPaz;
+
+				cout << "Ar vesite dar viena namu darbu pazymi? (0 - Taip, 1 - Ne, einame prie kito studento)\n";
+				cin >> choiceEndPaz;
+			} while (choiceEndPaz != 1);
+		}
+
+		else if (choiceRand == 2) { //RND ND
+			cout << "\n---RANDOMIZUOTI NAMU DARBU PAZYMIAI---\n";
+
+			cout << "Iveskite studento egzamino bala: \n";
+			cin >> A.egzaminas;
+			
+			cout << "Iveskite namu darbu pazymiu skaiciu:";
+			cin >> n;
+
+			srand(time(NULL));
+			for (int i = 0; i < n; i++) {
+				int tempPazRnd = rand() % 10 + 1;
+				A.paz.push_back(tempPazRnd);
+
+				suma += tempPazRnd;
+			}
+
+			cout << "Ivesti pazymiai:\n{ ";
+			for (int i = 0; i < n; i++) {
+				cout << A.paz[i] << " ";
+			}
+			cout << " }";
+		}
+
+		else if (choiceRand == 3) { //RND VISKAS
+			cout << "\n---RANDOMIZUOTI EGZAMINO BALAI BEI NAMU DARBU PAZYMIAI---\n";
+
+			srand(time(NULL));
+			int tempEgzPazRnd = rand() % 10 + 1;
+			A.egzaminas = tempEgzPazRnd;
+			cout << "Ivestas egzamino balas:\n";
+			cout << "{ " << tempEgzPazRnd << " }\n";
+
+			cout << "Iveskite namu darbu pazymiu skaiciu:\n";
+			cin >> n;
+
+			srand(time(NULL));
+			for (int i = 0; i < n; i++) {
+				int tempPazRnd = rand() % 10 + 1;
+				A.paz.push_back(tempPazRnd);
+
+				suma += tempPazRnd;
+			}
+
+			cout << "Ivesti pazymiai:\n { ";
+			for (int i = 0; i < n; i++) {
+				cout << A.paz[i] << " ";
+			}
+			cout << " }";
+		}
 		Studentai.push_back(A);
 
 		vidurkis = suma / (double)n; //Suskaiciuoti vidurki
@@ -63,7 +149,7 @@ int main()
 
 		m++; //Skaiciuojame studentu skaiciu / saugome indeksa
 
-		cout << "Ar vesite dar vieno studento duomenis? (0 - taip, 1 - ne, einame prie galutiniu rezultatu)\n";
+		cout << "Ar vesite dar vieno studento duomenis? (0 - Taip, 1 - Ne, einame prie galutiniu rezultatu)\n";
 		cin >> choiceEndStud;
 		//Reset
 		system("cls");
@@ -82,7 +168,7 @@ int main()
 			cout << "\nPavarde     Vardas         Galutinis(Vid.)\n";
 			cout << "------------------------------------------\n";
 			for (int i = 0; i < Studentai.size(); i++) {
-				cout << Studentai[i].pav << "           " << Studentai[i].vardas << "              " << setprecision(2) << Studentai[i].galutinis << endl;
+				cout << Studentai[i].pav << "           " << Studentai[i].vardas << "              " << fixed << setprecision(2) << Studentai[i].galutinis << endl;
 			}
 			choiceRez = 0;
 		}
@@ -103,7 +189,7 @@ int main()
 			cout << "\nPavarde     Vardas         Galutinis(Med.)\n";
 			cout << "------------------------------------------\n";
 			for (int i = 0; i < Studentai.size(); i++) {
-				cout << Studentai[i].pav << "           " << Studentai[i].vardas << "              " << setprecision(2) << Studentai[i].galutinis << endl;
+				cout << Studentai[i].pav << "           " << Studentai[i].vardas << "              " << fixed << setprecision(2) << Studentai[i].galutinis << endl;
 			}
 
 			choiceRez = 0;
