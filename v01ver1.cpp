@@ -29,7 +29,7 @@ int main()
 	int choiceRez = 0; //Galutinio rez. isvedimo pasirinkimas
 	int choiceEndStud = 0; //Studentu duomenu ivesties baigties pasirinkimas
 	int choiceEndPaz = 0; //Pazymiu ivesties baigties pasirinkimas
-	int choiceRand = 0; //Pazymiu ivedimo / randomizavimo eigos pasirinkimas
+	int choiceMenu = 0; //Pazymiu ivedimo / randomizavimo eigos pasirinkimas
 
 	///DUOMENU IVESTIS
 	do {
@@ -46,9 +46,9 @@ int main()
 			cout << "---PAZYMIU IVEDIMAS---\n";
 			cout << "Pasirinkite pazymiu ivedimo buda " << m + 1 << "-am studentui "
 				<< "\n(0 - Viskas ranka, 1 - Randomizuotas egz.balas, 2 - Randomizuoti nd pazymiai, 3 - Viskas randomizuota: ";
-			cin >> choiceRand;
+			cin >> choiceMenu;
 
-			if (choiceRand == 0) { //RANKA
+			if (choiceMenu == 0) { //RANKA
 				cout << "Iveskite studento egzamino bala: ";
 				cin >> Studentai[m].egzaminas;
 
@@ -86,7 +86,7 @@ int main()
 
 				} while (choiceEndPaz != 1);
 			}
-			if (choiceRand == 1) {
+			if (choiceMenu == 1) {
 				cout << "\n---RANDOMIZUOTI EGZAMINO BALAI---\n";
 
 				srand(time(NULL));
@@ -131,7 +131,7 @@ int main()
 				} while (choiceEndPaz != 1);
 			}
 
-			if (choiceRand == 2) {
+			if (choiceMenu == 2) {
 				cout << "\n---RANDOMIZUOTI NAMU DARBU PAZYMIAI---\n";
 
 				cout << "Iveskite studento egzamino bala: \n";
@@ -170,7 +170,7 @@ int main()
 				cout << " }";
 			}
 
-			if (choiceRand == 3) {
+			if (choiceMenu == 3) {
 				cout << "\n---RANDOMIZUOTI EGZAMINO BALAI BEI NAMU DARBU PAZYMIAI---\n";
 
 				srand(time(NULL));
@@ -213,7 +213,7 @@ int main()
 			}
 
 			//Apskaiciuojame vidurki ir galutini rezultata kiekvienam studentui (kaip placeholder)
-			vidurkis = suma / (double)Studentai[m].pazKiekis;
+			vidurkis = (double)suma / (double)Studentai[m].pazKiekis;
 			Studentai[m].galutinis = 0.4 * vidurkis + 0.6 * Studentai[m].egzaminas;
 
 			m++; //Skaiciuojame studentu skaiciu / saugome indeksa
