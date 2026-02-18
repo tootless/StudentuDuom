@@ -33,6 +33,8 @@ struct Studentas {
 	//Nd pazymio ivestis
 	void paz_input(int& suma)
 	{
+		cout << "Iveskite studento pazymius:\n";
+
 		int tempPaz;
 		int choiceEndPaz = 0;
 
@@ -223,8 +225,6 @@ int main()
 
 			A.egz_input();
 
-			cout << "Iveskite studento pazymius:\n";
-
 			A.paz_input(suma);
 		}
 
@@ -296,7 +296,7 @@ int main()
 		Studentai.push_back(A);
 		if (!Studentai.empty()) {
 			//Apskaiciuojame vidurki ir galutini rezultata su juo kiekvienam studentui
-			vidurkis = (double)suma / ((double)Studentai[m].paz.size()-1);
+			vidurkis = (double)suma / ((double)Studentai[m].paz.size());
 			Studentai[m].galutinis = 0.4 * vidurkis + 0.6 * Studentai[m].egzaminas;
 		}
 
@@ -313,7 +313,6 @@ int main()
 
 			} while (choiceEndStud != 0 && choiceEndStud != 1);
 		}
-
 
 		//Reset
 		system("cls");
