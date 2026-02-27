@@ -1,4 +1,4 @@
-Vardas      Pavard?      ND1   ND2   ND3   ND4   ND5   Egz.
+Vardas      Pavarde      ND1   ND2   ND3   ND4   ND5   Egz.
 Vardas1 Pavarde1 6 3 2 3 5
 Var1 Pava1 3 2 1 9 4
 Vard1 Pavar1 1 5 2 3 2

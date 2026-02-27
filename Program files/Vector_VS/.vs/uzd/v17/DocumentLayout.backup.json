@@ -3,35 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\struct.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|solutionrelative:struct.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\v01ver2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|solutionrelative:v01ver2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\functions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|solutionrelative:functions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\struct.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|solutionrelative:struct.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\func.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|solutionrelative:func.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\kursiokai.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|solutionrelative:kursiokai.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\vector||{3B902123-F8A7-4915-9F01-361F908088D0}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\mylib.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|solutionrelative:mylib.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\timer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|solutionrelative:timer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\functions.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{613C362C-C4E6-4FBE-8098-D093EE82F79B}|uzd.vcxproj|solutionrelative:functions.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -41,56 +30,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "vector",
-              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\vector",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\vector",
-              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\vector",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\vector",
-              "ViewState": "AgIAAHoHAAAAAAAAAIAwwIkHAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-02-27T18:50:01.276Z",
+              "DocumentIndex": 3,
+              "Title": "timer.h",
+              "DocumentMoniker": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\timer.h",
+              "RelativeDocumentMoniker": "timer.h",
+              "ToolTip": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\timer.h",
+              "RelativeToolTip": "timer.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-02-27T22:50:47.756Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "kursiokai.txt",
-              "DocumentMoniker": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\kursiokai.txt",
-              "RelativeDocumentMoniker": "kursiokai.txt",
-              "ToolTip": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\kursiokai.txt",
-              "RelativeToolTip": "kursiokai.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2026-02-27T18:21:28.197Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "struct.cpp",
-              "DocumentMoniker": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\struct.cpp",
-              "RelativeDocumentMoniker": "struct.cpp",
-              "ToolTip": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\struct.cpp",
-              "RelativeToolTip": "struct.cpp",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAEwAAADhAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "functions.cpp",
+              "DocumentMoniker": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\functions.cpp",
+              "RelativeDocumentMoniker": "functions.cpp",
+              "ToolTip": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\functions.cpp",
+              "RelativeToolTip": "functions.cpp",
+              "ViewState": "AgIAAN4AAAAAAAAAAADgv+cAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-02-27T17:13:55.509Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "struct.h",
-              "DocumentMoniker": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\struct.h",
-              "RelativeDocumentMoniker": "struct.h",
-              "ToolTip": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\struct.h",
-              "RelativeToolTip": "struct.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABRAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "functions.h",
+              "DocumentMoniker": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\functions.h",
+              "RelativeDocumentMoniker": "functions.h",
+              "ToolTip": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\functions.h",
+              "RelativeToolTip": "functions.h",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAABdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-02-27T17:31:46.704Z",
               "EditorCaption": ""
@@ -98,32 +74,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "functions.h",
-              "DocumentMoniker": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\functions.h",
-              "RelativeDocumentMoniker": "functions.h",
-              "ToolTip": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\functions.h",
-              "RelativeToolTip": "functions.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-02-27T17:24:08.353Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "func.cpp",
-              "DocumentMoniker": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\func.cpp",
-              "RelativeDocumentMoniker": "func.cpp",
-              "ToolTip": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\func.cpp",
-              "RelativeToolTip": "func.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-02-27T17:13:48.483Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "mylib.h",
               "DocumentMoniker": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\mylib.h",
               "RelativeDocumentMoniker": "mylib.h",
@@ -131,17 +81,18 @@
               "RelativeToolTip": "mylib.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-02-27T17:15:19.369Z"
+              "WhenOpened": "2026-02-27T17:15:19.369Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "v01ver2.cpp",
-              "DocumentMoniker": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\v01ver2.cpp",
-              "RelativeDocumentMoniker": "v01ver2.cpp",
-              "ToolTip": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\v01ver2.cpp",
-              "RelativeToolTip": "v01ver2.cpp",
-              "ViewState": "AgIAAGEAAAAAAAAAAIAwwHIAAAAuAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\main.cpp",
+              "RelativeDocumentMoniker": "main.cpp",
+              "ToolTip": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\main.cpp",
+              "RelativeToolTip": "main.cpp",
+              "ViewState": "AgIAAGEAAAAAAAAAAADwv24AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-02-18T09:29:56.837Z",
               "EditorCaption": ""

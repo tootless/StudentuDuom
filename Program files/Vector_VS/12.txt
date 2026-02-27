@@ -1,5 +1,0 @@
-Pavarde1       Vardas1        4.90              4.20
-Pava1          Var1           4.30              3.20
-Pavar1         Vard1          2.50              2.00
-Pavard1        Varda1         5.10              4.60
-Pavarde1       Vardas1        8.60              7.60
