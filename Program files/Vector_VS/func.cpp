@@ -1,4 +1,4 @@
-//Global functions
+﻿//Global functions
 
 #include "mylib.h"
 #include <iostream>

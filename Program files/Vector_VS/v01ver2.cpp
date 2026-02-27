@@ -92,16 +92,50 @@ int main()
 		}
 
 		//SKAITYTI IS FAILO
-		/*else if (choicemenu == 5) {
-			studentai = studentas::read_file("kursiokai.txt");
-		}*/
+		else if (choiceMenu == 5) {
+			std::string answer;
+			int choiceOutput;
+			cout << "---STUDENTO DUOMENU NUSKAITYMAS IS FAILO---\n\n";
+
+			cout << "\nIveskite failo pavadinima, is kurio norite nuskaityti:\n";
+			cin >> answer;
+			Studentai = Studentas::read_file(answer);
+
+			//Isvedimas
+			do {
+				input_validation(choiceOutput, 1, 2, "Kur norite isvesti studentu galutinius rezultatus? (1 - Faile, 2 - Ekrane)\n");
+
+			} while (choiceOutput < 1 || choiceOutput > 2);
+
+			if (choiceOutput == 1) {
+				std::string answer2;
+				cout << "\nIveskite failo pavadinima, i kuri norite irasyti duomenis:\n";
+				cin >> answer2;
+
+				Studentas::write_file(answer2, Studentai);
+			}
+			else if (choiceOutput == 2) {
+				cout << "\nPavarde     Vardas         Galutinis(Vid.)    Galutinis(Med.)\n";
+				cout << "------------------------------------------\n";
+				for (int i = 0; i < Studentai.size(); i++) {
+					cout << Studentai[i].pav << "           " << Studentai[i].vardas << "              \n";
+				}
+				choiceOutput = 0;
+			}
+
+			Studentai.clear();
+			Studentas clearA;
+			A = clearA;
+
+			choiceEndStud = 1;
+		}
 
 		//Perkeliam vieno studento duomenis
 		Studentai.push_back(A);
 		if (!Studentai.empty()) {
 			//Apskaiciuojame vidurki ir galutini rezultata su juo kiekvienam studentui
 			vidurkis = (double)suma / ((double)Studentai[m].paz.size());
-			Studentai[m].galutinis = 0.4 * vidurkis + 0.6 * Studentai[m].egzaminas;
+			Studentai[m].galutinisVid = 0.4 * vidurkis + 0.6 * Studentai[m].egzaminas;
 		}
 
 		//Ivesti daugiau studentu choice
@@ -111,10 +145,11 @@ int main()
 				input_validation(choiceEndStud, 0, 1, "\nAr vesite dar vieno studento duomenis? (0 - Taip, 1 - Ne, einame prie galutiniu rezultatu)\n");
 
 			} while (choiceEndStud < 0 || choiceEndStud > 1);
+
+			system("cls");
 		}
 
 		//Reset
-		system("cls");
 		vidurkis = 0;
 		suma = 0;
 		n = 0;
@@ -133,7 +168,7 @@ int main()
 			cout << "\nPavarde     Vardas         Galutinis(Vid.)\n";
 			cout << "------------------------------------------\n";
 			for (int i = 0; i < m; i++) {
-				cout << Studentai[i].pav << "           " << Studentai[i].vardas << "              " << std::fixed << std::setprecision(2) << Studentai[i].galutinis << "\n\n";
+				cout << Studentai[i].pav << "           " << Studentai[i].vardas << "              " << std::fixed << std::setprecision(2) << Studentai[i].galutinisVid << "\n\n";
 			}
 			choiceRez = 0;
 		}
@@ -150,13 +185,13 @@ int main()
 				else
 					mediana = Studentai[i].paz[a / 2];
 
-				Studentai[i].galutinis = 0.4 * mediana + 0.6 * Studentai[i].egzaminas;
+				Studentai[i].galutinisMed = 0.4 * mediana + 0.6 * Studentai[i].egzaminas;
 			}
 
 			cout << "\nPavarde     Vardas         Galutinis(Med.)\n";
 			cout << "------------------------------------------\n";
 			for (int i = 0; i < m; i++) {
-				cout << Studentai[i].pav << "           " << Studentai[i].vardas << "              " << std::fixed << std::setprecision(2) << Studentai[i].galutinis << "\n\n";
+				cout << Studentai[i].pav << "           " << Studentai[i].vardas << "              " << std::fixed << std::setprecision(2) << Studentai[i].galutinisMed << "\n\n";
 			}
 
 			choiceRez = 0;

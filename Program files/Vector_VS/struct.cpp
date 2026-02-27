@@ -1,4 +1,4 @@
-//Studentai struct function implementations
+﻿//Studentai struct function implementations
 
 #include "struct.h"
 #include "functions.h"
@@ -13,7 +13,7 @@ using std::cin;
 
 //DARBAS SU FAILU
 //
-std::vector<Studentas> Studentas::read_file(const std::string& filename) {
+std::vector<Studentas> Studentas::read_file(const std::string filename) {
 	std::vector<Studentas> tempStudentai;
 
 	//implement try catch for if file not opening or file not found or...
@@ -45,6 +45,26 @@ std::vector<Studentas> Studentas::read_file(const std::string& filename) {
 	fin.close();
 
 	return tempStudentai;
+}
+
+void Studentas::write_file(const std::string filename, const std::vector<Studentas>& Studentai) {
+	std::ofstream fout(filename);
+
+	if (!fout) {
+		throw std::runtime_error("Cannot create file: " + filename);
+	}
+
+	// Write header
+	fout << "Vardas      Pavardė      ND1   ND2   ND3   ND4   ND5   Egz." << std::endl;
+
+	// Write each student
+	for (const auto& s : Studentai) {
+		fout << s.vardas << " " << s.pav;
+		for (int tempPaz : s.paz) {
+			fout << " " << tempPaz;
+		}
+		fout << " " << s.egzaminas << "\n";
+	}
 }
 
 //DARBAS SU EKRANU

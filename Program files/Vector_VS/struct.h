@@ -8,10 +8,12 @@ struct Studentas {
 	std::string vardas, pav;
     std::vector<int> paz;
     int egzaminas = 0;
-    double galutinis = 0;
+    double galutinisVid = 0;
+    double galutinisMed = 0;
 
     //Darbas su failais
-    static std::vector<Studentas> read_file(const std::string& filename);
+    static std::vector<Studentas> read_file(const std::string filename);
+    static void write_file(const std::string filename, const std::vector<Studentas>& Studentai);
 
     //Darbas su ekranu
     void varpav_input();
