@@ -25,7 +25,7 @@ int main()
 
 		//MENIU
 		do {
-			menu(m);
+			menu();
 
 			input_validation(choiceMenu, 1, 5);
 
@@ -99,7 +99,7 @@ int main()
 
 			cout << "\nIveskite failo pavadinima, is kurio norite nuskaityti:\n";
 			cin >> answer;
-			Studentai = Studentas::read_file(answer);
+			Studentai = Studentas::read_file(answer, suma);
 
 			//Isvedimas
 			do {
@@ -115,18 +115,16 @@ int main()
 				Studentas::write_file(answer2, Studentai);
 			}
 			else if (choiceOutput == 2) {
-				cout << "\nPavarde     Vardas         Galutinis(Vid.)    Galutinis(Med.)\n";
-				cout << "------------------------------------------\n";
+
+				cout << "\n" << std::setw(15) << std::left << "Pavarde" << std::setw(15) << std::left << "Vardas" << std::setw(15) << std::left << "Galutinis (Vid.)   Galutinis (Med.)" << "\n";
+				cout << "----------------------------------------------------\n";
 				for (int i = 0; i < Studentai.size(); i++) {
-					cout << Studentai[i].pav << "           " << Studentai[i].vardas << "              \n";
+					cout << std::setw(15) << std::left << Studentai[i].pav << std::setw(15) << std::left << Studentai[i].vardas << std::setw(15) << std::left << std::fixed << std::setprecision(2) << Studentai[i].galutinisVid << "   " << std::fixed << std::setprecision(2) << Studentai[i].galutinisMed << "\n";
 				}
 				choiceOutput = 0;
 			}
 
-			Studentai.clear();
-			Studentas clearA;
-			A = clearA;
-
+			//Iseiti is while loop
 			choiceEndStud = 1;
 		}
 
@@ -150,6 +148,7 @@ int main()
 		}
 
 		//Reset
+		if (choiceMenu == 5) Studentai.clear();
 		vidurkis = 0;
 		suma = 0;
 		n = 0;
@@ -199,7 +198,7 @@ int main()
 
 		//Restart()
 	}
-	else if (Studentai.empty()) {
+	else if (Studentai.empty() && choiceMenu != 5) {
 		cout << "Studentu duomenu nera.\n\n";
 		//Restart();
 	}

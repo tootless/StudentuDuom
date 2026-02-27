@@ -6,10 +6,10 @@
 using std::cout;
 using std::cin;
 
-void menu(int& m) {
+void menu() {
 	cout << "\nMENIU\n";
 	cout << "\n--------\n";
-	cout << "Pasirinkite programos eiga " << m + 1 << "-am studentui:\n\n"
+	cout << "Pasirinkite programos eiga\n\n" 
 		<< "1 - Viskas ranka,\n2 - Randomizuoti nd. pazymiai ir egz. balas,\n3 - Viskas randomizuota,\n4 - Baigti darba (Ir isvesti galutinius rezultatus),\n5 - Skaityti visus duomenis is failo.";
 	cout << "\n--------\n";
 }

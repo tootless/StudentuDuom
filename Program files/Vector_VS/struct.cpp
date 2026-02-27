@@ -3,6 +3,7 @@
 #include "struct.h"
 #include "functions.h"
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <sstream>
 #include <algorithm>
@@ -13,7 +14,7 @@ using std::cin;
 
 //DARBAS SU FAILU
 //
-std::vector<Studentas> Studentas::read_file(const std::string filename) {
+std::vector<Studentas> Studentas::read_file(const std::string filename, int& suma) {
 	std::vector<Studentas> tempStudentai;
 
 	//implement try catch for if file not opening or file not found or...
@@ -33,13 +34,33 @@ std::vector<Studentas> Studentas::read_file(const std::string filename) {
 		//read visus pazymius
 		while (iss >> tempPaz) {
 			A.paz.push_back(tempPaz);
+			suma += tempPaz;
 		}
 		//paskutinis pazymys paz vector yra egzamino balas
 		A.egzaminas = A.paz.back();
 		A.paz.pop_back();
 
+		//apskaiciuoti galutinius rezultatus, kadangi isvedami abu
+		double vidurkis = (double)suma / (double)A.paz.size();
+		A.galutinisVid = 0.4 * vidurkis + 0.6 * A.egzaminas;
+
+		int a = A.paz.size();
+		double mediana;
+		sort(A.paz.begin(), A.paz.end());
+		if (a % 2 == 0) {
+			int midLeftElem = a / 2 - 1;
+			mediana = (A.paz[midLeftElem] + A.paz[a / 2]) / 2;
+		}
+		else
+			mediana = A.paz[a / 2];
+
+		A.galutinisMed = 0.4 * mediana + 0.6 * A.egzaminas;
+
+
 
 		tempStudentai.push_back(A);
+
+		suma = 0;
 	}
 
 	fin.close();
@@ -50,21 +71,13 @@ std::vector<Studentas> Studentas::read_file(const std::string filename) {
 void Studentas::write_file(const std::string filename, const std::vector<Studentas>& Studentai) {
 	std::ofstream fout(filename);
 
-	if (!fout) {
-		throw std::runtime_error("Cannot create file: " + filename);
-	}
-
-	// Write header
-	fout << "Vardas      Pavardė      ND1   ND2   ND3   ND4   ND5   Egz." << std::endl;
-
-	// Write each student
+	fout << "\n" << std::setw(15) << std::left << "Pavarde" << std::setw(15) << std::left << "Vardas" << std::setw(15) << std::left << "Galutinis (Vid.)   Galutinis (Med.)" << "\n";
+	fout << "----------------------------------------------------\n";
 	for (const auto& s : Studentai) {
-		fout << s.vardas << " " << s.pav;
-		for (int tempPaz : s.paz) {
-			fout << " " << tempPaz;
-		}
-		fout << " " << s.egzaminas << "\n";
+		fout << std::setw(15) << std::left << s.pav << std::setw(15) << std::left << s.vardas << std::setw(15) << std::left << std::fixed << std::setprecision(2) << s.galutinisVid << "   " << std::fixed << std::setprecision(2) << s.galutinisMed << "\n";
 	}
+
+
 }
 
 //DARBAS SU EKRANU

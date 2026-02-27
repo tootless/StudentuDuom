@@ -12,7 +12,7 @@ struct Studentas {
     double galutinisMed = 0;
 
     //Darbas su failais
-    static std::vector<Studentas> read_file(const std::string filename);
+    static std::vector<Studentas> read_file(const std::string filename, int& suma);
     static void write_file(const std::string filename, const std::vector<Studentas>& Studentai);
 
     //Darbas su ekranu
