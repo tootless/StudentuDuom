@@ -24,7 +24,15 @@
     <ClCompile Include="v01ver2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="functions.h" />
     <ClInclude Include="mylib.h" />
+    <ClInclude Include="struct.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="kursiokai.txt" />
+    <Text Include="studentai10000.txt" />
+    <Text Include="studentai100000.txt" />
+    <Text Include="studentai1000000.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

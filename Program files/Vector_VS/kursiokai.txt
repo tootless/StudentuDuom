@@ -3,4 +3,4 @@ Vardas1      Pavarde1      6      3     2    3     4     5
 Var1         Pava1         3      2     1    9     5     6
 Vard1        Pavar1        1      5     2    3     3     7
 Varda1       Pavard1       6      7     1    2     3     8
-Vardas1       Pavarde1     6      7     1    2     3     10
+Vardas1      Pavarde1      6      7     1    2     3     10

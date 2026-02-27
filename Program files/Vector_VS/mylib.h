@@ -5,6 +5,4 @@
 #include <algorithm>
 #include <random>
 #include <stdlib.h>
-
-using std::cout;
-using std::cin;
+#include <fstream>

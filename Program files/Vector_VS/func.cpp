@@ -1,6 +1,10 @@
 //Global functions
 
-#include "mylib.h";
+#include "mylib.h"
+#include <iostream>
+
+using std::cout;
+using std::cin;
 
 void menu(int& m) {
 	cout << "\nMENIU\n";
@@ -10,7 +14,7 @@ void menu(int& m) {
 	cout << "\n--------\n";
 }
 
-void input_validation(int& choice, int lowEnd, int highEnd, std::string optionalPrompt = "") //Ends: while loop check; if highEnd = -1, no highEnd used
+void input_validation(int& choice, int lowEnd, int highEnd, std::string optionalPrompt) //if highEnd = -1, no highEnd used
 {
 	cout << optionalPrompt;
 

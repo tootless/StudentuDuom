@@ -1,9 +1,8 @@
-﻿#include "mylib.h"; //Libraries, dependencies, main variables
-#include "func.cpp"; //Functions
-#include "struct.cpp"; //Studentai struct
+﻿#include "mylib.h"
+#include "functions.h"
+#include "struct.h"
 
 //Visi duomenu rinkiniai su std::vector
-//Current version: v0.1
 
 int main()
 {
@@ -17,19 +16,22 @@ int main()
 	int choiceEndStud = 0; //Studentu duomenu ivesties baigties pasirinkimas
 	int choiceMenu = 0; //Programos eigos pasirinkimas
 
-	srand(time(NULL));
+	srand(static_cast<unsigned int>(time(NULL)));
 
+	A.read_file("kursiokai.txt");
+
+	/*
 	do {
 
 		//MENIU
 		do {
 			menu(m);
 
-			input_validation(choiceMenu, 1, 4);
+			input_validation(choiceMenu, 1, 5);
 
 			system("cls");
 
-		} while (choiceMenu < 1 || choiceMenu > 4);
+		} while (choiceMenu < 1 || choiceMenu > 5);
 
 		//RANKA
 		if (choiceMenu == 1) {
@@ -161,6 +163,7 @@ int main()
 		cout << "Studentu duomenu nera.\n\n";
 		//Restart();
 	}
+	*/
 
 	return 0;
 }

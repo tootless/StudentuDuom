@@ -29,5 +29,25 @@
     <ClInclude Include="mylib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="struct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="kursiokai.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="studentai10000.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="studentai100000.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="studentai1000000.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
