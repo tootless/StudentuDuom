@@ -11,7 +11,7 @@ struct Studentas {
     double galutinis = 0;
 
     //Darbas su failais
-    void read_file(std::string filename);
+    static std::vector<Studentas> read_file(const std::string& filename);
 
     //Darbas su ekranu
     void varpav_input();

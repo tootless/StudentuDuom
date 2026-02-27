@@ -4,6 +4,7 @@
 #include "functions.h"
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <algorithm>
 #include <stdlib.h>
 
@@ -12,18 +13,38 @@ using std::cin;
 
 //DARBAS SU FAILU
 //
-void Studentas::read_file(std::string filename) {
-	char v[13], p[14];
+std::vector<Studentas> Studentas::read_file(const std::string& filename) {
+	std::vector<Studentas> tempStudentai;
 
-	//implement try catch
+	//implement try catch for if file not opening or file not found or...
 	std::fstream fin(filename, std::ios::in);
+	std::string curr_eil; //current eilute
+	std::istringstream iss(curr_eil);
 
 	fin.ignore(INT32_MAX, '\n');
-	fin.getline(v, 13); vardas = v;
-	fin.getline(p, 14); pav = p;
 
-	cout << "VARDAS: " << vardas << "\n";
-	cout << "PAVARDE: " << pav << "\n";
+	while (std::getline(fin, curr_eil)) {
+		Studentas A; //temp Studentas
+		int tempPaz;
+		
+		std::istringstream iss(curr_eil);
+		iss >> A.vardas >> A.pav;
+
+		//read visus pazymius
+		while (iss >> tempPaz) {
+			A.paz.push_back(tempPaz);
+		}
+		//paskutinis pazymys paz vector yra egzamino balas
+		A.egzaminas = A.paz.back();
+		A.paz.pop_back();
+
+
+		tempStudentai.push_back(A);
+	}
+
+	fin.close();
+
+	return tempStudentai;
 }
 
 //DARBAS SU EKRANU

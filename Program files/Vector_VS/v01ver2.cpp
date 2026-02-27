@@ -4,6 +4,9 @@
 
 //Visi duomenu rinkiniai su std::vector
 
+using std::cout;
+using std::cin;
+
 int main()
 {
 	Studentas A; //Temp studentas su realiais duomenimis
@@ -18,9 +21,6 @@ int main()
 
 	srand(static_cast<unsigned int>(time(NULL)));
 
-	A.read_file("kursiokai.txt");
-
-	/*
 	do {
 
 		//MENIU
@@ -91,6 +91,11 @@ int main()
 			choiceEndStud = 1;
 		}
 
+		//SKAITYTI IS FAILO
+		/*else if (choicemenu == 5) {
+			studentai = studentas::read_file("kursiokai.txt");
+		}*/
+
 		//Perkeliam vieno studento duomenis
 		Studentai.push_back(A);
 		if (!Studentai.empty()) {
@@ -100,7 +105,7 @@ int main()
 		}
 
 		//Ivesti daugiau studentu choice
-		if (choiceMenu != 4) {
+		if (choiceMenu != 4 && choiceMenu != 5) {
 			m++; //Skaiciuojame studentu skaiciu / saugome indeksa
 			do {
 				input_validation(choiceEndStud, 0, 1, "\nAr vesite dar vieno studento duomenis? (0 - Taip, 1 - Ne, einame prie galutiniu rezultatu)\n");
@@ -163,7 +168,6 @@ int main()
 		cout << "Studentu duomenu nera.\n\n";
 		//Restart();
 	}
-	*/
 
 	return 0;
 }
