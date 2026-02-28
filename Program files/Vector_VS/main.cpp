@@ -99,7 +99,12 @@ int main()
 
 			cout << "\nIveskite failo pavadinima, is kurio norite nuskaityti:\n";
 			cin >> answer;
+			//Start timer
+			Timer timer; 
+
 			Studentai = Studentas::read_file(answer, suma);
+
+			cout << "\n\n FAILA PERSKAITYTI UZTRUKO: " << timer.elapsed() << " s\n\n";
 
 			//Rūšiavimas
 			do {
@@ -110,12 +115,10 @@ int main()
 			sort(Studentai.begin(), Studentai.end(),
 				[choiceSort](const Studentas& a, const Studentas& b) -> bool{
 					if (choiceSort == 1) {
-						if (a.vardas != b.vardas) return a.vardas > b.vardas;
-						else return a.pav > b.pav;
+						if (a.vardas != b.vardas) return a.vardas < b.vardas;
 					}
 					else if (choiceSort == 2) {
-						if (a.pav != b.pav) return a.pav > b.pav;
-						else return a.vardas > b.vardas;
+						if (a.pav != b.pav) return a.pav < b.pav;
 					}
 					else if (choiceSort == 3) {
 						return a.galutinisVid > b.galutinisVid;
@@ -155,9 +158,22 @@ int main()
 		//Perkeliam vieno studento duomenis
 		if(choiceMenu != 5) Studentai.push_back(A);
 		if (!Studentai.empty()) {
-			//Apskaiciuojame vidurki ir galutini rezultata su juo kiekvienam studentui
+			//Apskaiciuojame galutini rezultata kiekvienam studentui
 			vidurkis = (double)suma / ((double)Studentai[m].paz.size());
 			Studentai[m].galutinisVid = 0.4 * vidurkis + 0.6 * Studentai[m].egzaminas;
+
+			for (int i = 0; i < m; i++) {
+				int a = Studentai[i].paz.size();
+				sort(Studentai[i].paz.begin(), Studentai[i].paz.end());
+				if (a % 2 == 0) {
+					int midLeftElem = a / 2 - 1;
+					mediana = (Studentai[i].paz[midLeftElem] + Studentai[i].paz[a / 2]) / 2;
+				}
+				else
+					mediana = Studentai[i].paz[a / 2];
+
+				Studentai[i].galutinisMed = 0.4 * mediana + 0.6 * Studentai[i].egzaminas;
+			}
 		}
 
 		//Ivesti daugiau studentu choice
@@ -186,35 +202,70 @@ int main()
 
 		} while (choiceRez < 1 || choiceRez > 2);
 
+		system("cls");
+
 		//VIDURKIS
 		if (choiceRez == 1) {
-			cout << "\nPavarde     Vardas         Galutinis(Vid.)\n";
-			cout << "------------------------------------------\n";
-			for (int i = 0; i < m; i++) {
-				cout << Studentai[i].pav << "           " << Studentai[i].vardas << "              " << std::fixed << std::setprecision(2) << Studentai[i].galutinisVid << "\n\n";
+			//Rūšiavimas
+			int choiceSort;
+			do {
+				input_validation(choiceSort, 1, 3, "Kaip norite surūšiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.)\n");
+
+			} while (choiceSort < 1 || choiceSort > 3);
+
+			sort(Studentai.begin(), Studentai.end(),
+				[choiceSort](const Studentas& a, const Studentas& b) -> bool {
+					if (choiceSort == 1) {
+						if (a.vardas != b.vardas) return a.vardas < b.vardas;
+					}
+					else if (choiceSort == 2) {
+						if (a.pav != b.pav) return a.pav < b.pav;
+					}
+					else if (choiceSort == 3) {
+						return a.galutinisVid > b.galutinisVid;
+					}
+					else {
+						return a.galutinisMed > b.galutinisMed;
+					}
+				});
+
+			cout << "\n" << std::setw(15) << std::left << "Pavarde" << std::setw(15) << std::left << "Vardas" << std::setw(15) << std::left << "Galutinis (Vid.)" << "\n";
+			cout << "----------------------------------------------------\n";
+			for (int i = 0; i < Studentai.size(); i++) {
+				cout << std::setw(15) << std::left << Studentai[i].pav << std::setw(15) << std::left << Studentai[i].vardas << std::setw(15) << std::left << std::fixed << std::setprecision(2) << Studentai[i].galutinisVid << "   " << "\n";
 			}
 			choiceRez = 0;
 		}
 		//MEDIANA
 		else if (choiceRez == 2) {
-			//Rasti mediana
-			for (int i = 0; i < m; i++) {
-				int a = Studentai[i].paz.size();
-				sort(Studentai[i].paz.begin(), Studentai[i].paz.end());
-				if (a % 2 == 0) {
-					int midLeftElem = a / 2 - 1;
-					mediana = (Studentai[i].paz[midLeftElem] + Studentai[i].paz[a / 2]) / 2;
-				}
-				else
-					mediana = Studentai[i].paz[a / 2];
+			//Rūšiavimas
+			int choiceSort;
+			do {
+				input_validation(choiceSort, 1, 3, "Kaip norite surūšiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.),\n4- Pagal galutini (med.)\n");
 
-				Studentai[i].galutinisMed = 0.4 * mediana + 0.6 * Studentai[i].egzaminas;
-			}
+			} while (choiceSort < 1 || choiceSort > 3);
+
+			sort(Studentai.begin(), Studentai.end(),
+				[choiceSort](const Studentas& a, const Studentas& b) -> bool {
+					if (choiceSort == 1) {
+						if (a.vardas != b.vardas) return a.vardas < b.vardas;
+					}
+					else if (choiceSort == 2) {
+						if (a.pav != b.pav) return a.pav < b.pav;
+					}
+					else if (choiceSort == 3) {
+						return a.galutinisVid > b.galutinisVid;
+					}
+					else {
+						return a.galutinisMed > b.galutinisMed;
+					}
+				});
+
 
 			cout << "\nPavarde     Vardas         Galutinis(Med.)\n";
 			cout << "------------------------------------------\n";
 			for (int i = 0; i < m; i++) {
-				cout << Studentai[i].pav << "           " << Studentai[i].vardas << "              " << std::fixed << std::setprecision(2) << Studentai[i].galutinisMed << "\n\n";
+				cout << std::setw(15) << std::left << Studentai[i].pav << std::setw(15) << std::left << Studentai[i].vardas << std::setw(15) << std::left << std::fixed << std::setprecision(2) << Studentai[i].galutinisMed << "   " << "\n";
 			}
 
 			choiceRez = 0;

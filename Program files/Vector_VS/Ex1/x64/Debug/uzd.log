@@ -1,4 +1,7 @@
 ﻿  main.cpp
 C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(106,40): warning C4566: character represented by universal-character-name '\u016B' cannot be represented in the current code page (1252)
-C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(202,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(161,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(207,40): warning C4566: character represented by universal-character-name '\u016B' cannot be represented in the current code page (1252)
+C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(238,40): warning C4566: character represented by universal-character-name '\u016B' cannot be represented in the current code page (1252)
+C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(124,1): warning C4715: '`main'::`29'::<lambda_1>::operator()': not all control paths return a value
   uzd.vcxproj -> C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\x64\Debug\Ex1.exe
