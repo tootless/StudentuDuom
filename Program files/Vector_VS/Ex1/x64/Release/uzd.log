@@ -1,0 +1,15 @@
+﻿  functions.cpp
+C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\functions.cpp(49,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  main.cpp
+C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(111,40): warning C4566: character represented by universal-character-name '\u016B' cannot be represented in the current code page (1252)
+C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(166,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(212,40): warning C4566: character represented by universal-character-name '\u016B' cannot be represented in the current code page (1252)
+C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(244,40): warning C4566: character represented by universal-character-name '\u016B' cannot be represented in the current code page (1252)
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(262): warning C4715: '`main'::`76'::<lambda_3>::operator()': not all control paths return a value
+C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(230): warning C4715: '`main'::`68'::<lambda_2>::operator()': not all control paths return a value
+C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(129): warning C4715: '`main'::`29'::<lambda_1>::operator()': not all control paths return a value
+  All 499 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  uzd.vcxproj -> C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\x64\Release\Ex1.exe
