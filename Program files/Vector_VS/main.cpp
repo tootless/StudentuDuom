@@ -4,9 +4,6 @@
 
 //Visi duomenu rinkiniai su std::vector
 
-using std::cout;
-using std::cin;
-
 int main()
 {
 	Studentas A; //Temp studentas su realiais duomenimis

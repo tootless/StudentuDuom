@@ -6,3 +6,6 @@
 #include <random>
 #include <stdlib.h>
 #include <fstream>
+
+using std::cout;
+using std::cin;

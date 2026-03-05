@@ -1,15 +1,6 @@
-﻿//Function implementations
+﻿//function implementations file
 
 #include "functions.h"
-#include <iostream>
-#include <iomanip>
-#include <fstream>
-#include <sstream>
-#include <algorithm>
-#include <stdlib.h>
-
-using std::cout;
-using std::cin;
 
 
 //STRUCT STUDENTAI FUNKCIJOS
