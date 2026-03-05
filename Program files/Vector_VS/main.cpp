@@ -105,7 +105,7 @@ int main()
 
 			//Rūšiavimas
 			do {
-				number_input_validation(choiceSort, 1, 4, "Kaip norite surūšiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.),\n4- Pagal galutini (med.)\n");
+				number_input_validation(choiceSort, 1, 4, "Kaip norite surusiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.),\n4- Pagal galutini (med.)\n");
 
 			} while (choiceSort < 1 || choiceSort > 4);
 

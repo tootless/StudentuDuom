@@ -78,9 +78,8 @@ void Studentas::write_file(const std::string filename, const std::vector<Student
 //Vardo, pavardes ivestis
 void Studentas::varpav_input()
 {
-	cout << "Iveskite studento varda: \n";
-	cout << "Vardas: ";
-	cin >> vardas;
+	string_input_validation(vardas, "Iveskite studento varda:\nVardas: ");
+
 
 	cout << "Iveskite studento pavarde: \n";
 	cout << "Pavarde: ";
@@ -234,8 +233,8 @@ void number_input_validation(int& choice, int lowEnd, int highEnd, std::string o
 		}
 
 		bool isNumber = true;
-		for (size_t i = 0; i < input.length(); i++) {
-			if (!isdigit(input[i])) {
+		for (auto i : input) {
+			if (!isdigit(i)) {
 				isNumber = false;
 				break;
 			}
@@ -260,6 +259,36 @@ void number_input_validation(int& choice, int lowEnd, int highEnd, std::string o
 			continue;
 		}
 
+		//valid input
+		break;
+	}
+}
+
+void string_input_validation(std::string input, std::string optionalPrompt) {
+	while (true) {
+		cout << optionalPrompt;
+		getline(cin, input);
+
+		if (input.empty()) {
+			cout << "\n---KLAIDA: Ivestis tuscia---\n";
+			continue;
+		}
+
+		//check if string valid
+		bool isLetter = true;
+		for (auto i : input) {
+			if (!isalpha(i) || i == ' ') {
+				isLetter = false;
+
+				break; //if any not letter, stop checking
+			}
+			cout << "\nLETTER? " << i << " -> " << isLetter << "\n";
+		}
+
+		if (isLetter == false) {
+			cout << "\n---KLAIDA: Iveskite tik raides---\n";
+			continue;
+		}
 		//valid input
 		break;
 	}
