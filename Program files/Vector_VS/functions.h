@@ -1,8 +1,18 @@
-//Studentas struct function declarations
+//function declarations file
+
 #pragma once
 
+#include <iostream>
+#include <iomanip>
 #include <string>
 #include <vector>
+#include <fstream>
+#include <sstream>
+#include <algorithm>
+#include <stdlib.h>
+
+using std::cout;
+using std::cin;
 
 struct Studentas {
 	std::string vardas, pav;
@@ -21,8 +31,9 @@ struct Studentas {
     void egz_input();
     void rand_paz(int pazSk, int& suma);
     void rand_egz();
-    void rand_stud();
+    void rand_varpav();
 };
 
+//GLOBALIOS FUNKCIJOS
 void menu();
-void input_validation(int& choice, int lowEnd, int highEnd, std::string optionalPrompt = "");
+void number_input_validation(int& choice, int lowEnd, int highEnd, std::string optionalPrompt = "");

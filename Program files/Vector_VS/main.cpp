@@ -4,9 +4,6 @@
 
 //Visi duomenu rinkiniai su std::vector
 
-using std::cout;
-using std::cin;
-
 int main()
 {
 	Studentas A; //Temp studentas su realiais duomenimis
@@ -27,7 +24,7 @@ int main()
 		do {
 			menu();
 
-			input_validation(choiceMenu, 1, 5);
+			number_input_validation(choiceMenu, 1, 5);
 
 			system("cls");
 
@@ -59,7 +56,7 @@ int main()
 			cout << "\n---RANDOMIZUOTI NAMU DARBU PAZYMIAI---\n\n";
 
 			do {
-				input_validation(n, 1, -1, "Iveskite norima namu darbu pazymiu skaiciu:\n");
+				number_input_validation(n, 1, -1, "Iveskite norima namu darbu pazymiu skaiciu:\n");
 
 			} while (n < 1);
 
@@ -69,7 +66,7 @@ int main()
 		//RND VISKAS
 		else if (choiceMenu == 3) {
 			cout << "\n---RANDOMIZUOTAS STUDENTO VARDAS IR PAVARDE";
-			A.rand_stud();
+			A.rand_varpav();
 
 			cout << "\n---RANDOMIZUOTAS EGZAMINO BALAS---\n\n";
 
@@ -78,7 +75,7 @@ int main()
 			cout << "\n---RANDOMIZUOTI NAMU DARBU PAZYMIAI---\n\n";
 
 			do {
-				input_validation(n, 1, -1, "Iveskite norima namu darbu pazymiu skaiciu:");
+				number_input_validation(n, 1, -1, "Iveskite norima namu darbu pazymiu skaiciu:");
 
 			} while (n < 1);
 
@@ -108,7 +105,7 @@ int main()
 
 			//Rūšiavimas
 			do {
-				input_validation(choiceSort, 1, 4, "Kaip norite surūšiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.),\n4- Pagal galutini (med.)\n");
+				number_input_validation(choiceSort, 1, 4, "Kaip norite surūšiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.),\n4- Pagal galutini (med.)\n");
 
 			} while (choiceSort < 1 || choiceSort > 4);
 
@@ -130,7 +127,7 @@ int main()
 
 			//Isvedimas
 			do {
-				input_validation(choiceOutput, 1, 2, "Kur norite isvesti studentu galutinius rezultatus? (1 - Faile, 2 - Ekrane)\n");
+				number_input_validation(choiceOutput, 1, 2, "Kur norite isvesti studentu galutinius rezultatus? (1 - Faile, 2 - Ekrane)\n");
 
 			} while (choiceOutput < 1 || choiceOutput > 2);
 
@@ -180,7 +177,7 @@ int main()
 		if (choiceMenu != 4 && choiceMenu != 5) {
 			m++; //Skaiciuojame studentu skaiciu / saugome indeksa
 			do {
-				input_validation(choiceEndStud, 0, 1, "\nAr vesite dar vieno studento duomenis? (0 - Taip, 1 - Ne, einame prie galutiniu rezultatu)\n");
+				number_input_validation(choiceEndStud, 0, 1, "\nAr vesite dar vieno studento duomenis? (0 - Taip, 1 - Ne, einame prie galutiniu rezultatu)\n");
 
 			} while (choiceEndStud < 0 || choiceEndStud > 1);
 
@@ -198,7 +195,7 @@ int main()
 	if (!Studentai.empty()) {
 
 		do {
-			input_validation(choiceRez, 1, 2, "Kaip norite isvesti studentu galutinius rezultatus? (1 - Vidurkis, 2 - Mediana)\n");
+			number_input_validation(choiceRez, 1, 2, "Kaip norite isvesti studentu galutinius rezultatus? (1 - Vidurkis, 2 - Mediana)\n");
 
 		} while (choiceRez < 1 || choiceRez > 2);
 
@@ -209,7 +206,7 @@ int main()
 			//Rūšiavimas
 			int choiceSort;
 			do {
-				input_validation(choiceSort, 1, 3, "Kaip norite surūšiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.)\n");
+				number_input_validation(choiceSort, 1, 3, "Kaip norite surūšiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.)\n");
 
 			} while (choiceSort < 1 || choiceSort > 3);
 
@@ -241,7 +238,7 @@ int main()
 			//Rūšiavimas
 			int choiceSort;
 			do {
-				input_validation(choiceSort, 1, 3, "Kaip norite surūšiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.),\n4- Pagal galutini (med.)\n");
+				number_input_validation(choiceSort, 1, 3, "Kaip norite surūšiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.),\n4- Pagal galutini (med.)\n");
 
 			} while (choiceSort < 1 || choiceSort > 3);
 
