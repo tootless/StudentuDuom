@@ -97,13 +97,13 @@ void Studentas::paz_input(int& suma)
 	int choiceEndPaz = 0;
 
 	do {
-		input_validation(tempPaz, 1, 10, "Pazymys:\n");
+		number_input_validation(tempPaz, 1, 10, "Pazymys:\n");
 
 		suma += tempPaz;
 		paz.push_back(tempPaz);
 
 		do {
-			input_validation(choiceEndPaz, 0, 1, "\nAr vesite dar viena pazymi? (0 - Taip, 1 - Ne, eikime prie kito studento):\n");
+			number_input_validation(choiceEndPaz, 0, 1, "\nAr vesite dar viena pazymi? (0 - Taip, 1 - Ne, eikime prie kito studento):\n");
 
 		} while (choiceEndPaz < 0 || choiceEndPaz > 1);
 	} while (choiceEndPaz != 1);
@@ -154,7 +154,7 @@ void Studentas::rand_egz()
 }
 
 //Randomizuotas vardas ir pavarde
-void Studentas::rand_stud()
+void Studentas::rand_varpav()
 {
 	switch (rand() % 14) {
 	case 0: vardas = "Irma"; break;
@@ -221,19 +221,46 @@ void menu() {
 	cout << "\n--------\n";
 }
 
-void input_validation(int& choice, int lowEnd, int highEnd, std::string optionalPrompt) //if highEnd = -1, no highEnd used
-{
-	cout << optionalPrompt;
+void number_input_validation(int& choice, int lowEnd, int highEnd, std::string optionalPrompt) { //if highEnd = -1, no highEnd used
+	std::string input;
 
-	cin >> choice;
+	while (true) {
+		cout << optionalPrompt;
+		getline(cin, input);
 
-	if (cin.fail() || choice < lowEnd || (choice > highEnd && highEnd != -1)) {
-		//Check if highEnd used
-		if (highEnd != -1) cout << "\n---KLAIDA: Iveskite sveikaji skaiciu nuo " << lowEnd << " iki " << highEnd << "---\n";
-		else if (highEnd == -1) cout << "\n---KLAIDA: Iveskite sveikaji skaiciu nuo " << lowEnd << "---\n";
+		if (input.empty()) {
+			cout << "\n---KLAIDA: Ivestis tuscia---\n";
+			continue;
+		}
 
-		//Reset cin buffer
-		cin.clear();
-		cin.ignore(1000, '\n');
+		bool isNumber = true;
+		for (size_t i = 0; i < input.length(); i++) {
+			if (!isdigit(input[i])) {
+				isNumber = false;
+				break;
+			}
+		}
+
+		if (!isNumber) {
+			cout << "\n---KLAIDA: Iveskite tik skaicius (ne simbolius)---\n";
+			continue;
+		}
+
+		//string to int
+		choice = stoi(input);
+
+		// Check range
+		if (choice < lowEnd || (choice > highEnd && highEnd != -1)) {
+			cout << "\n---KLAIDA: Iveskite skaiciu";
+			if (highEnd != -1)
+				cout << " nuo " << lowEnd << " iki " << highEnd;
+			else
+				cout << " nuo " << lowEnd;
+			cout << "---\n";
+			continue;
+		}
+
+		//valid input
+		break;
 	}
 }

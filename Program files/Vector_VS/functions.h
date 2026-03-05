@@ -31,9 +31,9 @@ struct Studentas {
     void egz_input();
     void rand_paz(int pazSk, int& suma);
     void rand_egz();
-    void rand_stud();
+    void rand_varpav();
 };
 
 //GLOBALIOS FUNKCIJOS
 void menu();
-void input_validation(int& choice, int lowEnd, int highEnd, std::string optionalPrompt = "");
+void number_input_validation(int& choice, int lowEnd, int highEnd, std::string optionalPrompt = "");
