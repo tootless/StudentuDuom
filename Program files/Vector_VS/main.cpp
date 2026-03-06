@@ -117,8 +117,6 @@ int main()
 
 			//Rūšiavimas
 			do {
-				//hotfix
-				cin.ignore(80, '\n');
 				number_input_validation(choiceSort, 1, 4, "\nKaip norite surusiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.),\n4- Pagal galutini (med.)\n");
 
 			} while (choiceSort < 1 || choiceSort > 4);

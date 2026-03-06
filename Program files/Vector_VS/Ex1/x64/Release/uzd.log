@@ -1,9 +1,7 @@
-﻿  main.cpp
-C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(177,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(223,47): warning C4566: character represented by universal-character-name '\u016B' cannot be represented in the current code page (1252)
-C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(255,47): warning C4566: character represented by universal-character-name '\u016B' cannot be represented in the current code page (1252)
+﻿  functions.cpp
+C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\functions.cpp(52,10): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   Generating code
-  1 of 676 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  4 of 676 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code

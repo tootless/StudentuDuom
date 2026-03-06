@@ -259,7 +259,7 @@ void number_input_validation(int& choice, int lowEnd, int highEnd, std::string o
 		}
 
 		if (!isNumber) {
-			cout << "\n---KLAIDA: Iveskite tik skaicius (ne simbolius)---\n";
+			cout << "\n---KLAIDA: Iveskite tik realiuosius skaicius---\n";
 			continue;
 		}
 
@@ -268,11 +268,13 @@ void number_input_validation(int& choice, int lowEnd, int highEnd, std::string o
 
 		// Check range
 		if (choice < lowEnd || (choice > highEnd && highEnd != -1)) {
-			cout << "\n---KLAIDA: Iveskite skaiciu";
-			if (highEnd != -1)
+			cout << "\n---KLAIDA: Iveskite realuji skaiciu";
+			if (highEnd != -1) {
 				cout << " nuo " << lowEnd << " iki " << highEnd;
-			else
+			}
+			else {
 				cout << " nuo " << lowEnd;
+			}
 			cout << "---\n";
 			continue;
 		}
