@@ -81,13 +81,13 @@ std::vector<Studentas> Studentas::read_file(const std::string filename, int& sum
 
 		fin.close();
 	}
-	catch (const std::runtime_error& e) {
+	catch (const std::exception& e) {
 		std::cerr << e.what() << "\n";
-		
+
 		return tempStudentai; //Empty
 	}
 
-	return tempStudentai; 
+	return tempStudentai;
 }
 
 void Studentas::write_file(const std::string filename, const std::vector<Studentas>& Studentai) {
@@ -284,29 +284,32 @@ void number_input_validation(int& choice, int lowEnd, int highEnd, std::string o
 
 void string_input_validation(std::string& input, std::string optionalPrompt) {
 	while (true) {
-		cout << optionalPrompt;
-		getline(cin, input);
+		try {
+			cout << optionalPrompt;
+			getline(cin, input);
 
-		if (input.empty()) {
-			cout << "\n---KLAIDA: Ivestis tuscia---\n";
-			continue;
-		}
-
-		//check if string valid
-		bool isLetter = true;
-		for (auto i : input) {
-			if (!isalpha(i) || i == ' ') {
-				isLetter = false;
-
-				break; //if any not letter, stop checking
+			if (input.empty()) {
+				throw std::runtime_error("\n---KLAIDA: Ivestis tuscia---\n");
 			}
-		}
 
-		if (isLetter == false) {
-			cout << "\n---KLAIDA: Iveskite tik raides---\n";
-			continue;
+			//check if string valid
+			bool isLetter = true;
+			for (auto i : input) {
+				if (!isalpha(i) || i == ' ') {
+					isLetter = false;
+
+					break; //if any not letter, stop checking
+				}
+			}
+
+			if (isLetter == false) {
+				throw std::runtime_error("\n---KLAIDA: Iveskite tik raides---\n");
+			}
+			//valid input
+			break;
 		}
-		//valid input
-		break;
+		catch (const std::exception& e) {
+			std::cerr << e.what();
+		}
 	}
 }
