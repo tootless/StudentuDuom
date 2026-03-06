@@ -11,20 +11,31 @@ std::vector<Studentas> Studentas::read_file(const std::string filename, int& sum
 
 	std::vector<Studentas> tempStudentai;
 
+	fs::path filePath = filename;
+
 	try {
-		//CHECK EXCEPTIONS
+		//CHECK IMPORTANT EXCEPTIONS
+
+		if (filePath.extension() != ".txt") {
+			throw std::runtime_error("\n---KLAIDA: Failas " + filename + " turi baigtis '.txt'---\n");
+		}
 
 		if (!fs::exists(filename)) {
 			throw std::runtime_error("\n---KLAIDA: Failas " + filename + " neegzistuoja---\n");
 		}
 
+		//Open file
 		std::fstream fin(filename, std::ios::in);
 
 		if (!fin.is_open()) {
 			throw std::runtime_error("\n---KLAIDA: Failo " + filename + " nepavyko atidaryti---\n");
 		}
 
-		//READ FILE 
+		if (fs::file_size(filename) == 0) {
+			throw std::runtime_error("\n---KLAIDA: Failas " + filename + " yra tuscias---\n");
+		}
+
+		//Read file
 		std::string curr_eil; //current eilute
 
 		fin.ignore(INT32_MAX, '\n');
