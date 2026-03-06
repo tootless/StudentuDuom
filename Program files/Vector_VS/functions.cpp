@@ -98,10 +98,7 @@ void Studentas::varpav_input()
 {
 	string_input_validation(vardas, "Iveskite studento varda:\nVardas: ");
 
-
-	cout << "Iveskite studento pavarde: \n";
-	cout << "Pavarde: ";
-	cin >> pav;
+	string_input_validation(pav, "Iveskite studento pavarde:\nPavarde: ");
 	cout << "\n";
 }
 
@@ -129,19 +126,7 @@ void Studentas::paz_input(int& suma)
 //Egzamino balo ivestis
 void Studentas::egz_input()
 {
-	do {
-		cout << "Iveskite studento egzamino bala: \n";
-		cin >> egzaminas;
-
-		if (cin.fail() || egzaminas < 1 || egzaminas > 10) {
-			cout << "\n---KLAIDA: Iveskite sveikaji skaiciu nuo 1 iki 10---\n";
-
-			//Reset cin buffer
-			cin.clear();
-			cin.ignore(1000, '\n');
-		}
-
-	} while (cin.fail() || egzaminas < 1 || egzaminas > 10);
+	number_input_validation(egzaminas, 1, 10, "Iveskite studento egzamino bala:\n");
 }
 
 //Randomizuoti nd pazymiai
@@ -284,7 +269,7 @@ void number_input_validation(int& choice, int lowEnd, int highEnd, std::string o
 	}
 }
 
-void string_input_validation(std::string input, std::string optionalPrompt) {
+void string_input_validation(std::string& input, std::string optionalPrompt) {
 	while (true) {
 		cout << optionalPrompt;
 		getline(cin, input);

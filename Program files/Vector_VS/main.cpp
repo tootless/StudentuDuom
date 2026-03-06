@@ -98,7 +98,7 @@ int main()
 			bool read_success = true;
 			do {
 				cout << "\nIveskite failo pavadinima, is kurio norite nuskaityti:\n";
-				cin >> filename_input;
+				getline(cin, filename_input);
 
 				//Start timer
 				//Timer timer;
