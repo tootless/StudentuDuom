@@ -1,8 +1,8 @@
 ﻿  functions.cpp
 C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\functions.cpp(63,10): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   Generating code
-  6 of 725 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
+  1 of 752 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    3 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   uzd.vcxproj -> C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\x64\Release\Ex1.exe

@@ -238,45 +238,47 @@ void number_input_validation(int& choice, int lowEnd, int highEnd, std::string o
 	std::string input;
 
 	while (true) {
-		cout << optionalPrompt;
-		getline(cin, input);
+		try {
+			cout << optionalPrompt;
+			getline(cin, input);
 
-		if (input.empty()) {
-			cout << "\n---KLAIDA: Ivestis tuscia---\n";
-			continue;
-		}
-
-		bool isNumber = true;
-		for (auto i : input) {
-			if (!isdigit(i)) {
-				isNumber = false;
-				break;
+			if (input.empty()) {
+				throw std::runtime_error("\n---KLAIDA: Ivestis tuscia---\n");
 			}
-		}
 
-		if (!isNumber) {
-			cout << "\n---KLAIDA: Iveskite tik realiuosius skaicius---\n";
-			continue;
-		}
-
-		//string to int
-		choice = stoi(input);
-
-		// Check range
-		if (choice < lowEnd || (choice > highEnd && highEnd != -1)) {
-			cout << "\n---KLAIDA: Iveskite realuji skaiciu";
-			if (highEnd != -1) {
-				cout << " nuo " << lowEnd << " iki " << highEnd;
+			bool isNumber = true;
+			for (auto i : input) {
+				if (!isdigit(i)) {
+					isNumber = false;
+					break;
+				}
 			}
-			else {
-				cout << " nuo " << lowEnd;
-			}
-			cout << "---\n";
-			continue;
-		}
 
-		//valid input
-		break;
+			if (!isNumber) {
+				throw std::runtime_error("\n---KLAIDA: Iveskite realuji skaiciu---\n");
+			}
+
+			//string to int
+			choice = stoi(input);
+
+			//check range
+			if (choice < lowEnd || (choice > highEnd && highEnd != -1)) {
+				std::string errorMsg = "\n---KLAIDA: Iveskite realuji skaiciu";
+				if (highEnd != -1) {
+					errorMsg += " nuo " + std::to_string(lowEnd) + " iki " + std::to_string(highEnd) + "---\n";
+				}
+				else {
+					errorMsg += " nuo " + std::to_string(lowEnd) + "---\n";
+				}
+				throw std::out_of_range(errorMsg);
+			}
+
+			//valid input
+			break;
+		}
+		catch (const std::exception& e) {
+			std::cerr << e.what();
+		}
 	}
 }
 
