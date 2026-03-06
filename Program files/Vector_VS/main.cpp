@@ -90,27 +90,41 @@ int main()
 
 		//SKAITYTI IS FAILO
 		else if (choiceMenu == 5) {
-			std::string answer;
+			std::string filename_input;
 			int choiceOutput, choiceSort;
-			cout << "---STUDENTO DUOMENU NUSKAITYMAS IS FAILO---\n\n";
+			cout << "\n---STUDENTO DUOMENU NUSKAITYMAS IS FAILO---\n\n";
 
-			cout << "\nIveskite failo pavadinima, is kurio norite nuskaityti:\n";
-			cin >> answer;
-			//Start timer
-			Timer timer; 
+			//Skaitymas
+			bool read_success = true;
+			do {
+				cout << "\nIveskite failo pavadinima, is kurio norite nuskaityti:\n";
+				cin >> filename_input;
 
-			Studentai = Studentas::read_file(answer, suma);
+				//Start timer
+				//Timer timer;
 
-			cout << "\n\n FAILA PERSKAITYTI UZTRUKO: " << timer.elapsed() << " s\n\n";
+				Studentai = Studentas::read_file(filename_input, suma);
+				if (Studentai.empty()) {
+					read_success = 1;
+				}
+				else {
+					//cout << "\n\n FAILA PERSKAITYTI UZTRUKO: " << timer.elapsed() << " s\n\n";
+					read_success = 0;
+				}
+			} while (read_success == 1);
+
+			cout << "\n---STUDENTO DUOMENU ISANKSTINIS SURUSIAVIMAS/ISRIKIAVIMAS---\n\n";
 
 			//Rūšiavimas
 			do {
-				number_input_validation(choiceSort, 1, 4, "Kaip norite surusiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.),\n4- Pagal galutini (med.)\n");
+				//hotfix
+				cin.ignore(80, '\n');
+				number_input_validation(choiceSort, 1, 4, "\nKaip norite surusiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.),\n4- Pagal galutini (med.)\n");
 
 			} while (choiceSort < 1 || choiceSort > 4);
 
 			sort(Studentai.begin(), Studentai.end(),
-				[choiceSort](const Studentas& a, const Studentas& b) -> bool{
+				[choiceSort](const Studentas& a, const Studentas& b) -> bool {
 					if (choiceSort == 1) {
 						if (a.vardas != b.vardas) return a.vardas < b.vardas;
 					}
@@ -127,7 +141,7 @@ int main()
 
 			//Isvedimas
 			do {
-				number_input_validation(choiceOutput, 1, 2, "Kur norite isvesti studentu galutinius rezultatus? (1 - Faile, 2 - Ekrane)\n");
+				number_input_validation(choiceOutput, 1, 2, "\nKur norite isvesti studentu galutinius rezultatus? (1 - Faile, 2 - Ekrane)\n");
 
 			} while (choiceOutput < 1 || choiceOutput > 2);
 
@@ -153,7 +167,7 @@ int main()
 		}
 
 		//Perkeliam vieno studento duomenis
-		if(choiceMenu != 5) Studentai.push_back(A);
+		if (choiceMenu != 5) Studentai.push_back(A);
 		if (!Studentai.empty()) {
 			//Apskaiciuojame galutini rezultata kiekvienam studentui
 			vidurkis = (double)suma / ((double)Studentai[m].paz.size());

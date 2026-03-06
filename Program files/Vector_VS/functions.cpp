@@ -9,63 +9,74 @@
 //
 std::vector<Studentas> Studentas::read_file(const std::string filename, int& suma) {
 
-	//check if file exists
-
-	if (!fs::exists(filename)) {
-		cout << "\n---Klaida: FILE DOESNT EXIST";
-	}
-
 	std::vector<Studentas> tempStudentai;
 
-	//implement try catch for if file not opening or file not found or...
-	std::fstream fin(filename, std::ios::in);
-	std::string curr_eil; //current eilute
-	std::istringstream iss(curr_eil);
+	try {
+		//CHECK EXCEPTIONS
 
-	fin.ignore(INT32_MAX, '\n');
+		if (!fs::exists(filename)) {
+			throw std::runtime_error("\n---KLAIDA: Failas " + filename + " neegzistuoja---\n");
+		}
 
-	while (std::getline(fin, curr_eil)) {
-		Studentas A; //temp Studentas
-		int tempPaz;
+		std::fstream fin(filename, std::ios::in);
+
+		if (!fin.is_open()) {
+			throw std::runtime_error("\n---KLAIDA: Failo " + filename + " nepavyko atidaryti---\n");
+		}
+
+		//READ FILE 
+		std::string curr_eil; //current eilute
+
+		fin.ignore(INT32_MAX, '\n');
+
+		while (std::getline(fin, curr_eil)) {
+			Studentas A; //temp Studentas
+			int tempPaz;
+
+			std::istringstream iss(curr_eil);
+			iss >> A.vardas >> A.pav;
+
+			//read visus pazymius
+			while (iss >> tempPaz) {
+				A.paz.push_back(tempPaz);
+				suma += tempPaz;
+			}
+			//paskutinis pazymys paz vector yra egzamino balas
+			A.egzaminas = A.paz.back();
+			A.paz.pop_back();
+
+			//apskaiciuoti galutinius rezultatus, kadangi isvedami abu
+			double vidurkis = (double)suma / (double)A.paz.size();
+			A.galutinisVid = 0.4 * vidurkis + 0.6 * A.egzaminas;
+
+			int a = A.paz.size();
+			double mediana;
+			sort(A.paz.begin(), A.paz.end());
+			if (a % 2 == 0) {
+				int midLeftElem = a / 2 - 1;
+				mediana = (A.paz[midLeftElem] + A.paz[a / 2]) / 2;
+			}
+			else
+				mediana = A.paz[a / 2];
+
+			A.galutinisMed = 0.4 * mediana + 0.6 * A.egzaminas;
+
+
+
+			tempStudentai.push_back(A);
+
+			suma = 0;
+		}
+
+		fin.close();
+	}
+	catch (const std::runtime_error& e) {
+		std::cerr << e.what() << "\n";
 		
-		std::istringstream iss(curr_eil);
-		iss >> A.vardas >> A.pav;
-
-		//read visus pazymius
-		while (iss >> tempPaz) {
-			A.paz.push_back(tempPaz);
-			suma += tempPaz;
-		}
-		//paskutinis pazymys paz vector yra egzamino balas
-		A.egzaminas = A.paz.back();
-		A.paz.pop_back();
-
-		//apskaiciuoti galutinius rezultatus, kadangi isvedami abu
-		double vidurkis = (double)suma / (double)A.paz.size();
-		A.galutinisVid = 0.4 * vidurkis + 0.6 * A.egzaminas;
-
-		int a = A.paz.size();
-		double mediana;
-		sort(A.paz.begin(), A.paz.end());
-		if (a % 2 == 0) {
-			int midLeftElem = a / 2 - 1;
-			mediana = (A.paz[midLeftElem] + A.paz[a / 2]) / 2;
-		}
-		else
-			mediana = A.paz[a / 2];
-
-		A.galutinisMed = 0.4 * mediana + 0.6 * A.egzaminas;
-
-
-
-		tempStudentai.push_back(A);
-
-		suma = 0;
+		return tempStudentai; //Empty
 	}
 
-	fin.close();
-
-	return tempStudentai;
+	return tempStudentai; 
 }
 
 void Studentas::write_file(const std::string filename, const std::vector<Studentas>& Studentai) {
@@ -289,7 +300,6 @@ void string_input_validation(std::string input, std::string optionalPrompt) {
 
 				break; //if any not letter, stop checking
 			}
-			cout << "\nLETTER? " << i << " -> " << isLetter << "\n";
 		}
 
 		if (isLetter == false) {
