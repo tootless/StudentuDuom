@@ -10,6 +10,9 @@
 #include <sstream>
 #include <algorithm>
 #include <stdlib.h>
+#include <filesystem>
+
+namespace fs = std::filesystem; //C++17
 
 using std::cout;
 using std::cin;

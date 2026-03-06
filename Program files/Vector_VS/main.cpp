@@ -133,7 +133,7 @@ int main()
 
 			if (choiceOutput == 1) {
 				std::string answer2;
-				cout << "\nIveskite failo pavadinima, i kuri norite irasyti duomenis:\n";
+				cout << "\nIveskite failo pavadinima, i kuri norite irasyti duomenis (arba sukurti nauja, jeigu failo su tokiu pav. nera):\n";
 				cin >> answer2;
 
 				Studentas::write_file(answer2, Studentai);
@@ -173,7 +173,7 @@ int main()
 			}
 		}
 
-		//Ivesti daugiau studentu choice
+		//Testi studentu duom ivedima
 		if (choiceMenu != 4 && choiceMenu != 5) {
 			m++; //Skaiciuojame studentu skaiciu / saugome indeksa
 			do {

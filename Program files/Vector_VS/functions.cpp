@@ -8,6 +8,13 @@
 //DARBAS SU FAILU
 //
 std::vector<Studentas> Studentas::read_file(const std::string filename, int& suma) {
+
+	//check if file exists
+
+	if (!fs::exists(filename)) {
+		cout << "\n---Klaida: FILE DOESNT EXIST";
+	}
+
 	std::vector<Studentas> tempStudentai;
 
 	//implement try catch for if file not opening or file not found or...
