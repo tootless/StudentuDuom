@@ -18,6 +18,9 @@ int main()
 
 	srand(static_cast<unsigned int>(time(NULL)));
 
+	file_generator(10, 15);
+
+
 	do {
 
 		//MENIU

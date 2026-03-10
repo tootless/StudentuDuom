@@ -315,6 +315,9 @@ void string_input_validation(std::string& input, std::string optionalPrompt) {
 }
 
 void file_generator(int nStud, int nPaz) { //nStud A.K.A. number of entries
+
+	//try catch if file exists
+	
 	//create file name automatically
 	std::string filename = "studentai";
 	std::string fileend = ".txt";
@@ -323,5 +326,20 @@ void file_generator(int nStud, int nPaz) { //nStud A.K.A. number of entries
 	filename.append(nStudents);
 	filename.append(fileend);
 
-	//std::ofstream fout(filename);
+	std::ofstream fout(filename);
+
+	//file header
+	std::string nd = "ND";
+
+	fout << std::setw(24) << std::left << "Vardas" << std::setw(27) << std::left << "Pavarde";
+
+	for (int i = 1; i < nPaz+1; i++) {
+		fout << std::setw(10) << std::left << nd.append(std::to_string(i));
+		nd = "ND";
+	}
+	fout << std::setw(4) << std::left << "Egz.\n";
+
+
+
+
 }

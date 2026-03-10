@@ -36,10 +36,11 @@
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAAGQAAAAAAAAAAADwv3oAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABQAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-02-18T09:29:56.837Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -49,7 +50,7 @@
               "RelativeDocumentMoniker": "functions.cpp",
               "ToolTip": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\functions.cpp",
               "RelativeToolTip": "functions.cpp",
-              "ViewState": "AgIAAB8BAAAAAAAAAIAwwDgBAAADAAAAAAAAAA==",
+              "ViewState": "AgIAADoBAAAAAAAAAAAAAFABAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-02-27T17:13:55.509Z",
               "EditorCaption": ""
@@ -62,9 +63,10 @@
               "RelativeDocumentMoniker": "functions.h",
               "ToolTip": "C:\\Users\\chewi\\Desktop\\UNI\\REPOS\\OBJ\\v01\\StudentuDuom\\Program files\\Vector_VS\\functions.h",
               "RelativeToolTip": "functions.h",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAACoAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACsAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-02-27T17:31:46.704Z"
+              "WhenOpened": "2026-02-27T17:31:46.704Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
