@@ -32,7 +32,7 @@ struct Studentas {
     void varpav_input();
     void paz_input(int& suma);
     void egz_input();
-    void rand_paz(int pazSk, int& suma);
+    void rand_paz(int& pazSk, int& suma);
     void rand_egz();
     void rand_varpav();
 };
@@ -41,3 +41,4 @@ struct Studentas {
 void menu();
 void number_input_validation(int& choice, int lowEnd, int highEnd, std::string optionalPrompt = "");
 void string_input_validation(std::string& input, std::string optionalPrompt = "");
+void file_generator(int nStud, int nPaz);

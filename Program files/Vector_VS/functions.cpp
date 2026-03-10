@@ -141,7 +141,7 @@ void Studentas::egz_input()
 }
 
 //Randomizuoti nd pazymiai
-void Studentas::rand_paz(int pazSk, int& suma) //pazSk -> vartotojo ivestas pazymiu kiekis
+void Studentas::rand_paz(int& pazSk, int& suma) //pazSk -> vartotojo ivestas pazymiu kiekis
 {
 	for (int i = 0; i < pazSk; i++) {
 		int tempPazRnd = rand() % 10 + 1;
@@ -312,4 +312,16 @@ void string_input_validation(std::string& input, std::string optionalPrompt) {
 			std::cerr << e.what();
 		}
 	}
+}
+
+void file_generator(int nStud, int nPaz) { //nStud A.K.A. number of entries
+	//create file name automatically
+	std::string filename = "studentai";
+	std::string fileend = ".txt";
+	std::string nStudents = std::to_string(nStud);
+
+	filename.append(nStudents);
+	filename.append(fileend);
+
+	//std::ofstream fout(filename);
 }
