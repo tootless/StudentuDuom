@@ -1,10 +1,8 @@
 ﻿  functions.cpp
 C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\functions.cpp(63,10): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   Generating code
-  Previous IPDB and IOBJ mismatch, fall back to full compilation.
-C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(274): warning C4715: '`main'::`83'::<lambda_3>::operator()': not all control paths return a value
-C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(141): warning C4715: '`main'::`29'::<lambda_1>::operator()': not all control paths return a value
-C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(242): warning C4715: '`main'::`75'::<lambda_2>::operator()': not all control paths return a value
-  All 753 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  2 of 754 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   uzd.vcxproj -> C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\x64\Release\Ex1.exe

@@ -333,13 +333,40 @@ void file_generator(int nStud, int nPaz) { //nStud A.K.A. number of entries
 
 	fout << std::setw(24) << std::left << "Vardas" << std::setw(27) << std::left << "Pavarde";
 
-	for (int i = 1; i < nPaz+1; i++) {
-		fout << std::setw(10) << std::left << nd.append(std::to_string(i));
+	for (int i = 0; i < nPaz; i++) {
+		fout << std::setw(10) << std::left << nd.append(std::to_string(i+1));
 		nd = "ND";
 	}
-	fout << std::setw(4) << std::left << "Egz.\n";
+	fout << std::left << "Egz.\n";
+
+	//file entries (stud data)
+	std::string studVar = "Vardas";
+	std::string studPav = "Pavarde";
+	int pazRnd;
 
 
+	for (int i = 0; i < nStud; i++) {
+
+		//name
+		fout << std::setw(24) << std::left << studVar.append(std::to_string(i+1));
+		//last name
+		fout << std::setw(27) << std::left << studPav.append(std::to_string(i+1));
+
+		//paz
+		for (int i = 0; i < nPaz; i++) {
+			pazRnd = rand() % 10 + 1;
+			fout << std::right << pazRnd << std::setw(10);
+		}
+
+		//egz
+		pazRnd = rand() % 10 + 1;
+		fout << std::right << pazRnd;
+
+		studVar = "Vardas";
+		studPav = "Pavarde";
+
+		if (i+1 != nStud) fout << "\n"; //paskutinis entry neturetu sukurti dar vienos \n
+	}
 
 
 }
