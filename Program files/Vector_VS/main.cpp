@@ -18,7 +18,11 @@ int main()
 
 	srand(static_cast<unsigned int>(time(NULL)));
 
-	file_generator(10, 15);
+	file_generator(1000, 15);
+	file_generator(10000, 15);
+	file_generator(100000, 15);
+	file_generator(1000000, 15);
+	file_generator(10000000, 15);
 
 
 	do {
