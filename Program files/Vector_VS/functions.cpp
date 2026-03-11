@@ -3,8 +3,7 @@
 #include "functions.h"
 
 
-//STRUCT STUDENTAI FUNKCIJOS
-
+//STRUCT STUDENTAS FUNKCIJOS
 //DARBAS SU FAILU
 //
 std::vector<Studentas> Studentas::read_file(const std::string filename, int& suma) {
@@ -369,4 +368,15 @@ void file_generator(int nStud, int nPaz) { //nStud A.K.A. number of entries
 	}
 
 
+}
+
+void file_split(std::string& filename) {
+	//filename input prompt + filename validation;
+
+	//read file
+	std::vector <Studentas> studentai;
+	int suma = 0;
+
+	studentai = Studentas::read_file(filename, suma); //galutinisVid calculated here
+	
 }

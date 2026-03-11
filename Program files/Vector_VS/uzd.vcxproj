@@ -29,9 +29,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="kursiokai.txt" />
-    <Text Include="studentai10000.txt" />
-    <Text Include="studentai100000.txt" />
-    <Text Include="studentai1000000.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
