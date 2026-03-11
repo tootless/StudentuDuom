@@ -379,13 +379,37 @@ void file_split(std::string& filename) {
 
 	studentai = Studentas::read_file(filename, suma); //galutinisVid calculated here
 
-	//sort by galutinis
+	//sort by choice
+	int choiceSort;
+	do {
+		number_input_validation(choiceSort, 1, 4, "\nKaip norite surusiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.),\n4- Pagal galutini (med.)\n");
+
+	} while (choiceSort < 1 || choiceSort > 4);
+
 	sort(studentai.begin(), studentai.end(),
-		[](const Studentas& a, const Studentas& b)-> double {
-			if (a.galutinisVid != b.galutinisVid) return a.galutinisVid > b.galutinisVid;
+		[choiceSort](const Studentas& a, const Studentas& b) -> bool {
+			if (choiceSort == 1) {
+				if (a.vardas != b.vardas) return a.vardas < b.vardas;
+			}
+			else if (choiceSort == 2) {
+				if (a.pav != b.pav) return a.pav < b.pav;
+			}
+			else if (choiceSort == 3) {
+				return a.galutinisVid > b.galutinisVid;
+			}
+			else {
+				return a.galutinisMed > b.galutinisMed;
+			}
 		});
 
-	//split into two files
+	//construct two new filenames
+	std::string fileGood, fileBad; //galutinisVid >= 5.0; galutinisVid < 5.0
 
+	filename.erase(filename.end()-4, filename.end()); //remove .txt to make new filenames
+	fileGood = filename; fileBad = filename;
+
+	fileGood.append("geri.txt"); fileBad.append("nepazangus.txt");
+	
+	//
 	
 }

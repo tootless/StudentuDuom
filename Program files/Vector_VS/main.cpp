@@ -272,7 +272,7 @@ int main()
 				});
 
 
-			cout << "\nPavarde     Vardas         Galutinis(Med.)\n";
+			cout << "\n" << std::setw(15) << std::left << "Pavarde" << std::setw(15) << std::left << "Vardas" << std::setw(15) << std::left << "Galutinis (Med.)" << "\n";
 			cout << "------------------------------------------\n";
 			for (int i = 0; i < m; i++) {
 				cout << std::setw(15) << std::left << Studentai[i].pav << std::setw(15) << std::left << Studentai[i].vardas << std::setw(15) << std::left << std::fixed << std::setprecision(2) << Studentai[i].galutinisMed << "   " << "\n";
