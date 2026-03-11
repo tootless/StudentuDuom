@@ -26,7 +26,7 @@ struct Studentas {
 
     //Darbas su failais
     static std::vector<Studentas> read_file(const std::string filename, int& suma);
-    static void write_file(const std::string filename, const std::vector<Studentas>& Studentai);
+    static void write_galutinis(const std::string filename, const std::vector<Studentas>& Studentai);
 
     //Darbas su ekranu
     void varpav_input();

@@ -89,7 +89,7 @@ std::vector<Studentas> Studentas::read_file(const std::string filename, int& sum
 	return tempStudentai;
 }
 
-void Studentas::write_file(const std::string filename, const std::vector<Studentas>& Studentai) {
+void Studentas::write_galutinis(const std::string filename, const std::vector<Studentas>& Studentai) {
 	std::ofstream fout(filename);
 
 	fout << "\n" << std::setw(15) << std::left << "Pavarde" << std::setw(15) << std::left << "Vardas" << std::setw(15) << std::left << "Galutinis (Vid.)   Galutinis (Med.)" << "\n";
@@ -98,7 +98,7 @@ void Studentas::write_file(const std::string filename, const std::vector<Student
 		fout << std::setw(15) << std::left << s.pav << std::setw(15) << std::left << s.vardas << std::setw(15) << std::left << std::fixed << std::setprecision(2) << s.galutinisVid << "   " << std::fixed << std::setprecision(2) << s.galutinisMed << "\n";
 	}
 
-
+	fout.close();
 }
 
 //DARBAS SU EKRANU
@@ -313,6 +313,7 @@ void string_input_validation(std::string& input, std::string optionalPrompt) {
 	}
 }
 
+//DARBAS SU FAILAIS
 void file_generator(int nStud, int nPaz) { //nStud A.K.A. number of entries
 
 	//try catch if file exists
@@ -339,13 +340,12 @@ void file_generator(int nStud, int nPaz) { //nStud A.K.A. number of entries
 	fout << std::left << "Egz.\n";
 
 	//file entries (stud data)
-	std::string studVar = "Vardas";
-	std::string studPav = "Pavarde";
 	int pazRnd;
 
 
 	for (int i = 0; i < nStud; i++) {
-
+		std::string studVar = "Vardas";
+		std::string studPav = "Pavarde";
 		//name
 		fout << std::setw(24) << std::left << studVar.append(std::to_string(i+1));
 		//last name
@@ -361,13 +361,10 @@ void file_generator(int nStud, int nPaz) { //nStud A.K.A. number of entries
 		pazRnd = rand() % 10 + 1;
 		fout << std::right << pazRnd;
 
-		studVar = "Vardas";
-		studPav = "Pavarde";
-
 		if (i+1 != nStud) fout << "\n"; //paskutinis entry neturetu sukurti dar vienos \n
 	}
 
-
+	fout.close();
 }
 
 void file_split(std::string& filename) {
@@ -377,7 +374,7 @@ void file_split(std::string& filename) {
 	std::vector <Studentas> studentai;
 	int suma = 0;
 
-	studentai = Studentas::read_file(filename, suma); //galutinisVid calculated here
+	studentai = Studentas::read_file(filename, suma); //galutinisVid/Med calculated here
 
 	//sort by choice
 	int choiceSort;
@@ -403,13 +400,26 @@ void file_split(std::string& filename) {
 		});
 
 	//construct two new filenames
-	std::string fileGood, fileBad; //galutinisVid >= 5.0; galutinisVid < 5.0
+	std::string fileGeri, fileBlogi; //galutinisVid >= 5.0; galutinisVid < 5.0
 
-	filename.erase(filename.end()-4, filename.end()); //remove .txt to make new filenames
-	fileGood = filename; fileBad = filename;
+	filename.erase(filename.end() - 4, filename.end()); //remove .txt to make new filenames
+	fileGeri = filename; fileBlogi = filename;
 
-	fileGood.append("geri.txt"); fileBad.append("nepazangus.txt");
+	fileGeri.append("geri.txt"); fileBlogi.append("nepazangus.txt");
+
+	//make and fill two new vectors
+	std::vector<Studentas> studGeri, studBlogi;
+
+	//move students
+	for (auto& s : studentai) {
+		if (s.galutinisVid < 5.0) {
+			studBlogi.push_back(std::move(s));
+		}
+		else
+			studGeri.push_back(std::move(s));
+	}
+	studentai.clear();
 	
-	//
+	
 	
 }
