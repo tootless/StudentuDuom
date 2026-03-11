@@ -378,5 +378,14 @@ void file_split(std::string& filename) {
 	int suma = 0;
 
 	studentai = Studentas::read_file(filename, suma); //galutinisVid calculated here
+
+	//sort by galutinis
+	sort(studentai.begin(), studentai.end(),
+		[](const Studentas& a, const Studentas& b)-> double {
+			if (a.galutinisVid != b.galutinisVid) return a.galutinisVid > b.galutinisVid;
+		});
+
+	//split into two files
+
 	
 }
