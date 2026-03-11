@@ -42,4 +42,5 @@ void menu();
 void number_input_validation(int& choice, int lowEnd, int highEnd, std::string optionalPrompt = "");
 void string_input_validation(std::string& input, std::string optionalPrompt = "");
 void file_generator(int nStud, int nPaz);
-void file_split(std::string& filename);
+void file_generator(std::string& filename, std::vector<Studentas>& studentai);
+void file_split(std::string filename);

@@ -18,6 +18,9 @@ int main()
 
 	srand(static_cast<unsigned int>(time(NULL)));
 
+	file_split("studentai1000.txt");
+
+
 
 	do {
 
@@ -149,7 +152,7 @@ int main()
 				cout << "\nIveskite failo pavadinima, i kuri norite irasyti duomenis (arba sukurti nauja, jeigu failo su tokiu pav. nera):\n";
 				cin >> answer2;
 
-				Studentas::write_file(answer2, Studentai);
+				Studentas::write_galutinis(answer2, Studentai);
 			}
 			else if (choiceOutput == 2) {
 

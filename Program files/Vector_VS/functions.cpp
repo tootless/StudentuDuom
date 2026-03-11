@@ -317,7 +317,7 @@ void string_input_validation(std::string& input, std::string optionalPrompt) {
 void file_generator(int nStud, int nPaz) { //nStud A.K.A. number of entries
 
 	//try catch if file exists
-	
+
 	//create file name automatically
 	std::string filename = "studentai";
 	std::string fileend = ".txt";
@@ -334,7 +334,7 @@ void file_generator(int nStud, int nPaz) { //nStud A.K.A. number of entries
 	fout << std::setw(24) << std::left << "Vardas" << std::setw(27) << std::left << "Pavarde";
 
 	for (int i = 0; i < nPaz; i++) {
-		fout << std::setw(10) << std::left << nd.append(std::to_string(i+1));
+		fout << std::setw(10) << std::left << nd.append(std::to_string(i + 1));
 		nd = "ND";
 	}
 	fout << std::left << "Egz.\n";
@@ -347,9 +347,9 @@ void file_generator(int nStud, int nPaz) { //nStud A.K.A. number of entries
 		std::string studVar = "Vardas";
 		std::string studPav = "Pavarde";
 		//name
-		fout << std::setw(24) << std::left << studVar.append(std::to_string(i+1));
+		fout << std::setw(24) << std::left << studVar.append(std::to_string(i + 1));
 		//last name
-		fout << std::setw(27) << std::left << studPav.append(std::to_string(i+1));
+		fout << std::setw(27) << std::left << studPav.append(std::to_string(i + 1));
 
 		//paz
 		for (int i = 0; i < nPaz; i++) {
@@ -361,13 +361,49 @@ void file_generator(int nStud, int nPaz) { //nStud A.K.A. number of entries
 		pazRnd = rand() % 10 + 1;
 		fout << std::right << pazRnd;
 
-		if (i+1 != nStud) fout << "\n"; //paskutinis entry neturetu sukurti dar vienos \n
+		if (i + 1 != nStud) fout << "\n"; //paskutinis entry neturetu sukurti dar vienos \n
 	}
 
 	fout.close();
 }
 
-void file_split(std::string& filename) {
+void file_generator(std::string& filename, std::vector<Studentas>& studentai) {
+	std::ofstream fout(filename);
+
+	//file header
+	std::string nd = "ND";
+
+	fout << std::setw(24) << std::left << "Vardas" << std::setw(27) << std::left << "Pavarde";
+
+	for (int i = 0; i < studentai[0].paz.size(); i++) {
+		fout << std::setw(10) << std::left << nd.append(std::to_string(i + 1));
+		nd = "ND";
+	}
+
+	fout << std::left << "Egz.\n";
+
+	//write to file
+	bool firstEil = true;
+	for (const auto& s : studentai) {
+
+		if (!firstEil) fout << "\n"; //po paskutinio entry netureti buti dar vieno \n
+		firstEil = false;
+
+		//varpav output
+		fout << std::setw(24) << std::left << s.vardas;
+		fout << std::setw(27) << std::left << s.pav;
+
+		for (const auto& p : s.paz) {
+			fout << std::right << p << std::setw(10);
+		}
+		fout << std::right << s.egzaminas << std::setw(10);
+
+	}
+
+	fout.close();
+}
+
+void file_split(std::string filename) {
 	//filename input prompt + filename validation;
 
 	//read file
@@ -400,12 +436,9 @@ void file_split(std::string& filename) {
 		});
 
 	//construct two new filenames
-	std::string fileGeri, fileBlogi; //galutinisVid >= 5.0; galutinisVid < 5.0
+	std::string fileGeri = "geri", fileBlogi = "blogi"; //geri: galutinisVid >= 5.0; blogi: galutinisVid < 5.0
 
-	filename.erase(filename.end() - 4, filename.end()); //remove .txt to make new filenames
-	fileGeri = filename; fileBlogi = filename;
-
-	fileGeri.append("geri.txt"); fileBlogi.append("nepazangus.txt");
+	fileGeri.append(filename); fileBlogi.append(filename);
 
 	//make and fill two new vectors
 	std::vector<Studentas> studGeri, studBlogi;
@@ -419,7 +452,10 @@ void file_split(std::string& filename) {
 			studGeri.push_back(std::move(s));
 	}
 	studentai.clear();
-	
-	
-	
+
+	//create files
+
+	file_generator(fileGeri, studGeri);
+	file_generator(fileBlogi, studBlogi);
+
 }
