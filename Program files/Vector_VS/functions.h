@@ -12,8 +12,6 @@
 #include <stdlib.h>
 #include <filesystem>
 
-#include "timer.h";
-
 namespace fs = std::filesystem; //C++17
 
 using std::cout;
@@ -27,7 +25,6 @@ struct Studentas {
     double galutinisMed = 0;
 
     //Darbas su failais
-    static std::vector<Studentas> read_file(const std::string filename, int& suma);
     static void write_studentai(const std::string filename, const std::vector<Studentas>& Studentai);
 
     //Darbas su ekranu
@@ -46,9 +43,11 @@ void student_sort();
 void calculate_galutinis();
 
 //Darbas su failais
+std::vector<Studentas> read_file(const std::string filename, int& suma);
 void student_file_generator(int nStud, int nPaz);
 void split_file_generator(std::string& filename, std::vector<Studentas>& studentai);
 void file_split(std::string filename);
 
 //Testavimo funkcijos
-void t1_file_gen(int nStud);
+void testing_v04_1(int nStud);
+void testing_v04_2(std::vector<Studentas>& studentai, const std::string filename, int& suma);

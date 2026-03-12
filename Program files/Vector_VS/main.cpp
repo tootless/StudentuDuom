@@ -94,7 +94,7 @@ int main()
 				///Start timer
 				//Timer timer;
 
-				Studentai = Studentas::read_file(filename_input, suma);
+				Studentai = read_file(filename_input, suma);
 				if (Studentai.empty()) {
 					read_success = 0;
 				}
@@ -158,15 +158,26 @@ int main()
 		//Spartos analize
 		else if (choiceMenu == 6) {
 			cout << "\n---PROGRAMOS SPARTOS ANALIZE---\n";
-			cout << "\n---FAILU SUKURIMO SPARTOS ANALIZE---\n\n";
+			/*cout << "\n---FAILU SUKURIMO SPARTOS ANALIZE---\n\n";
 
-			t1_file_gen(1000);
-			t1_file_gen(10000);
-			t1_file_gen(100000);
-			t1_file_gen(1000000);
-			t1_file_gen(10000000);
+			testing_v04_1(1000);
+			testing_v04_1(10000);
+			testing_v04_1(100000);
+			testing_v04_1(1000000);
+			testing_v04_1(10000000);
+
+			cout << "\n";*/
+
+			cout << "\n---EGZISTUOJANCIU FAILU SKAITYMO SPARTOS ANALIZE---\n\n";
+
+			testing_v04_2(Studentai,"studentai1000.txt",suma);
+			testing_v04_2(Studentai, "studentai10000.txt", suma);
+			testing_v04_2(Studentai, "studentai100000.txt", suma);
+			testing_v04_2(Studentai, "studentai1000000.txt", suma);
+			testing_v04_2(Studentai, "studentai10000000.txt", suma);
 
 			cout << "\n";
+
 
 			choiceEndStud = 1;
 		}
@@ -226,7 +237,7 @@ int main()
 			//Rūšiavimas
 			int choiceSort;
 			do {
-				number_input_validation(choiceSort, 1, 3, "Kaip norite surūšiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.)\n");
+				number_input_validation(choiceSort, 1, 3, "Kaip norite surusiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.)\n");
 
 			} while (choiceSort < 1 || choiceSort > 3);
 
@@ -258,7 +269,7 @@ int main()
 			//Rūšiavimas
 			int choiceSort;
 			do {
-				number_input_validation(choiceSort, 1, 3, "Kaip norite surūšiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.),\n4- Pagal galutini (med.)\n");
+				number_input_validation(choiceSort, 1, 3, "Kaip norite surusiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.),\n4- Pagal galutini (med.)\n");
 
 			} while (choiceSort < 1 || choiceSort > 3);
 

@@ -1,6 +1,7 @@
 ﻿//function implementations file
 
 #include "functions.h"
+#include "timer.h"
 
 //GLOBALIOS FUNKCIJOS
 void menu(int& choiceMenu) {
@@ -235,8 +236,27 @@ void Studentas::rand_varpav()
 
 //Darbas su failais
 // 
+//Rasyti isrusiuotus studentu duomenis i nauja/egzistuojanti faila arba i ekrana
+void Studentas::write_studentai(const std::string filename, const std::vector<Studentas>& Studentai) {
+	//sorting
+	//int choiceOutput;
+
+
+
+	//write to file
+	std::ofstream fout(filename);
+
+	fout << "\n" << std::setw(15) << std::left << "Pavarde" << std::setw(15) << std::left << "Vardas" << std::setw(15) << std::left << "Galutinis (Vid.)   Galutinis (Med.)" << "\n";
+	fout << "----------------------------------------------------\n";
+	for (const auto& s : Studentai) {
+		fout << std::setw(15) << std::left << s.pav << std::setw(15) << std::left << s.vardas << std::setw(15) << std::left << std::fixed << std::setprecision(2) << s.galutinisVid << "   " << std::fixed << std::setprecision(2) << s.galutinisMed << "\n";
+	}
+
+	fout.close();
+}
+
 //Perskaityti egzistuojanti studentu duomenu faila
-std::vector<Studentas> Studentas::read_file(const std::string filename, int& suma) {
+std::vector<Studentas> read_file(const std::string filename, int& suma) {
 
 	std::vector<Studentas> tempStudentai;
 
@@ -317,25 +337,6 @@ std::vector<Studentas> Studentas::read_file(const std::string filename, int& sum
 	}
 
 	return tempStudentai;
-}
-
-//Rasyti isrusiuotus studentu duomenis i nauja/egzistuojanti faila arba i ekrana
-void Studentas::write_studentai(const std::string filename, const std::vector<Studentas>& Studentai) {
-	//sorting
-	int choiceOutput;
-
-
-
-	//write to file
-	std::ofstream fout(filename);
-
-	fout << "\n" << std::setw(15) << std::left << "Pavarde" << std::setw(15) << std::left << "Vardas" << std::setw(15) << std::left << "Galutinis (Vid.)   Galutinis (Med.)" << "\n";
-	fout << "----------------------------------------------------\n";
-	for (const auto& s : Studentai) {
-		fout << std::setw(15) << std::left << s.pav << std::setw(15) << std::left << s.vardas << std::setw(15) << std::left << std::fixed << std::setprecision(2) << s.galutinisVid << "   " << std::fixed << std::setprecision(2) << s.galutinisMed << "\n";
-	}
-
-	fout.close();
 }
 
 //Generuoti faila su randomizuotais studentu duomenimis
@@ -438,7 +439,7 @@ void file_split(std::string filename) {
 	std::vector <Studentas> studentai;
 	int suma = 0;
 
-	studentai = Studentas::read_file(filename, suma); //galutinisVid/Med calculated here
+	studentai = read_file(filename, suma); //galutinisVid/Med calculated here
 
 	//sort by choice
 	int choiceSort;
@@ -489,11 +490,20 @@ void file_split(std::string filename) {
 }
 
 //TESTAVIMO FUNKCIJOS
-//Testuoti: failu sukurimo ir ofstream uzdarymo laika
-void t1_file_gen(int nStud) {
+//Testavimas: nauju failu sukurimo ir ofstream uzdarymo laika
+void testing_v04_1(int nStud) {
 	Timer timer;
 	student_file_generator(nStud, 15);
 	double time = timer.elapsed();
 
 	cout << "Faila is " << nStud << " studentu ivesciu sukurti uztruko : " << time << "s.\n\n";
+}
+
+//Testavimas: egzistuojanciu failu 
+void testing_v04_2(std::vector<Studentas>& studentai, const std::string filename, int& suma) {
+	Timer timer;
+	studentai = read_file(filename,suma);
+	double time = timer.elapsed();
+
+	cout << "Faila '" << filename << "' perskaityti uztruko : " << time << "s.\n\n";
 }

@@ -1,20 +1,8 @@
-﻿  functions.cpp
-C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\functions.h(15,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  (compiling source file 'functions.cpp')
-  
-C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\functions.cpp(292,10): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\functions.cpp(325,6): warning C4101: 'choiceOutput': unreferenced local variable
-C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\functions.cpp(399,18): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  main.cpp
-C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\functions.h(15,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  (compiling source file 'main.cpp')
-  
-C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(182,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(229,47): warning C4566: character represented by universal-character-name '\u016B' cannot be represented in the current code page (1252)
-C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(261,47): warning C4566: character represented by universal-character-name '\u016B' cannot be represented in the current code page (1252)
+﻿  main.cpp
+C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\main.cpp(193,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   Generating code
-  2 of 769 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  337 of 767 functions (43.9%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    57 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   uzd.vcxproj -> C:\Users\chewi\Desktop\UNI\REPOS\OBJ\v01\StudentuDuom\Program files\Vector_VS\x64\Release\Ex1.exe
