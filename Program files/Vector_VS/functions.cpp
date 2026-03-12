@@ -2,106 +2,115 @@
 
 #include "functions.h"
 
+//GLOBALIOS FUNKCIJOS
+void menu(int& choiceMenu) {
+	int choices = 6;
 
-//STRUCT STUDENTAS FUNKCIJOS
-//DARBAS SU FAILU
-//
-std::vector<Studentas> Studentas::read_file(const std::string filename, int& suma) {
+	do {
+		cout << "\nMENIU\n";
+		cout << "\n--------\n";
+		cout << "Pasirinkite programos eiga\n\n"
+			<< "1 - Viskas ranka,\n2 - Randomizuoti nd. pazymiai ir egz. balas,\n3 - Viskas randomizuota,\n"
+			<< "4 - Baigti darba (Ir isvesti galutinius rezultatus),\n5 - Skaityti visus duomenis is failo,\n"
+			<< "6 - Vykdyti spartos analize.";
+		cout << "\n--------\n";
 
-	std::vector<Studentas> tempStudentai;
+		number_input_validation(choiceMenu, 1, choices);
 
-	fs::path filePath = filename;
+		system("cls");
 
-	try {
-		//CHECK IMPORTANT EXCEPTIONS
-
-		if (filePath.extension() != ".txt") {
-			throw std::runtime_error("\n---KLAIDA: Failas " + filename + " turi baigtis '.txt'---\n");
-		}
-
-		if (!fs::exists(filename)) {
-			throw std::runtime_error("\n---KLAIDA: Failas " + filename + " neegzistuoja---\n");
-		}
-
-		//Open file
-		std::fstream fin(filename, std::ios::in);
-
-		if (!fin.is_open()) {
-			throw std::runtime_error("\n---KLAIDA: Failo " + filename + " nepavyko atidaryti---\n");
-		}
-
-		if (fs::file_size(filename) == 0) {
-			throw std::runtime_error("\n---KLAIDA: Failas " + filename + " yra tuscias---\n");
-		}
-
-		//Read file
-		std::string curr_eil; //current eilute
-
-		fin.ignore(INT32_MAX, '\n');
-
-		while (std::getline(fin, curr_eil)) {
-			Studentas A; //temp Studentas
-			int tempPaz;
-
-			std::istringstream iss(curr_eil);
-			iss >> A.vardas >> A.pav;
-
-			//read visus pazymius
-			while (iss >> tempPaz) {
-				A.paz.push_back(tempPaz);
-				suma += tempPaz;
-			}
-			//paskutinis pazymys paz vector yra egzamino balas
-			A.egzaminas = A.paz.back();
-			A.paz.pop_back();
-
-			//apskaiciuoti galutinius rezultatus, kadangi isvedami abu
-			double vidurkis = (double)suma / (double)A.paz.size();
-			A.galutinisVid = 0.4 * vidurkis + 0.6 * A.egzaminas;
-
-			int a = A.paz.size();
-			double mediana;
-			sort(A.paz.begin(), A.paz.end());
-			if (a % 2 == 0) {
-				int midLeftElem = a / 2 - 1;
-				mediana = (A.paz[midLeftElem] + A.paz[a / 2]) / 2;
-			}
-			else
-				mediana = A.paz[a / 2];
-
-			A.galutinisMed = 0.4 * mediana + 0.6 * A.egzaminas;
-
-
-
-			tempStudentai.push_back(A);
-
-			suma = 0;
-		}
-
-		fin.close();
-	}
-	catch (const std::exception& e) {
-		std::cerr << e.what() << "\n";
-
-		return tempStudentai; //Empty
-	}
-
-	return tempStudentai;
+	} while (choiceMenu < 1 || choiceMenu > choices);
 }
 
-void Studentas::write_galutinis(const std::string filename, const std::vector<Studentas>& Studentai) {
-	std::ofstream fout(filename);
+void number_input_validation(int& choice, int lowEnd, int highEnd, std::string optionalPrompt) { //if highEnd = -1, no highEnd used
+	std::string input;
 
-	fout << "\n" << std::setw(15) << std::left << "Pavarde" << std::setw(15) << std::left << "Vardas" << std::setw(15) << std::left << "Galutinis (Vid.)   Galutinis (Med.)" << "\n";
-	fout << "----------------------------------------------------\n";
-	for (const auto& s : Studentai) {
-		fout << std::setw(15) << std::left << s.pav << std::setw(15) << std::left << s.vardas << std::setw(15) << std::left << std::fixed << std::setprecision(2) << s.galutinisVid << "   " << std::fixed << std::setprecision(2) << s.galutinisMed << "\n";
+	while (true) {
+		try {
+			cout << optionalPrompt;
+			getline(cin, input);
+
+			if (input.empty()) {
+				throw std::runtime_error("\n---KLAIDA: Ivestis tuscia---\n");
+			}
+
+			bool isNumber = true;
+			for (auto i : input) {
+				if (!isdigit(i)) {
+					isNumber = false;
+					break;
+				}
+			}
+
+			if (!isNumber) {
+				throw std::runtime_error("\n---KLAIDA: Iveskite realuji skaiciu---\n");
+			}
+
+			//string to int
+			choice = stoi(input);
+
+			//check range
+			if (choice < lowEnd || (choice > highEnd && highEnd != -1)) {
+				std::string errorMsg = "\n---KLAIDA: Iveskite realuji skaiciu";
+				if (highEnd != -1) {
+					errorMsg += " nuo " + std::to_string(lowEnd) + " iki " + std::to_string(highEnd) + "---\n";
+				}
+				else {
+					errorMsg += " nuo " + std::to_string(lowEnd) + "---\n";
+				}
+				throw std::out_of_range(errorMsg);
+			}
+
+			//valid input
+			break;
+		}
+		catch (const std::exception& e) {
+			std::cerr << e.what();
+		}
 	}
-
-	fout.close();
 }
 
-//DARBAS SU EKRANU
+void string_input_validation(std::string& input, std::string optionalPrompt) {
+	while (true) {
+		try {
+			cout << optionalPrompt;
+			getline(cin, input);
+
+			if (input.empty()) {
+				throw std::runtime_error("\n---KLAIDA: Ivestis tuscia---\n");
+			}
+
+			//check if string valid
+			bool isLetter = true;
+			for (auto i : input) {
+				if (!isalpha(i) || i == ' ') {
+					isLetter = false;
+
+					break; //if any not letter, stop checking
+				}
+			}
+
+			if (isLetter == false) {
+				throw std::runtime_error("\n---KLAIDA: Iveskite tik raides---\n");
+			}
+			//valid input
+			break;
+		}
+		catch (const std::exception& e) {
+			std::cerr << e.what();
+		}
+	}
+}
+
+void student_sort() {
+	return;
+}
+
+void calculate_galutinis() {
+	return;
+}
+
+//Darbas su ekranu
 // 
 //Vardo, pavardes ivestis
 void Studentas::varpav_input()
@@ -224,97 +233,113 @@ void Studentas::rand_varpav()
 	cout << "\n\nCia yra vardas: " << vardas << ", o cia pavarde: " << pav << "\n\n\n";
 }
 
-//GLOBALIOS FUNKCIJOS
-void menu() {
-	cout << "\nMENIU\n";
-	cout << "\n--------\n";
-	cout << "Pasirinkite programos eiga\n\n"
-		<< "1 - Viskas ranka,\n2 - Randomizuoti nd. pazymiai ir egz. balas,\n3 - Viskas randomizuota,\n4 - Baigti darba (Ir isvesti galutinius rezultatus),\n5 - Skaityti visus duomenis is failo.";
-	cout << "\n--------\n";
-}
+//Darbas su failais
+// 
+//Perskaityti egzistuojanti studentu duomenu faila
+std::vector<Studentas> Studentas::read_file(const std::string filename, int& suma) {
 
-void number_input_validation(int& choice, int lowEnd, int highEnd, std::string optionalPrompt) { //if highEnd = -1, no highEnd used
-	std::string input;
+	std::vector<Studentas> tempStudentai;
 
-	while (true) {
-		try {
-			cout << optionalPrompt;
-			getline(cin, input);
+	fs::path filePath = filename;
 
-			if (input.empty()) {
-				throw std::runtime_error("\n---KLAIDA: Ivestis tuscia---\n");
-			}
+	try {
+		//CHECK IMPORTANT EXCEPTIONS
 
-			bool isNumber = true;
-			for (auto i : input) {
-				if (!isdigit(i)) {
-					isNumber = false;
-					break;
-				}
-			}
-
-			if (!isNumber) {
-				throw std::runtime_error("\n---KLAIDA: Iveskite realuji skaiciu---\n");
-			}
-
-			//string to int
-			choice = stoi(input);
-
-			//check range
-			if (choice < lowEnd || (choice > highEnd && highEnd != -1)) {
-				std::string errorMsg = "\n---KLAIDA: Iveskite realuji skaiciu";
-				if (highEnd != -1) {
-					errorMsg += " nuo " + std::to_string(lowEnd) + " iki " + std::to_string(highEnd) + "---\n";
-				}
-				else {
-					errorMsg += " nuo " + std::to_string(lowEnd) + "---\n";
-				}
-				throw std::out_of_range(errorMsg);
-			}
-
-			//valid input
-			break;
+		if (filePath.extension() != ".txt") {
+			throw std::runtime_error("\n---KLAIDA: Failas " + filename + " turi baigtis '.txt'---\n");
 		}
-		catch (const std::exception& e) {
-			std::cerr << e.what();
+
+		if (!fs::exists(filename)) {
+			throw std::runtime_error("\n---KLAIDA: Failas " + filename + " neegzistuoja---\n");
 		}
+
+		//Open file
+		std::fstream fin(filename, std::ios::in);
+
+		if (!fin.is_open()) {
+			throw std::runtime_error("\n---KLAIDA: Failo " + filename + " nepavyko atidaryti---\n");
+		}
+
+		if (fs::file_size(filename) == 0) {
+			throw std::runtime_error("\n---KLAIDA: Failas " + filename + " yra tuscias---\n");
+		}
+
+		//Read file
+		std::string curr_eil; //current eilute
+
+		fin.ignore(INT32_MAX, '\n');
+
+		while (std::getline(fin, curr_eil)) {
+			Studentas A; //temp Studentas
+			int tempPaz;
+
+			std::istringstream iss(curr_eil);
+			iss >> A.vardas >> A.pav;
+
+			//read visus pazymius
+			while (iss >> tempPaz) {
+				A.paz.push_back(tempPaz);
+				suma += tempPaz;
+			}
+			//paskutinis pazymys paz vector yra egzamino balas
+			A.egzaminas = A.paz.back();
+			A.paz.pop_back();
+
+			//apskaiciuoti galutinius rezultatus, kadangi isvedami abu
+			double vidurkis = (double)suma / (double)A.paz.size();
+			A.galutinisVid = 0.4 * vidurkis + 0.6 * A.egzaminas;
+
+			int a = A.paz.size();
+			double mediana;
+			sort(A.paz.begin(), A.paz.end());
+			if (a % 2 == 0) {
+				int midLeftElem = a / 2 - 1;
+				mediana = (A.paz[midLeftElem] + A.paz[a / 2]) / 2;
+			}
+			else
+				mediana = A.paz[a / 2];
+
+			A.galutinisMed = 0.4 * mediana + 0.6 * A.egzaminas;
+
+
+
+			tempStudentai.push_back(A);
+
+			suma = 0;
+		}
+
+		fin.close();
 	}
-}
+	catch (const std::exception& e) {
+		std::cerr << e.what() << "\n";
 
-void string_input_validation(std::string& input, std::string optionalPrompt) {
-	while (true) {
-		try {
-			cout << optionalPrompt;
-			getline(cin, input);
-
-			if (input.empty()) {
-				throw std::runtime_error("\n---KLAIDA: Ivestis tuscia---\n");
-			}
-
-			//check if string valid
-			bool isLetter = true;
-			for (auto i : input) {
-				if (!isalpha(i) || i == ' ') {
-					isLetter = false;
-
-					break; //if any not letter, stop checking
-				}
-			}
-
-			if (isLetter == false) {
-				throw std::runtime_error("\n---KLAIDA: Iveskite tik raides---\n");
-			}
-			//valid input
-			break;
-		}
-		catch (const std::exception& e) {
-			std::cerr << e.what();
-		}
+		return tempStudentai; //Empty
 	}
+
+	return tempStudentai;
 }
 
-//DARBAS SU FAILAIS
-void file_generator(int nStud, int nPaz) { //nStud A.K.A. number of entries
+//Rasyti isrusiuotus studentu duomenis i nauja/egzistuojanti faila arba i ekrana
+void Studentas::write_studentai(const std::string filename, const std::vector<Studentas>& Studentai) {
+	//sorting
+	int choiceOutput;
+
+
+
+	//write to file
+	std::ofstream fout(filename);
+
+	fout << "\n" << std::setw(15) << std::left << "Pavarde" << std::setw(15) << std::left << "Vardas" << std::setw(15) << std::left << "Galutinis (Vid.)   Galutinis (Med.)" << "\n";
+	fout << "----------------------------------------------------\n";
+	for (const auto& s : Studentai) {
+		fout << std::setw(15) << std::left << s.pav << std::setw(15) << std::left << s.vardas << std::setw(15) << std::left << std::fixed << std::setprecision(2) << s.galutinisVid << "   " << std::fixed << std::setprecision(2) << s.galutinisMed << "\n";
+	}
+
+	fout.close();
+}
+
+//Generuoti faila su randomizuotais studentu duomenimis
+void student_file_generator(int nStud, int nPaz) {
 
 	//try catch if file exists
 
@@ -342,10 +367,13 @@ void file_generator(int nStud, int nPaz) { //nStud A.K.A. number of entries
 	//file entries (stud data)
 	int pazRnd;
 
-
 	for (int i = 0; i < nStud; i++) {
+
+		if (i != 0) fout << "\n";
+
 		std::string studVar = "Vardas";
 		std::string studPav = "Pavarde";
+
 		//name
 		fout << std::setw(24) << std::left << studVar.append(std::to_string(i + 1));
 		//last name
@@ -357,27 +385,26 @@ void file_generator(int nStud, int nPaz) { //nStud A.K.A. number of entries
 			fout << std::right << pazRnd << std::setw(10);
 		}
 
-		//egz
+		//egz balas
 		pazRnd = rand() % 10 + 1;
 		fout << std::right << pazRnd;
-
-		if (i + 1 != nStud) fout << "\n"; //paskutinis entry neturetu sukurti dar vienos \n
 	}
 
 	fout.close();
 }
 
-void file_generator(std::string& filename, std::vector<Studentas>& studentai) {
+//Generuoti split files
+void split_file_generator(std::string& filename, std::vector<Studentas>& studentai) {
 	std::ofstream fout(filename);
+	int max_pazSize = studentai[0].paz.size(); //didziausias pazymiu skaicius, header'iui
 
 	//file header
-	std::string nd = "ND";
 
 	fout << std::setw(24) << std::left << "Vardas" << std::setw(27) << std::left << "Pavarde";
 
-	for (int i = 0; i < studentai[0].paz.size(); i++) {
+	for (int i = 0; i < max_pazSize; i++) {
+		std::string nd = "ND";
 		fout << std::setw(10) << std::left << nd.append(std::to_string(i + 1));
-		nd = "ND";
 	}
 
 	fout << std::left << "Egz.\n";
@@ -393,16 +420,17 @@ void file_generator(std::string& filename, std::vector<Studentas>& studentai) {
 		fout << std::setw(24) << std::left << s.vardas;
 		fout << std::setw(27) << std::left << s.pav;
 
+		//paz output
 		for (const auto& p : s.paz) {
 			fout << std::right << p << std::setw(10);
 		}
 		fout << std::right << s.egzaminas << std::setw(10);
-
 	}
 
 	fout.close();
 }
 
+//Isrusiuoti studentus i "gerus" ir "blogus" ir isvesti du failus
 void file_split(std::string filename) {
 	//filename input prompt + filename validation;
 
@@ -455,7 +483,17 @@ void file_split(std::string filename) {
 
 	//create files
 
-	file_generator(fileGeri, studGeri);
-	file_generator(fileBlogi, studBlogi);
+	split_file_generator(fileGeri, studGeri);
+	split_file_generator(fileBlogi, studBlogi);
 
+}
+
+//TESTAVIMO FUNKCIJOS
+//Testuoti: failu sukurimo ir ofstream uzdarymo laika
+void t1_file_gen(int nStud) {
+	Timer timer;
+	student_file_generator(nStud, 15);
+	double time = timer.elapsed();
+
+	cout << "Faila is " << nStud << " studentu ivesciu sukurti uztruko : " << time << "s.\n\n";
 }

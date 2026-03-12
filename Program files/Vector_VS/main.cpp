@@ -1,6 +1,5 @@
 ﻿#include "mylib.h"
 #include "functions.h"
-#include "timer.h"
 
 //Visi duomenu rinkiniai su std::vector
 
@@ -18,21 +17,9 @@ int main()
 
 	srand(static_cast<unsigned int>(time(NULL)));
 
-	file_split("studentai1000.txt");
-
-
-
 	do {
-
 		//MENIU
-		do {
-			menu();
-
-			number_input_validation(choiceMenu, 1, 5);
-
-			system("cls");
-
-		} while (choiceMenu < 1 || choiceMenu > 5);
+		menu(choiceMenu);
 
 		//RANKA
 		if (choiceMenu == 1) {
@@ -69,7 +56,7 @@ int main()
 
 		//RND VISKAS
 		else if (choiceMenu == 3) {
-			cout << "\n---RANDOMIZUOTAS STUDENTO VARDAS IR PAVARDE";
+			cout << "\n---RANDOMIZUOTAS STUDENTO VARDAS IR PAVARDE---\n";
 			A.rand_varpav();
 
 			cout << "\n---RANDOMIZUOTAS EGZAMINO BALAS---\n\n";
@@ -104,18 +91,18 @@ int main()
 				cout << "\nIveskite failo pavadinima, is kurio norite nuskaityti:\n";
 				getline(cin, filename_input);
 
-				//Start timer
+				///Start timer
 				//Timer timer;
 
 				Studentai = Studentas::read_file(filename_input, suma);
 				if (Studentai.empty()) {
-					read_success = 1;
+					read_success = 0;
 				}
 				else {
 					//cout << "\n\n FAILA PERSKAITYTI UZTRUKO: " << timer.elapsed() << " s\n\n";
-					read_success = 0;
+					read_success = 1;
 				}
-			} while (read_success == 1);
+			} while (read_success == 0);
 
 			cout << "\n---STUDENTO DUOMENU ISANKSTINIS SURUSIAVIMAS/ISRIKIAVIMAS---\n\n";
 
@@ -152,7 +139,7 @@ int main()
 				cout << "\nIveskite failo pavadinima, i kuri norite irasyti duomenis (arba sukurti nauja, jeigu failo su tokiu pav. nera):\n";
 				cin >> answer2;
 
-				Studentas::write_galutinis(answer2, Studentai);
+				Studentas::write_studentai(answer2, Studentai);
 			}
 			else if (choiceOutput == 2) {
 
@@ -167,9 +154,25 @@ int main()
 			//Iseiti is while loop
 			choiceEndStud = 1;
 		}
+		
+		//Spartos analize
+		else if (choiceMenu == 6) {
+			cout << "\n---PROGRAMOS SPARTOS ANALIZE---\n";
+			cout << "\n---FAILU SUKURIMO SPARTOS ANALIZE---\n\n";
+
+			t1_file_gen(1000);
+			t1_file_gen(10000);
+			t1_file_gen(100000);
+			t1_file_gen(1000000);
+			t1_file_gen(10000000);
+
+			cout << "\n";
+
+			choiceEndStud = 1;
+		}
 
 		//Perkeliam vieno studento duomenis
-		if (choiceMenu != 5) Studentai.push_back(A);
+		Studentai.push_back(A);
 		if (!Studentai.empty()) {
 			//Apskaiciuojame galutini rezultata kiekvienam studentui
 			vidurkis = (double)suma / ((double)Studentai[m].paz.size());
@@ -190,7 +193,7 @@ int main()
 		}
 
 		//Testi studentu duom ivedima
-		if (choiceMenu != 4 && choiceMenu != 5) {
+		if (choiceEndStud != 1) {
 			m++; //Skaiciuojame studentu skaiciu / saugome indeksa
 			do {
 				number_input_validation(choiceEndStud, 0, 1, "\nAr vesite dar vieno studento duomenis? (0 - Taip, 1 - Ne, einame prie galutiniu rezultatu)\n");
@@ -199,9 +202,10 @@ int main()
 
 			system("cls");
 		}
+		else Studentai.clear();
 
 		//Reset
-		if (choiceMenu == 5) Studentai.clear();
+		if (choiceMenu == 5 || choiceMenu == 6) Studentai.clear();
 		vidurkis = 0;
 		suma = 0;
 		n = 0;

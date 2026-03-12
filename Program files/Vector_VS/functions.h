@@ -12,6 +12,8 @@
 #include <stdlib.h>
 #include <filesystem>
 
+#include "timer.h";
+
 namespace fs = std::filesystem; //C++17
 
 using std::cout;
@@ -26,7 +28,7 @@ struct Studentas {
 
     //Darbas su failais
     static std::vector<Studentas> read_file(const std::string filename, int& suma);
-    static void write_galutinis(const std::string filename, const std::vector<Studentas>& Studentai);
+    static void write_studentai(const std::string filename, const std::vector<Studentas>& Studentai);
 
     //Darbas su ekranu
     void varpav_input();
@@ -37,10 +39,16 @@ struct Studentas {
     void rand_varpav();
 };
 
-//GLOBALIOS FUNKCIJOS
-void menu();
+void menu(int& choiceMenu);
 void number_input_validation(int& choice, int lowEnd, int highEnd, std::string optionalPrompt = "");
 void string_input_validation(std::string& input, std::string optionalPrompt = "");
-void file_generator(int nStud, int nPaz);
-void file_generator(std::string& filename, std::vector<Studentas>& studentai);
+void student_sort();
+void calculate_galutinis();
+
+//Darbas su failais
+void student_file_generator(int nStud, int nPaz);
+void split_file_generator(std::string& filename, std::vector<Studentas>& studentai);
 void file_split(std::string filename);
+
+//Testavimo funkcijos
+void t1_file_gen(int nStud);
