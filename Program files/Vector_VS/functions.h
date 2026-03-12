@@ -43,7 +43,7 @@ void student_sort();
 void calculate_galutinis();
 
 //Darbas su failais
-std::vector<Studentas> read_file(const std::string filename, int& suma);
+std::vector<Studentas> read_file(std::string& filename, int& suma);
 void student_file_generator(int nStud, int nPaz);
 void split_file_generator(std::string& filename, std::vector<Studentas>& studentai);
 void file_split(std::string filename);

@@ -5,15 +5,15 @@
 
 //GLOBALIOS FUNKCIJOS
 void menu(int& choiceMenu) {
-	int choices = 6;
+	int choices = 7;
 
 	do {
 		cout << "\nMENIU\n";
 		cout << "\n--------\n";
 		cout << "Pasirinkite programos eiga\n\n"
 			<< "1 - Viskas ranka,\n2 - Randomizuoti nd. pazymiai ir egz. balas,\n3 - Viskas randomizuota,\n"
-			<< "4 - Baigti darba (Ir isvesti galutinius rezultatus),\n5 - Skaityti visus duomenis is failo,\n"
-			<< "6 - Vykdyti spartos analize.";
+			<< "4 - Baigti darba (Ir isvesti galutinius rezultatus),\n5 - Skaityti visus duomenis is failo,\n6 - Generuoti randomizuotu studentu duomenu failus,\n"
+			<< "7 - Vykdyti spartos analize.";
 		cout << "\n--------\n";
 
 		number_input_validation(choiceMenu, 1, choices);
@@ -23,6 +23,7 @@ void menu(int& choiceMenu) {
 	} while (choiceMenu < 1 || choiceMenu > choices);
 }
 
+//can make bool!
 void number_input_validation(int& choice, int lowEnd, int highEnd, std::string optionalPrompt) { //if highEnd = -1, no highEnd used
 	std::string input;
 
@@ -71,6 +72,7 @@ void number_input_validation(int& choice, int lowEnd, int highEnd, std::string o
 	}
 }
 
+//can make bool!
 void string_input_validation(std::string& input, std::string optionalPrompt) {
 	while (true) {
 		try {
@@ -256,7 +258,7 @@ void Studentas::write_studentai(const std::string filename, const std::vector<St
 }
 
 //Perskaityti egzistuojanti studentu duomenu faila
-std::vector<Studentas> read_file(const std::string filename, int& suma) {
+std::vector<Studentas> read_file(std::string& filename, int& suma) {
 
 	std::vector<Studentas> tempStudentai;
 
@@ -442,7 +444,7 @@ void file_split(std::string filename) {
 	studentai = read_file(filename, suma); //galutinisVid/Med calculated here
 
 	//sort by choice
-	int choiceSort;
+	/*int choiceSort;
 	do {
 		number_input_validation(choiceSort, 1, 4, "\nKaip norite surusiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.),\n4- Pagal galutini (med.)\n");
 
@@ -462,7 +464,8 @@ void file_split(std::string filename) {
 			else {
 				return a.galutinisMed > b.galutinisMed;
 			}
-		});
+		});*/
+
 
 	//construct two new filenames
 	std::string fileGeri = "geri", fileBlogi = "blogi"; //geri: galutinisVid >= 5.0; blogi: galutinisVid < 5.0
@@ -472,6 +475,7 @@ void file_split(std::string filename) {
 	//make and fill two new vectors
 	std::vector<Studentas> studGeri, studBlogi;
 
+	Timer timer1;
 	//move students
 	for (auto& s : studentai) {
 		if (s.galutinisVid < 5.0) {
@@ -482,10 +486,13 @@ void file_split(std::string filename) {
 	}
 	studentai.clear();
 
-	//create files
+	cout << "Failo '" << filename << "' studentu duomenis isrusiuoti i 'gerus' ir 'blogus' uztruko : " << timer1.elapsed() << "s.\n";
 
+	//create files
+	Timer timer2;
 	split_file_generator(fileGeri, studGeri);
 	split_file_generator(fileBlogi, studBlogi);
+	cout << "Is failo '" << filename << "' sukurti du failus is isrusiuotu duomenu uztruko : " << timer2.elapsed() << "s.\n";
 
 }
 
@@ -500,10 +507,28 @@ void testing_v04_1(int nStud) {
 }
 
 //Testavimas: egzistuojanciu failu 
-void testing_v04_2(std::vector<Studentas>& studentai, const std::string filename, int& suma) {
-	Timer timer;
-	studentai = read_file(filename,suma);
-	double time = timer.elapsed();
+void testing_v04_2(std::vector<Studentas>& studentai, std::string filename, int& suma) {
+	//read file
+	Timer timer_full;
+	Timer timer1;
+	studentai = read_file(filename, suma);
 
-	cout << "Faila '" << filename << "' perskaityti uztruko : " << time << "s.\n\n";
+	cout << "Faila '" << filename << "' perskaityti uztruko : " << timer1.elapsed() << "s.\n";
+
+	//sort file by galutinisVid decreasing
+
+	Timer timer2;
+	sort(studentai.begin(), studentai.end(),
+		[](Studentas& a, Studentas& b)-> bool {
+			return a.galutinisVid > b.galutinisVid; 
+		});
+	double time = timer2.elapsed();
+
+	cout << "Faila '" << filename << "' surusiuoti uztruko : " << timer2.elapsed() << "s.\n";
+
+	//split file into two new ones (timer in function)
+	file_split(filename);
+
+	//final timer
+	cout << "Failo '" << filename << "' testavimas uztruko : " << timer_full.elapsed() << "s.\n\n";
 }

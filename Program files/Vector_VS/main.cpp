@@ -155,10 +155,20 @@ int main()
 			choiceEndStud = 1;
 		}
 		
-		//Spartos analize
+		//Randomizuotu stud. duomenu failo generavimas
 		else if (choiceMenu == 6) {
+			//prompt
+			int studNum;
+			number_input_validation(studNum, 0, -1, "\nIveskite su kiek randomizuotu studentu duomenu norite uzpildyti faila: \n");
+
+			//generate file
+			student_file_generator(studNum, 15);
+		}
+
+		//Spartos analize
+		else if (choiceMenu == 7) {
 			cout << "\n---PROGRAMOS SPARTOS ANALIZE---\n";
-			/*cout << "\n---FAILU SUKURIMO SPARTOS ANALIZE---\n\n";
+			cout << "\n---FAILU SUKURIMO SPARTOS ANALIZE---\n\n";
 
 			testing_v04_1(1000);
 			testing_v04_1(10000);
@@ -166,7 +176,7 @@ int main()
 			testing_v04_1(1000000);
 			testing_v04_1(10000000);
 
-			cout << "\n";*/
+			cout << "\n";
 
 			cout << "\n---EGZISTUOJANCIU FAILU SKAITYMO SPARTOS ANALIZE---\n\n";
 
