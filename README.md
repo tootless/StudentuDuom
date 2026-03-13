@@ -4,7 +4,7 @@
 # Testavimas - v0.2
 
 Tyrimas buvo atliktas su Visual Studio 2022 /O2 optimizacijos nustatymais.  
-Tyrimo 1 ir tyrimo 2 failai buvo istrinti pries kiekviena bandyma.  
+Tyrimo 1 failai buvo istrinti pries kiekviena bandyma.  
 Testavimo metu testavimo sistemoje nebuvo ijungtos jokios kitos programos.
 
 ## Tyrimas 1
@@ -13,10 +13,10 @@ Testavimo metu testavimo sistemoje nebuvo ijungtos jokios kitos programos.
 
 |    |  1000  | 100000 | 1000000 |
 |:--:|:------:|:-----:|:------:|
-| 1. | **0.0478s** | 0.619s |  2.965s |
-| 2. | 0.0489s | 0.616s |  **2.894s** |
-| 3. | **0.0478s** | 0.647s | 2.983s |
-| 4. | 0.0479s | **0.593s** |  2.979s |
+| 1. | 0.0478s | 0.619s |  2.965s |
+| 2. | 0.0489s | 0.616s |  2.894s |
+| 3. | 0.0478s | 0.647s | 2.983s |
+| 4. | 0.0479s | 0.593s |  2.979s |
 | 5. | 0.0498s | 0.640s |  2.966s|
 | Vid. | 0.04844s | 0.623s |  2.9574s |
 
