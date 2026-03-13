@@ -46,7 +46,7 @@ void calculate_galutinis();
 std::vector<Studentas> read_file(std::string& filename, int& suma);
 void student_file_generator(int nStud, int nPaz);
 void split_file_generator(std::string& filename, std::vector<Studentas>& studentai);
-void file_split(std::string filename);
+void file_split(std::string filename, std::vector<Studentas>& studentai);
 
 //Testavimo funkcijos
 void testing_v04_1(int nStud);

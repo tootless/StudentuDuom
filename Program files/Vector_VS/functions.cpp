@@ -434,14 +434,14 @@ void split_file_generator(std::string& filename, std::vector<Studentas>& student
 }
 
 //Isrusiuoti studentus i "gerus" ir "blogus" ir isvesti du failus
-void file_split(std::string filename) {
+void file_split(std::string filename, std::vector<Studentas>& studentai) {
 	//filename input prompt + filename validation;
 
 	//read file
-	std::vector <Studentas> studentai;
+	/*std::vector <Studentas> studentai;
 	int suma = 0;
 
-	studentai = read_file(filename, suma); //galutinisVid/Med calculated here
+	studentai = read_file(filename, suma); //galutinisVid/Med calculated here*/
 
 	//sort by choice
 	/*int choiceSort;
@@ -497,7 +497,7 @@ void file_split(std::string filename) {
 }
 
 //TESTAVIMO FUNKCIJOS
-//Testavimas: nauju failu sukurimo ir ofstream uzdarymo laika
+//Testavimas: nauju failu sukurimas ir ofstream uzdarymas
 void testing_v04_1(int nStud) {
 	Timer timer;
 	student_file_generator(nStud, 15);
@@ -506,7 +506,7 @@ void testing_v04_1(int nStud) {
 	cout << "Faila is " << nStud << " studentu ivesciu sukurti uztruko : " << time << "s.\n\n";
 }
 
-//Testavimas: egzistuojanciu failu 
+//Testavimas: egzistuojanciu failu skaitymas ir pavertimas i du atskirus failus
 void testing_v04_2(std::vector<Studentas>& studentai, std::string filename, int& suma) {
 	//read file
 	Timer timer_full;
@@ -517,17 +517,13 @@ void testing_v04_2(std::vector<Studentas>& studentai, std::string filename, int&
 
 	//sort file by galutinisVid decreasing
 
-	Timer timer2;
-	sort(studentai.begin(), studentai.end(),
+	/*sort(studentai.begin(), studentai.end(),
 		[](Studentas& a, Studentas& b)-> bool {
 			return a.galutinisVid > b.galutinisVid; 
-		});
-	double time = timer2.elapsed();
-
-	cout << "Faila '" << filename << "' surusiuoti uztruko : " << timer2.elapsed() << "s.\n";
+		});*/
 
 	//split file into two new ones (timer in function)
-	file_split(filename);
+	file_split(filename, studentai);
 
 	//final timer
 	cout << "Failo '" << filename << "' testavimas uztruko : " << timer_full.elapsed() << "s.\n\n";

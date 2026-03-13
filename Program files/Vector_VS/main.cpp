@@ -170,23 +170,35 @@ int main()
 			cout << "\n---PROGRAMOS SPARTOS ANALIZE---\n";
 			cout << "\n---FAILU SUKURIMO SPARTOS ANALIZE---\n\n";
 
-			testing_v04_1(1000);
-			testing_v04_1(10000);
-			testing_v04_1(100000);
-			testing_v04_1(1000000);
-			testing_v04_1(10000000);
+			/*testing_v04_1(1000);
+			system("pause");
 
-			cout << "\n";
+			testing_v04_1(10000);
+			system("pause");
+
+			testing_v04_1(100000);
+			system("pause");
+
+			testing_v04_1(1000000);
+			system("pause");
+
+			testing_v04_1(10000000);*/
 
 			cout << "\n---EGZISTUOJANCIU FAILU SKAITYMO SPARTOS ANALIZE---\n\n";
 
 			testing_v04_2(Studentai,"studentai1000.txt",suma);
-			testing_v04_2(Studentai, "studentai10000.txt", suma);
-			testing_v04_2(Studentai, "studentai100000.txt", suma);
-			testing_v04_2(Studentai, "studentai1000000.txt", suma);
-			testing_v04_2(Studentai, "studentai10000000.txt", suma);
+			system("pause");
 
-			cout << "\n";
+			testing_v04_2(Studentai, "studentai10000.txt", suma);
+			system("pause");
+
+			testing_v04_2(Studentai, "studentai100000.txt", suma);
+			system("pause");
+
+			testing_v04_2(Studentai, "studentai1000000.txt", suma);
+			system("pause");
+
+			testing_v04_2(Studentai, "studentai10000000.txt", suma);
 
 
 			choiceEndStud = 1;
