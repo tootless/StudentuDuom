@@ -42,12 +42,16 @@ isskyrus tyrimo 2 failus, su kuriais buvo testuojamas skaitymas (Tyrimas 2.1).
 
 ### Tyrimo 1 output ekrane:
 
+1.1
 !["test1_1.png"](/Assets/test1_1.png)  
 ---
+1.2
 !["test1_2.png"](/Assets/test1_2.png)  
 ---
+1.3
 !["test1_3.png"](/Assets/test1_3.png)  
 ---
+1.4
 !["test1_4.png"](/Assets/test1_4.png)  
 
 ## Tyrimas 2
@@ -94,10 +98,14 @@ isskyrus tyrimo 2 failus, su kuriais buvo testuojamas skaitymas (Tyrimas 2.1).
 
 ### Tyrimo 2 output ekrane:
 
+2.1.
 !["test2_1.png"](/Assets/test2_1.png)  
 ---
+2.2.
 !["test2_2.png"](/Assets/test2_2.png)  
 ---
+2.3.
 !["test2_3.png"](/Assets/test2_3.png)  
 ---
+2.4.
 !["test2_4.png"](/Assets/test2_4.png)  
