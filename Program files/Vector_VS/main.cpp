@@ -170,7 +170,7 @@ int main()
 			cout << "\n---PROGRAMOS SPARTOS ANALIZE---\n";
 			cout << "\n---FAILU SUKURIMO SPARTOS ANALIZE---\n\n";
 
-			/*testing_v04_1(1000);
+			testing_v04_1(1000);
 			system("pause");
 
 			testing_v04_1(10000);
@@ -182,7 +182,7 @@ int main()
 			testing_v04_1(1000000);
 			system("pause");
 
-			testing_v04_1(10000000);*/
+			testing_v04_1(10000000);
 
 			cout << "\n---EGZISTUOJANCIU FAILU SKAITYMO SPARTOS ANALIZE---\n\n";
 
@@ -257,65 +257,25 @@ int main()
 		//VIDURKIS
 		if (choiceRez == 1) {
 			//Rūšiavimas
-			int choiceSort;
-			do {
-				number_input_validation(choiceSort, 1, 3, "Kaip norite surusiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.)\n");
-
-			} while (choiceSort < 1 || choiceSort > 3);
-
-			sort(Studentai.begin(), Studentai.end(),
-				[choiceSort](const Studentas& a, const Studentas& b) -> bool {
-					if (choiceSort == 1) {
-						if (a.vardas != b.vardas) return a.vardas < b.vardas;
-					}
-					else if (choiceSort == 2) {
-						if (a.pav != b.pav) return a.pav < b.pav;
-					}
-					else if (choiceSort == 3) {
-						return a.galutinisVid > b.galutinisVid;
-					}
-					else {
-						return a.galutinisMed > b.galutinisMed;
-					}
-				});
+			student_sort(Studentai);
 
 			cout << "\n" << std::setw(15) << std::left << "Pavarde" << std::setw(15) << std::left << "Vardas" << std::setw(15) << std::left << "Galutinis (Vid.)" << "\n";
 			cout << "----------------------------------------------------\n";
-			for (int i = 0; i < Studentai.size(); i++) {
-				cout << std::setw(15) << std::left << Studentai[i].pav << std::setw(15) << std::left << Studentai[i].vardas << std::setw(15) << std::left << std::fixed << std::setprecision(2) << Studentai[i].galutinisVid << "   " << "\n";
+			for (const auto& s : Studentai) {
+				cout << std::setw(15) << std::left << s.pav << std::setw(15) << std::left << s.vardas << std::setw(15) << std::left << std::fixed << std::setprecision(2) << s.galutinisVid << "   " << "\n";
 			}
 			choiceRez = 0;
 		}
 		//MEDIANA
 		else if (choiceRez == 2) {
 			//Rūšiavimas
-			int choiceSort;
-			do {
-				number_input_validation(choiceSort, 1, 3, "Kaip norite surusiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.),\n4- Pagal galutini (med.)\n");
+			student_sort(Studentai);
 
-			} while (choiceSort < 1 || choiceSort > 3);
-
-			sort(Studentai.begin(), Studentai.end(),
-				[choiceSort](const Studentas& a, const Studentas& b) -> bool {
-					if (choiceSort == 1) {
-						if (a.vardas != b.vardas) return a.vardas < b.vardas;
-					}
-					else if (choiceSort == 2) {
-						if (a.pav != b.pav) return a.pav < b.pav;
-					}
-					else if (choiceSort == 3) {
-						return a.galutinisVid > b.galutinisVid;
-					}
-					else {
-						return a.galutinisMed > b.galutinisMed;
-					}
-				});
-
-
+			//Output
 			cout << "\n" << std::setw(15) << std::left << "Pavarde" << std::setw(15) << std::left << "Vardas" << std::setw(15) << std::left << "Galutinis (Med.)" << "\n";
 			cout << "------------------------------------------\n";
-			for (int i = 0; i < m; i++) {
-				cout << std::setw(15) << std::left << Studentai[i].pav << std::setw(15) << std::left << Studentai[i].vardas << std::setw(15) << std::left << std::fixed << std::setprecision(2) << Studentai[i].galutinisMed << "   " << "\n";
+			for (const auto& s : Studentai) {
+				cout << std::setw(15) << std::left << s.pav << std::setw(15) << std::left << s.vardas << std::setw(15) << std::left << std::fixed << std::setprecision(2) << s.galutinisMed << "   " << "\n";
 			}
 
 			choiceRez = 0;
@@ -323,7 +283,7 @@ int main()
 
 		//Restart()
 	}
-	else if (Studentai.empty() && choiceMenu != 5) {
+	else if (Studentai.empty() && (choiceMenu != 5 && choiceMenu != 6 && choiceMenu != 7)) {
 		cout << "Studentu duomenu nera.\n\n";
 		//Restart();
 	}

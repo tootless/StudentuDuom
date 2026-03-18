@@ -4,6 +4,7 @@
 #include "timer.h"
 
 //GLOBALIOS FUNKCIJOS
+//
 void menu(int& choiceMenu) {
 	int choices = 7;
 
@@ -105,15 +106,36 @@ void string_input_validation(std::string& input, std::string optionalPrompt) {
 	}
 }
 
-void student_sort() {
-	return;
+//Studentu vektoriaus rusiavimas pagal pasirinkima
+void student_sort(std::vector<Studentas>& studentai) {
+	int choiceSort;
+	do {
+		number_input_validation(choiceSort, 1, 4, "\nKaip norite surusiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.),\n4- Pagal galutini (med.)\n");
+
+	} while (choiceSort < 1 || choiceSort > 4);
+
+	sort(studentai.begin(), studentai.end(),
+		[choiceSort](const Studentas& a, const Studentas& b) -> bool {
+			if (choiceSort == 1) {
+				if (a.vardas != b.vardas) return a.vardas < b.vardas;
+			}
+			else if (choiceSort == 2) {
+				if (a.pav != b.pav) return a.pav < b.pav;
+			}
+			else if (choiceSort == 3) {
+				return a.galutinisVid > b.galutinisVid;
+			}
+			else {
+				return a.galutinisMed > b.galutinisMed;
+			}
+		});
 }
 
 void calculate_galutinis() {
 	return;
 }
 
-//Darbas su ekranu
+//DARBAS SU EKRANU
 // 
 //Vardo, pavardes ivestis
 void Studentas::varpav_input()
@@ -236,7 +258,7 @@ void Studentas::rand_varpav()
 	cout << "\n\nCia yra vardas: " << vardas << ", o cia pavarde: " << pav << "\n\n\n";
 }
 
-//Darbas su failais
+//DARBAS SU FAILAIS
 // 
 //Rasyti isrusiuotus studentu duomenis i nauja/egzistuojanti faila arba i ekrana
 void Studentas::write_studentai(const std::string filename, const std::vector<Studentas>& Studentai) {
@@ -437,46 +459,13 @@ void split_file_generator(std::string& filename, std::vector<Studentas>& student
 void file_split(std::string filename, std::vector<Studentas>& studentai) {
 	//filename input prompt + filename validation;
 
-	//read file
-	/*std::vector <Studentas> studentai;
-	int suma = 0;
-
-	studentai = read_file(filename, suma); //galutinisVid/Med calculated here*/
-
 	//sort by choice
-	/*int choiceSort;
-	do {
-		number_input_validation(choiceSort, 1, 4, "\nKaip norite surusiuoti studentus? \n1 - Pagal vardus,\n2 - Pagal pavardes,\n3 - Pagal galutini (vid.),\n4- Pagal galutini (med.)\n");
+	student_sort(studentai);
 
-	} while (choiceSort < 1 || choiceSort > 4);
-
-	sort(studentai.begin(), studentai.end(),
-		[choiceSort](const Studentas& a, const Studentas& b) -> bool {
-			if (choiceSort == 1) {
-				if (a.vardas != b.vardas) return a.vardas < b.vardas;
-			}
-			else if (choiceSort == 2) {
-				if (a.pav != b.pav) return a.pav < b.pav;
-			}
-			else if (choiceSort == 3) {
-				return a.galutinisVid > b.galutinisVid;
-			}
-			else {
-				return a.galutinisMed > b.galutinisMed;
-			}
-		});*/
-
-
-	//construct two new filenames
-	std::string fileGeri = "geri", fileBlogi = "blogi"; //geri: galutinisVid >= 5.0; blogi: galutinisVid < 5.0
-
-	fileGeri.append(filename); fileBlogi.append(filename);
-
-	//make and fill two new vectors
+	//move students to new vectors
 	std::vector<Studentas> studGeri, studBlogi;
 
 	Timer timer1;
-	//move students
 	for (auto& s : studentai) {
 		if (s.galutinisVid < 5.0) {
 			studBlogi.push_back(std::move(s));
@@ -489,14 +478,21 @@ void file_split(std::string filename, std::vector<Studentas>& studentai) {
 	cout << "Failo '" << filename << "' studentu duomenis isrusiuoti i 'gerus' ir 'blogus' uztruko : " << timer1.elapsed() << "s.\n";
 
 	//create files
+
+	//construct two new filenames
+	std::string fileGeri = "geri", fileBlogi = "blogi"; //geri: galutinisVid >= 5.0; blogi: galutinisVid < 5.0
+
+	fileGeri.append(filename); fileBlogi.append(filename);
+
 	Timer timer2;
 	split_file_generator(fileGeri, studGeri);
 	split_file_generator(fileBlogi, studBlogi);
-	cout << "Is failo '" << filename << "' sukurti du failus is isrusiuotu duomenu uztruko : " << timer2.elapsed() << "s.\n";
 
+	cout << "Is failo '" << filename << "' sukurti du failus is isrusiuotu duomenu uztruko : " << timer2.elapsed() << "s.\n";
 }
 
-//TESTAVIMO FUNKCIJOS
+//TESTAVIMAS
+// 
 //Testavimas: nauju failu sukurimas ir ofstream uzdarymas
 void testing_v04_1(int nStud) {
 	Timer timer;
@@ -515,16 +511,49 @@ void testing_v04_2(std::vector<Studentas>& studentai, std::string filename, int&
 
 	cout << "Faila '" << filename << "' perskaityti uztruko : " << timer1.elapsed() << "s.\n";
 
-	//sort file by galutinisVid decreasing
-
-	/*sort(studentai.begin(), studentai.end(),
-		[](Studentas& a, Studentas& b)-> bool {
-			return a.galutinisVid > b.galutinisVid; 
-		});*/
-
-	//split file into two new ones (timer in function)
-	file_split(filename, studentai);
+	//split file into two new ones (timer in function), isrusiuota pagal galutinisVid funkcijoje
+	file_split_testing(filename, studentai);
 
 	//final timer
 	cout << "Failo '" << filename << "' testavimas uztruko : " << timer_full.elapsed() << "s.\n\n";
+}
+
+//Isrusiuoti studentus i "gerus" ir "blogus" ir isvesti du failus be rusiavimo pasirinkimo
+void file_split_testing(std::string filename, std::vector<Studentas>& studentai) {
+	//filename input prompt + filename validation;
+
+	//sort file by galutinisVid decreasing
+
+	sort(studentai.begin(), studentai.end(),
+		[](Studentas& a, Studentas& b)-> bool {
+			return a.galutinisVid > b.galutinisVid;
+		});
+
+	//move students to new vectors
+	std::vector<Studentas> studGeri, studBlogi;
+
+	Timer timer1;
+	for (auto& s : studentai) {
+		if (s.galutinisVid < 5.0) {
+			studBlogi.push_back(std::move(s));
+		}
+		else
+			studGeri.push_back(std::move(s));
+	}
+	studentai.clear();
+
+	cout << "Failo '" << filename << "' studentu duomenis isrusiuoti i 'gerus' ir 'blogus' uztruko : " << timer1.elapsed() << "s.\n";
+
+	//create files
+
+	//construct two new filenames
+	std::string fileGeri = "geri", fileBlogi = "blogi"; //geri: galutinisVid >= 5.0; blogi: galutinisVid < 5.0
+
+	fileGeri.append(filename); fileBlogi.append(filename);
+
+	Timer timer2;
+	split_file_generator(fileGeri, studGeri);
+	split_file_generator(fileBlogi, studBlogi);
+
+	cout << "Is failo '" << filename << "' sukurti du failus is isrusiuotu duomenu uztruko : " << timer2.elapsed() << "s.\n";
 }
