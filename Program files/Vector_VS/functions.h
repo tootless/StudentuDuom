@@ -139,24 +139,57 @@ void write_studentai(const std::string filename, StudentaiContainer& studentai) 
 	fout.close();
 }
 
+void student_file_generator(int nStud, int nPaz);
+
+void split_file_generator(std::string& filename, std::vector<Studentas>& studentai);
+
+void student_split(std::string filename, std::vector<Studentas>& studentai);
+
+template <typename StudentaiContainer>
+void student_split_testing(std::string filename, StudentaiContainer& studentai) {
+	//sort by galutinisVid
+	student_sort_testing(studentai);
+
+	//move students to new vectors
+	StudentaiContainer studGeri, studBlogi;
+
+	for (auto& s : studentai) {
+		if (s.galutinisVid < 5.0) {
+			studBlogi.push_back(std::move(s));
+		}
+		else
+			studGeri.push_back(std::move(s));
+	}
+	studentai.clear();
+}
+
+void menu(int& choiceMenu);
+
+void number_input_validation(int& choice, int lowEnd, int highEnd, std::string optionalPrompt = "");
+
+void string_input_validation(std::string& input, std::string optionalPrompt = "");
+
+void student_sort(std::vector<Studentas>& studentai);
+
 //Studentu vektoriaus rusiavimas didejimo tvarka pagal galutiniVid
 template<typename StudentaiContainer>
 void student_sort_testing(StudentaiContainer& studentai) {
 	sort(studentai.begin(), studentai.end(),
 		[](const Studentas& a, const Studentas& b) -> bool {
-				return a.galutinisVid > b.galutinisVid;
+			return a.galutinisVid < b.galutinisVid;
 		});
 }
 
-void student_file_generator(int nStud, int nPaz);
-void split_file_generator(std::string& filename, std::vector<Studentas>& studentai);
-void file_split(std::string filename, std::vector<Studentas>& studentai);
-
-void menu(int& choiceMenu);
-void number_input_validation(int& choice, int lowEnd, int highEnd, std::string optionalPrompt = "");
-void string_input_validation(std::string& input, std::string optionalPrompt = "");
-void student_sort(std::vector<Studentas>& studentai);
 void calculate_galutinis();
 
+//void test1_files
 void testing_v04_1(int nStud);
+
+//void test2_files
 void testing_v04_2(std::vector<Studentas>& studentai, const std::string filename, int& suma);
+
+//Initial test of containers: reading, writing, sorting
+template<typename StudentaiContainer>
+void test1_containers(StudentaiContainer& studentai) {
+	
+}

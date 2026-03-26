@@ -445,8 +445,8 @@ void split_file_generator(std::string& filename, std::vector<Studentas>& student
 	fout.close();
 }
 
-//Isrusiuoti studentus i "gerus" ir "blogus" ir isvesti du failus
-void file_split(std::string filename, std::vector<Studentas>& studentai) {
+//Isrusiuoti studentus i "gerus" ir "blogus" pagal galutiniVid
+void student_split(std::string filename, std::vector<Studentas>& studentai) {
 	//filename input prompt + filename validation;
 
 	//sort by choice
@@ -455,7 +455,6 @@ void file_split(std::string filename, std::vector<Studentas>& studentai) {
 	//move students to new vectors
 	std::vector<Studentas> studGeri, studBlogi;
 
-	Timer timer1;
 	for (auto& s : studentai) {
 		if (s.galutinisVid < 5.0) {
 			studBlogi.push_back(std::move(s));
@@ -465,8 +464,6 @@ void file_split(std::string filename, std::vector<Studentas>& studentai) {
 	}
 	studentai.clear();
 
-	cout << "Failo '" << filename << "' studentu duomenis isrusiuoti i 'gerus' ir 'blogus' uztruko : " << timer1.elapsed() << "s.\n";
-
 	//create files
 
 	//construct two new filenames
@@ -474,11 +471,8 @@ void file_split(std::string filename, std::vector<Studentas>& studentai) {
 
 	fileGeri.append(filename); fileBlogi.append(filename);
 
-	Timer timer2;
 	split_file_generator(fileGeri, studGeri);
 	split_file_generator(fileBlogi, studBlogi);
-
-	cout << "Is failo '" << filename << "' sukurti du failus is isrusiuotu duomenu uztruko : " << timer2.elapsed() << "s.\n";
 }
 
 //TESTAVIMAS
@@ -501,9 +495,9 @@ void testing_v04_2(std::vector<Studentas>& studentai, std::string filename, int&
 
 	cout << "Faila '" << filename << "' perskaityti uztruko : " << timer1.elapsed() << "s.\n";
 
-	//split file into two new ones (timer in function), isrusiuota pagal galutinisVid funkcijoje
-	//sort file by galutinisVid decreasing
+	//split file into two new ones
 
+	//sort file by galutinisVid decreasing
 	sort(studentai.begin(), studentai.end(),
 		[](Studentas& a, Studentas& b)-> bool {
 			return a.galutinisVid > b.galutinisVid;
