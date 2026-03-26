@@ -1,7 +1,6 @@
 ﻿//function implementations file
 
 #include "functions.h"
-#include <list>
 
 //GLOBALIOS FUNKCIJOS
 //
@@ -532,4 +531,11 @@ void testing_v04_2(std::vector<Studentas>& studentai, std::string filename, int&
 
 	//final timer
 	cout << "Failo '" << filename << "' testavimas uztruko : " << timer_full.elapsed() << "s.\n\n";
+}
+
+template<>
+void student_sort_testing<std::list<Studentas>>(std::list<Studentas>& studentai){
+	studentai.sort([](const Studentas& a, const Studentas& b) {
+		return a.galutinisVid < b.galutinisVid;
+		});
 }

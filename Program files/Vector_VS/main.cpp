@@ -192,18 +192,23 @@ int main()
 		//Test 2
 		else if (choiceMenu == 8) {
 
-			std::vector<Studentas> studentaiVector;
-			std::list<Studentas> studentaiList;
-			std::deque<Studentas> studentaiDeque;
-
 			cout << "\n---STD::VECTOR---\n\n";
-			do_test_containers(studentaiVector);
+			do_test_containers<std::vector<Studentas>>();
+			cout << "Pabaiga std::vector testavimo\n";
+			system("pause");
+			system("cls");
 
 			cout << "\n---STD::LIST---\n\n";
-			do_test_containers(studentaiVector);
+			do_test_containers<std::list<Studentas>>();
+			cout << "Pabaiga std::list testavimo\n";
+			system("pause");
+			system("cls");
 
 			cout << "\n---STD::DEQUE---\n\n";
-			do_test_containers(studentaiVector);
+			do_test_containers<std::deque<Studentas>>();
+			cout << "Pabaiga std::deque testavimo\n";
+			system("pause");
+			system("cls");
 		}
 
 		//Perkeliam vieno studento duomenis

@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <stdlib.h>
 #include <filesystem>
+#include <list>
 #include "timer.h";
 
 namespace fs = std::filesystem;
@@ -20,17 +21,17 @@ using std::cin;
 
 struct Studentas {
 	std::string vardas, pav;
-    std::vector<int> paz;
-    int egzaminas = 0;
-    double galutinisVid = 0;
-    double galutinisMed = 0;
+	std::vector<int> paz;
+	int egzaminas = 0;
+	double galutinisVid = 0;
+	double galutinisMed = 0;
 
-    void varpav_input();
-    void paz_input(int& suma);
-    void egz_input();
-    void rand_paz(int& suma);
-    void rand_egz();
-    void rand_varpav();
+	void varpav_input();
+	void paz_input(int& suma);
+	void egz_input();
+	void rand_paz(int& suma);
+	void rand_egz();
+	void rand_varpav();
 };
 
 std::vector<Studentas> read_file(std::string& filename, int& suma);
@@ -148,10 +149,7 @@ void student_split(std::string filename, std::vector<Studentas>& studentai);
 
 template <typename StudentaiContainer>
 void student_split_testing(std::string filename, StudentaiContainer& studentai) {
-	//sort by galutinisVid
-	student_sort_testing(studentai);
-
-	//move students to new vectors
+	//move students to new containers
 	StudentaiContainer studGeri, studBlogi;
 
 	for (auto& s : studentai) {
@@ -183,11 +181,7 @@ void student_sort_testing(StudentaiContainer& studentai) {
 
 //Studentu rusiavimas su std::list didejimo tvarka pagal galutiniVid
 template<>
-void student_sort_testing<std::list<Studentas>>(std::list<Studentas>& studentai) {
-	studentai.sort([](const Studentas& a, const Studentas& b) {
-		return a.galutinisVid < b.galutinisVid;
-		});
-}
+static void student_sort_testing<std::list<Studentas>>(std::list<Studentas>& studentai);
 
 void calculate_galutinis();
 
@@ -201,34 +195,48 @@ void testing_v04_2(std::vector<Studentas>& studentai, const std::string filename
 
 //Initial test of containers: reading, sorting + splitting students, writing
 template<typename StudentaiContainer>
-void test1_containers(StudentaiContainer& studentai, int suma, int nStud) {
+void test1_containers(int nStud) {
 	std::string filename = "studentai" + std::to_string(nStud) + ".txt";
+	int suma = 0;
 
-	cout << "\n----TESTAVIMAS " << nStud << " STUDENTU IVESCIU----\n\n";
+	cout << "\n----TESTAVIMAS SU " << nStud << " STUDENTU IVESCIU----\n\n";
 
 	//reading
 	Timer t;
-	studentai = read_file_testing(filename, suma);
-	cout << "Duomenu nuskaitymas is failo " << filename << " uztruko: " << t.elapsed() << " s";
+	StudentaiContainer studentai = read_file_testing<StudentaiContainer>(filename, suma);
+	double read_t = t.elapsed();
+	cout << "Duomenu nuskaitymas is failo " << filename << " uztruko: " << read_t << " s\n\n";
 	system("pause");
 	//sort by galutinisVid
 	Timer t1;
 	student_sort_testing(studentai);
-	cout << "Studentu sort() " << filename << " uztruko: " << t1.elapsed() << " s";
+	double sort_t = t1.elapsed();
+	cout << "\nStudentu sort() " << filename << " uztruko: " << sort_t << " s\n\n";
 	system("pause");
 
 	//split students
 	Timer t2;
 	student_split_testing(filename, studentai);
-	cout << "Studentu paskirstymas i 'gerus' ir 'blogus' " << filename << " uztruko: " << t2.elapsed() << " s";
+	double split_t = t2.elapsed();
+	cout << "\nStudentu paskirstymas i 'gerus' ir 'blogus' " << filename << " uztruko: " << split_t << " s\n\n";
 	system("pause");
-	
+
+	//all results for nStud
+
+	cout << "\n\n---REZULTATAI SU " << nStud << " STUDENTU IVESCIU---\n\n";
+	cout << "Nuskaitymas:   " << read_t << " s\n";
+	cout << "Rusiavimas (sort):    " << sort_t << " s\n";
+	cout << "Skirstymas:    " << split_t << " s\n";
+	cout << "Viskas:       " << (read_t + sort_t + split_t) << " s\n";
+
 }
+
+//Test every num of students with one type of container
 template <typename StudentaiContainer>
-void do_test_containers(StudentaiContainer& studentai) {
-	test1_containers(studentai,1000);
-	test1_containers(studentai,10000);
-	test1_containers(studentai,100000);
-	test1_containers(studentai,1000000);
-	test1_containers(studentai,10000000);
+void do_test_containers() {
+	test1_containers<StudentaiContainer>(1000);
+	test1_containers<StudentaiContainer>(10000);
+	test1_containers<StudentaiContainer>(100000);
+	test1_containers<StudentaiContainer>(1000000);
+	test1_containers<StudentaiContainer>(10000000);
 }
