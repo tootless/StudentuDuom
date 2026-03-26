@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <stdlib.h>
 #include <filesystem>
+#include "timer.h";
 
 namespace fs = std::filesystem;
 
@@ -171,12 +172,20 @@ void string_input_validation(std::string& input, std::string optionalPrompt = ""
 
 void student_sort(std::vector<Studentas>& studentai);
 
-//Studentu vektoriaus rusiavimas didejimo tvarka pagal galutiniVid
+//Studentu rusiavimas didejimo tvarka pagal galutiniVid
 template<typename StudentaiContainer>
 void student_sort_testing(StudentaiContainer& studentai) {
 	sort(studentai.begin(), studentai.end(),
 		[](const Studentas& a, const Studentas& b) -> bool {
 			return a.galutinisVid < b.galutinisVid;
+		});
+}
+
+//Studentu rusiavimas su std::list didejimo tvarka pagal galutiniVid
+template<>
+void student_sort_testing<std::list<Studentas>>(std::list<Studentas>& studentai) {
+	studentai.sort([](const Studentas& a, const Studentas& b) {
+		return a.galutinisVid < b.galutinisVid;
 		});
 }
 
@@ -192,15 +201,14 @@ void testing_v04_2(std::vector<Studentas>& studentai, const std::string filename
 
 //Initial test of containers: reading, sorting + splitting students, writing
 template<typename StudentaiContainer>
-
-void test1_containers(StudentaiContainer& studentai, int& suma, int nStud) {
+void test1_containers(StudentaiContainer& studentai, int suma, int nStud) {
 	std::string filename = "studentai" + std::to_string(nStud) + ".txt";
 
 	cout << "\n----TESTAVIMAS " << nStud << " STUDENTU IVESCIU----\n\n";
 
 	//reading
 	Timer t;
-	StudentaiContainer studentai = read_file_testing(filename, suma);
+	studentai = read_file_testing(filename, suma);
 	cout << "Duomenu nuskaitymas is failo " << filename << " uztruko: " << t.elapsed() << " s";
 	system("pause");
 	//sort by galutinisVid

@@ -1,13 +1,12 @@
 ﻿//function implementations file
 
 #include "functions.h"
-#include "timer.h"
 #include <list>
 
 //GLOBALIOS FUNKCIJOS
 //
 void menu(int& choiceMenu) {
-	int choices = 7;
+	int choices = 8;
 
 	do {
 		cout << "\nMENIU\n";
@@ -490,10 +489,10 @@ void testing_v04_1(int nStud) {
 void testing_v04_2(std::vector<Studentas>& studentai, std::string filename, int& suma) {
 	//read file
 	Timer timer_full;
-	Timer timer1;
+	Timer timer;
 	studentai = read_file(filename, suma);
 
-	cout << "Faila '" << filename << "' perskaityti uztruko : " << timer1.elapsed() << "s.\n";
+	cout << "Faila '" << filename << "' perskaityti uztruko : " << timer.elapsed() << "s.\n";
 
 	//split file into two new ones
 

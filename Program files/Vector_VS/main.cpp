@@ -190,6 +190,21 @@ int main()
 		}
 
 		//Test 2
+		else if (choiceMenu == 8) {
+
+			std::vector<Studentas> studentaiVector;
+			std::list<Studentas> studentaiList;
+			std::deque<Studentas> studentaiDeque;
+
+			cout << "\n---STD::VECTOR---\n\n";
+			do_test_containers(studentaiVector);
+
+			cout << "\n---STD::LIST---\n\n";
+			do_test_containers(studentaiVector);
+
+			cout << "\n---STD::DEQUE---\n\n";
+			do_test_containers(studentaiVector);
+		}
 
 		//Perkeliam vieno studento duomenis
 		Studentai.push_back(A);
