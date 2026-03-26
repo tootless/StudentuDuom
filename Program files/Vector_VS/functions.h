@@ -29,12 +29,97 @@ struct Studentas {
     void varpav_input();
     void paz_input(int& suma);
     void egz_input();
-    void rand_paz(int& pazSk, int& suma);
+    void rand_paz(int& suma);
     void rand_egz();
     void rand_varpav();
 };
 
 std::vector<Studentas> read_file(std::string& filename, int& suma);
+template<typename StudentaiContainer>
+StudentaiContainer read_file(std::string& filename, int& suma) {
+
+	StudentaiContainer tempStudentai;
+
+	fs::path filePath = filename;
+
+	try {
+		//CHECK IMPORTANT EXCEPTIONS
+
+		if (filePath.extension() != ".txt") {
+			throw std::runtime_error("\n---KLAIDA: Failas " + filename + " turi baigtis '.txt'---\n");
+		}
+
+		if (!fs::exists(filename)) {
+			throw std::runtime_error("\n---KLAIDA: Failas " + filename + " neegzistuoja---\n");
+		}
+
+		//Open file
+		std::fstream fin(filename, std::ios::in);
+
+		if (!fin.is_open()) {
+			throw std::runtime_error("\n---KLAIDA: Failo " + filename + " nepavyko atidaryti---\n");
+		}
+
+		if (fs::file_size(filename) == 0) {
+			throw std::runtime_error("\n---KLAIDA: Failas " + filename + " yra tuscias---\n");
+		}
+
+		//Read file
+		std::string curr_eil; //current eilute
+
+		fin.ignore(INT32_MAX, '\n');
+
+		while (std::getline(fin, curr_eil)) {
+			Studentas A; //temp Studentas
+			int tempPaz;
+
+			std::istringstream iss(curr_eil);
+			iss >> A.vardas >> A.pav;
+
+			//read visus pazymius
+			while (iss >> tempPaz) {
+				A.paz.push_back(tempPaz);
+				suma += tempPaz;
+			}
+			//paskutinis pazymys paz vector yra egzamino balas
+			A.egzaminas = A.paz.back();
+			A.paz.pop_back();
+
+			//apskaiciuoti galutinius rezultatus, kadangi isvedami abu
+			double vidurkis = (double)suma / (double)A.paz.size();
+			A.galutinisVid = 0.4 * vidurkis + 0.6 * A.egzaminas;
+
+			int a = A.paz.size();
+			double mediana;
+			sort(A.paz.begin(), A.paz.end());
+			if (a % 2 == 0) {
+				int midLeftElem = a / 2 - 1;
+				mediana = (A.paz[midLeftElem] + A.paz[a / 2]) / 2;
+			}
+			else
+				mediana = A.paz[a / 2];
+
+			A.galutinisMed = 0.4 * mediana + 0.6 * A.egzaminas;
+
+
+
+			tempStudentai.push_back(A);
+
+			suma = 0;
+		}
+
+		fin.close();
+	}
+	catch (const std::exception& e) {
+		std::cerr << e.what() << "\n";
+
+		return tempStudentai; //Empty
+	}
+
+	return tempStudentai;
+}
+
+
 void student_file_generator(int nStud, int nPaz);
 void split_file_generator(std::string& filename, std::vector<Studentas>& studentai);
 void file_split(std::string filename, std::vector<Studentas>& studentai);
@@ -47,4 +132,3 @@ void calculate_galutinis();
 
 void testing_v04_1(int nStud);
 void testing_v04_2(std::vector<Studentas>& studentai, const std::string filename, int& suma);
-void file_split_testing(std::string filename, std::vector<Studentas>& studentai);

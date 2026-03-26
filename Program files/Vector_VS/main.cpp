@@ -7,7 +7,6 @@ int main()
 {
 	Studentas A; //Temp studentas su realiais duomenimis
 	std::vector<Studentas> Studentai; //Galutiniai studentu duomenys
-	int n = 0; //Pazymiu kiekis;
 	int m = 0; //Studentu skaicius
 	int suma = 0; //Pazymiu suma (Vidurkiui apskaiciuoti)
 	double vidurkis = 0, mediana = 0;
@@ -46,12 +45,7 @@ int main()
 
 			cout << "\n---RANDOMIZUOTI NAMU DARBU PAZYMIAI---\n\n";
 
-			do {
-				number_input_validation(n, 1, -1, "Iveskite norima namu darbu pazymiu skaiciu:\n");
-
-			} while (n < 1);
-
-			A.rand_paz(n, suma);
+			A.rand_paz(, suma);
 		}
 
 		//RND VISKAS
@@ -241,7 +235,6 @@ int main()
 		if (choiceMenu == 5 || choiceMenu == 6) Studentai.clear();
 		vidurkis = 0;
 		suma = 0;
-		n = 0;
 	} while (choiceEndStud != 1);
 
 	///GALUTINIS REZULTATAS

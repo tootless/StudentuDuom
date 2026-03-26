@@ -170,12 +170,19 @@ void Studentas::paz_input(int& suma)
 //Egzamino balo ivestis
 void Studentas::egz_input()
 {
+
 	number_input_validation(egzaminas, 1, 10, "Iveskite studento egzamino bala:\n");
 }
 
 //Randomizuoti nd pazymiai
-void Studentas::rand_paz(int& pazSk, int& suma) //pazSk -> vartotojo ivestas pazymiu kiekis
+void Studentas::rand_paz(int& suma)
 {
+	int pazSk;
+	do {
+		number_input_validation(pazSk, 1, -1, "Iveskite norima namu darbu pazymiu skaiciu:\n");
+
+	} while (pazSk < 1);
+
 	for (int i = 0; i < pazSk; i++) {
 		int tempPazRnd = rand() % 10 + 1;
 		paz.push_back(tempPazRnd);
@@ -512,16 +519,6 @@ void testing_v04_2(std::vector<Studentas>& studentai, std::string filename, int&
 	cout << "Faila '" << filename << "' perskaityti uztruko : " << timer1.elapsed() << "s.\n";
 
 	//split file into two new ones (timer in function), isrusiuota pagal galutinisVid funkcijoje
-	file_split_testing(filename, studentai);
-
-	//final timer
-	cout << "Failo '" << filename << "' testavimas uztruko : " << timer_full.elapsed() << "s.\n\n";
-}
-
-//Isrusiuoti studentus i "gerus" ir "blogus" ir isvesti du failus be rusiavimo pasirinkimo
-void file_split_testing(std::string filename, std::vector<Studentas>& studentai) {
-	//filename input prompt + filename validation;
-
 	//sort file by galutinisVid decreasing
 
 	sort(studentai.begin(), studentai.end(),
@@ -556,4 +553,7 @@ void file_split_testing(std::string filename, std::vector<Studentas>& studentai)
 	split_file_generator(fileBlogi, studBlogi);
 
 	cout << "Is failo '" << filename << "' sukurti du failus is isrusiuotu duomenu uztruko : " << timer2.elapsed() << "s.\n";
+
+	//final timer
+	cout << "Failo '" << filename << "' testavimas uztruko : " << timer_full.elapsed() << "s.\n\n";
 }
