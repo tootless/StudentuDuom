@@ -2,6 +2,7 @@
 
 #include "functions.h"
 #include "timer.h"
+#include <list>
 
 //GLOBALIOS FUNKCIJOS
 //

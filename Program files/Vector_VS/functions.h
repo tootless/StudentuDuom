@@ -139,6 +139,15 @@ void write_studentai(const std::string filename, StudentaiContainer& studentai) 
 	fout.close();
 }
 
+//Studentu vektoriaus rusiavimas didejimo tvarka pagal galutiniVid
+template<typename StudentaiContainer>
+void student_sort_testing(StudentaiContainer& studentai) {
+	sort(studentai.begin(), studentai.end(),
+		[](const Studentas& a, const Studentas& b) -> bool {
+				return a.galutinisVid > b.galutinisVid;
+		});
+}
+
 void student_file_generator(int nStud, int nPaz);
 void split_file_generator(std::string& filename, std::vector<Studentas>& studentai);
 void file_split(std::string filename, std::vector<Studentas>& studentai);
