@@ -45,7 +45,7 @@ int main()
 
 			cout << "\n---RANDOMIZUOTI NAMU DARBU PAZYMIAI---\n\n";
 
-			A.rand_paz(, suma);
+			A.rand_paz(suma);
 		}
 
 		//RND VISKAS
@@ -59,12 +59,7 @@ int main()
 
 			cout << "\n---RANDOMIZUOTI NAMU DARBU PAZYMIAI---\n\n";
 
-			do {
-				number_input_validation(n, 1, -1, "Iveskite norima namu darbu pazymiu skaiciu:");
-
-			} while (n < 1);
-
-			A.rand_paz(n, suma);
+			A.rand_paz(suma);
 		}
 
 		//BAIGTI DARBA (Isvesti galutini rez jei yra)
@@ -133,7 +128,7 @@ int main()
 				cout << "\nIveskite failo pavadinima, i kuri norite irasyti duomenis (arba sukurti nauja, jeigu failo su tokiu pav. nera):\n";
 				cin >> answer2;
 
-				Studentas::write_studentai(answer2, Studentai);
+				write_studentai(answer2, Studentai);
 			}
 			else if (choiceOutput == 2) {
 

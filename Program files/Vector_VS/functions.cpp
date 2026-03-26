@@ -266,27 +266,9 @@ void Studentas::rand_varpav()
 }
 
 //DARBAS SU FAILAIS
-// 
-//Rasyti isrusiuotus studentu duomenis i nauja/egzistuojanti faila arba i ekrana
-void Studentas::write_studentai(const std::string filename, const std::vector<Studentas>& Studentai) {
-	//sorting
-	//int choiceOutput;
+//
 
-
-
-	//write to file
-	std::ofstream fout(filename);
-
-	fout << "\n" << std::setw(15) << std::left << "Pavarde" << std::setw(15) << std::left << "Vardas" << std::setw(15) << std::left << "Galutinis (Vid.)   Galutinis (Med.)" << "\n";
-	fout << "----------------------------------------------------\n";
-	for (const auto& s : Studentai) {
-		fout << std::setw(15) << std::left << s.pav << std::setw(15) << std::left << s.vardas << std::setw(15) << std::left << std::fixed << std::setprecision(2) << s.galutinisVid << "   " << std::fixed << std::setprecision(2) << s.galutinisMed << "\n";
-	}
-
-	fout.close();
-}
-
-//Perskaityti egzistuojanti studentu duomenu faila
+//Perskaityti egzistuojanti studentu duomenu faila (su std::vector)
 std::vector<Studentas> read_file(std::string& filename, int& suma) {
 
 	std::vector<Studentas> tempStudentai;

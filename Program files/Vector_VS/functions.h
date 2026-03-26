@@ -24,8 +24,6 @@ struct Studentas {
     double galutinisVid = 0;
     double galutinisMed = 0;
 
-    static void write_studentai(const std::string filename, const std::vector<Studentas>& Studentai);
-
     void varpav_input();
     void paz_input(int& suma);
     void egz_input();
@@ -35,6 +33,8 @@ struct Studentas {
 };
 
 std::vector<Studentas> read_file(std::string& filename, int& suma);
+
+//Perskaityti egzistuojanti studentu duomenu faila
 template<typename StudentaiContainer>
 StudentaiContainer read_file(std::string& filename, int& suma) {
 
@@ -119,6 +119,25 @@ StudentaiContainer read_file(std::string& filename, int& suma) {
 	return tempStudentai;
 }
 
+//Irasyti studentu duomenis i faila / sukurti nauja faila su duomenimis
+template<typename StudentaiContainer>
+void write_studentai(const std::string filename, StudentaiContainer& studentai) {
+	//sorting
+	//int choiceOutput;
+
+
+
+	//write to file
+	std::ofstream fout(filename);
+
+	fout << "\n" << std::setw(15) << std::left << "Pavarde" << std::setw(15) << std::left << "Vardas" << std::setw(15) << std::left << "Galutinis (Vid.)   Galutinis (Med.)" << "\n";
+	fout << "----------------------------------------------------\n";
+	for (const auto& s : studentai) {
+		fout << std::setw(15) << std::left << s.pav << std::setw(15) << std::left << s.vardas << std::setw(15) << std::left << std::fixed << std::setprecision(2) << s.galutinisVid << "   " << std::fixed << std::setprecision(2) << s.galutinisMed << "\n";
+	}
+
+	fout.close();
+}
 
 void student_file_generator(int nStud, int nPaz);
 void split_file_generator(std::string& filename, std::vector<Studentas>& studentai);
