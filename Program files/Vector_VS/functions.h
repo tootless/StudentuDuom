@@ -36,7 +36,7 @@ std::vector<Studentas> read_file(std::string& filename, int& suma);
 
 //Perskaityti egzistuojanti studentu duomenu faila
 template<typename StudentaiContainer>
-StudentaiContainer read_file(std::string& filename, int& suma) {
+StudentaiContainer read_file_testing(std::string& filename, int& suma) {
 
 	StudentaiContainer tempStudentai;
 
@@ -188,8 +188,39 @@ void testing_v04_1(int nStud);
 //void test2_files
 void testing_v04_2(std::vector<Studentas>& studentai, const std::string filename, int& suma);
 
-//Initial test of containers: reading, writing, sorting
+//void do_test_files
+
+//Initial test of containers: reading, sorting + splitting students, writing
 template<typename StudentaiContainer>
-void test1_containers(StudentaiContainer& studentai) {
+
+void test1_containers(StudentaiContainer& studentai, int& suma, int nStud) {
+	std::string filename = "studentai" + std::to_string(nStud) + ".txt";
+
+	cout << "\n----TESTAVIMAS " << nStud << " STUDENTU IVESCIU----\n\n";
+
+	//reading
+	Timer t;
+	StudentaiContainer studentai = read_file_testing(filename, suma);
+	cout << "Duomenu nuskaitymas is failo " << filename << " uztruko: " << t.elapsed() << " s";
+	system("pause");
+	//sort by galutinisVid
+	Timer t1;
+	student_sort_testing(studentai);
+	cout << "Studentu sort() " << filename << " uztruko: " << t1.elapsed() << " s";
+	system("pause");
+
+	//split students
+	Timer t2;
+	student_split_testing(filename, studentai);
+	cout << "Studentu paskirstymas i 'gerus' ir 'blogus' " << filename << " uztruko: " << t2.elapsed() << " s";
+	system("pause");
 	
+}
+template <typename StudentaiContainer>
+void do_test_containers(StudentaiContainer& studentai) {
+	test1_containers(studentai,1000);
+	test1_containers(studentai,10000);
+	test1_containers(studentai,100000);
+	test1_containers(studentai,1000000);
+	test1_containers(studentai,10000000);
 }

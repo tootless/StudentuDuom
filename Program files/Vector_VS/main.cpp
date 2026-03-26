@@ -80,15 +80,11 @@ int main()
 				cout << "\nIveskite failo pavadinima, is kurio norite nuskaityti:\n";
 				getline(cin, filename_input);
 
-				///Start timer
-				//Timer timer;
-
 				Studentai = read_file(filename_input, suma);
 				if (Studentai.empty()) {
 					read_success = 0;
 				}
 				else {
-					//cout << "\n\n FAILA PERSKAITYTI UZTRUKO: " << timer.elapsed() << " s\n\n";
 					read_success = 1;
 				}
 			} while (read_success == 0);
@@ -192,6 +188,8 @@ int main()
 
 			choiceEndStud = 1;
 		}
+
+		//Test 2
 
 		//Perkeliam vieno studento duomenis
 		Studentai.push_back(A);
