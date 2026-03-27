@@ -192,7 +192,7 @@ int main()
 		//Test 2
 		else if (choiceMenu == 8) {
 
-			cout << "\n---STD::VECTOR---\n\n";
+			/*cout << "\n---STD::VECTOR---\n\n";
 			run_test_containers<std::vector<Studentas>>();
 			cout << "Pabaiga std::vector testavimo\n";
 			system("pause");
@@ -206,6 +206,24 @@ int main()
 
 			cout << "\n---STD::DEQUE---\n\n";
 			run_test_containers<std::deque<Studentas>>();
+			cout << "Pabaiga std::deque testavimo\n";
+			system("pause");
+			system("cls");*/
+
+			cout << "\n---STD::VECTOR---\n\n";
+			run_test_splitting<std::vector<Studentas>>();
+			cout << "Pabaiga std::vector testavimo\n";
+			system("pause");
+			system("cls");
+
+			cout << "\n---STD::LIST---\n\n";
+			run_test_splitting<std::list<Studentas>>();
+			cout << "Pabaiga std::list testavimo\n";
+			system("pause");
+			system("cls");
+
+			cout << "\n---STD::DEQUE---\n\n";
+			run_test_splitting<std::deque<Studentas>>();
 			cout << "Pabaiga std::deque testavimo\n";
 			system("pause");
 			system("cls");

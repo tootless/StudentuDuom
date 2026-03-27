@@ -148,7 +148,7 @@ void split_file_generator(std::string& filename, std::vector<Studentas>& student
 void student_split(std::string filename, std::vector<Studentas>& studentai);
 
 template <typename StudentaiContainer>
-void student_split_old(std::string filename, StudentaiContainer& studentai) {
+void student_split_strategyold(StudentaiContainer& studentai) {
 	std::vector<Studentas> studGeri, studBlogi;
 	for (auto& s : studentai) {
 		if (s.galutinisVid < 5.0)
@@ -160,7 +160,8 @@ void student_split_old(std::string filename, StudentaiContainer& studentai) {
 }
 
 template <typename StudentaiContainer>
-void student_split_strategy1(StudentaiContainer& studentai, StudentaiContainer& studGeri, StudentaiContainer& studBlogi) {
+void student_split_strategy1(StudentaiContainer& studentai) {
+	StudentaiContainer studBlogi, studGeri;
 	for (const auto& s : studentai) {
 		if (s.galutinisVid < 5.0)
 			studGeri.push_back(s);
@@ -170,7 +171,7 @@ void student_split_strategy1(StudentaiContainer& studentai, StudentaiContainer& 
 }
 
 template <typename StudentaiContainer>
-void student_split_strategy2(std::string filename, StudentaiContainer& studentai) {
+void student_split_strategy2(StudentaiContainer& studentai) {
 	StudentaiContainer studBlogi;
 
 	auto it = studentai.begin();
@@ -195,7 +196,7 @@ void student_split_strategy3(StudentaiContainer& studentai) {
 	);
 	//move
 	StudentaiContainer studBlogi;
-	for (auto it = partition_point; it != students.end(); ++it) {
+	for (auto it = partition_point; it != studentai.end(); ++it) {
 		studBlogi.push_back(std::move(*it));
 	}
 }
@@ -254,7 +255,7 @@ void test1_containers(int nStud) {
 
 	//split students
 	Timer t2;
-	student_split_old(filename, studentai);
+	student_split_strategyold(filename, studentai);
 	double split_t = t2.elapsed();
 	cout << "\nStudentu paskirstymas i 'gerus' ir 'blogus' " << filename << " uztruko: " << split_t << " s\n\n";
 	system("pause");
@@ -277,4 +278,60 @@ void run_test_containers() {
 	test1_containers<StudentaiContainer>(100000);
 	test1_containers<StudentaiContainer>(1000000);
 	test1_containers<StudentaiContainer>(10000000);
+}
+
+//Test every num of students with one type of container
+template <typename StudentaiContainer>
+void test1_splitting(int nStud) {
+	std::string filename = "studentai " + std::to_string(nStud) + ".txt";
+
+	int suma = 0;
+	//read
+	StudentaiContainer studentai = read_file_testing<StudentaiContainer>(filename, suma);
+	//sort
+	student_sort_testing(studentai);
+
+	cout << "\n----STRATEGIJA 0 (PIRMINE)----\n\n";
+
+	//split students and time
+	Timer t;
+	student_split_strategyold(studentai);
+	double split_t = t.elapsed();
+	cout << "\nStudentu paskirstymas i 'gerus' ir 'blogus' " << filename << " uztruko: " << split_t << " s\n\n";
+	system("pause");
+
+	cout << "\n----STRATEGIJA 1----\n\n";
+
+	//split students and time
+	Timer t1;
+	student_split_strategy1(studentai);
+	double split_t1 = t1.elapsed();
+	cout << "\nStudentu paskirstymas i 'gerus' ir 'blogus' " << filename << " uztruko: " << split_t1 << " s\n\n";
+	system("pause");
+
+	cout << "\n----STRATEGIJA 2----\n\n";
+
+	//split students and time
+	Timer t2;
+	student_split_strategy2(studentai);
+	double split_t2 = t2.elapsed();
+	cout << "\nStudentu paskirstymas i 'gerus' ir 'blogus' " << filename << " uztruko: " << split_t2 << " s\n\n";
+	system("pause");
+
+	cout << "\n----STRATEGIJA 3----\n\n";
+
+	//split students and time
+	Timer t3;
+	student_split_strategy3(studentai);
+	double split_t3 = t3.elapsed();
+	cout << "\nStudentu paskirstymas i 'gerus' ir 'blogus' " << filename << " uztruko: " << split_t3 << " s\n\n";
+	system("pause");
+}
+template <typename StudentaiContainer>
+void run_test_splitting() {
+	test1_splitting<StudentaiContainer>(1000);
+	test1_splitting<StudentaiContainer>(10000);
+	test1_splitting<StudentaiContainer>(100000);
+	test1_splitting<StudentaiContainer>(1000000);
+	test1_splitting<StudentaiContainer>(10000000);
 }
