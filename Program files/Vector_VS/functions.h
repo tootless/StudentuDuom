@@ -160,12 +160,17 @@ void student_split_old(std::string filename, StudentaiContainer& studentai) {
 }
 
 template <typename StudentaiContainer>
-void student_split_first(std::string filename, StudentaiContainer& studentai) {
-	return 0;
+void student_split_strategy1(StudentaiContainer& studentai, StudentaiContainer& studGeri, StudentaiContainer& studBlogi) {
+	for (const auto& s : studentai) {
+		if (s.galutinisVid < 5.0)
+			studGeri.push_back(s);
+		else
+			studBlogi.push_back(s);
+	}
 }
 
 template <typename StudentaiContainer>
-void student_split_second(std::string filename, StudentaiContainer& studentai) {
+void student_split_strategy2(std::string filename, StudentaiContainer& studentai) {
 	StudentaiContainer studBlogi;
 
 	auto it = studentai.begin();
@@ -182,8 +187,17 @@ void student_split_second(std::string filename, StudentaiContainer& studentai) {
 }
 
 template <typename StudentaiContainer>
-void student_split_third(std::string filename, StudentaiContainer& studentai) {
-	return 0;
+void student_split_strategy3(StudentaiContainer& studentai) {
+	//reorder
+	auto partition_point = std::stable_partition(
+		studentai.begin(), studentai.end(),
+		[](const Studentas& s) { return s.galutinisVid >= 5.0; }
+	);
+	//move
+	StudentaiContainer studBlogi;
+	for (auto it = partition_point; it != students.end(); ++it) {
+		studBlogi.push_back(std::move(*it));
+	}
 }
 
 void menu(int& choiceMenu);
