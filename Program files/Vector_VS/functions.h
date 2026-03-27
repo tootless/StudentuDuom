@@ -148,7 +148,24 @@ void split_file_generator(std::string& filename, std::vector<Studentas>& student
 void student_split(std::string filename, std::vector<Studentas>& studentai);
 
 template <typename StudentaiContainer>
-void student_split_testing(std::string filename, StudentaiContainer& studentai) {
+void student_split_old(std::string filename, StudentaiContainer& studentai) {
+	std::vector<Studentas> studGeri, studBlogi;
+	for (auto& s : studentai) {
+		if (s.galutinisVid < 5.0)
+			studBlogi.push_back(std::move(s));
+		else
+			studGeri.push_back(std::move(s));
+	}
+	studentai.clear();
+}
+
+template <typename StudentaiContainer>
+void student_split_first(std::string filename, StudentaiContainer& studentai) {
+	return 0;
+}
+
+template <typename StudentaiContainer>
+void student_split_second(std::string filename, StudentaiContainer& studentai) {
 	StudentaiContainer studBlogi;
 
 	auto it = studentai.begin();
@@ -162,7 +179,11 @@ void student_split_testing(std::string filename, StudentaiContainer& studentai) 
 			++it;
 		}
 	}
+}
 
+template <typename StudentaiContainer>
+void student_split_third(std::string filename, StudentaiContainer& studentai) {
+	return 0;
 }
 
 void menu(int& choiceMenu);
@@ -219,7 +240,7 @@ void test1_containers(int nStud) {
 
 	//split students
 	Timer t2;
-	student_split_testing(filename, studentai);
+	student_split_old(filename, studentai);
 	double split_t = t2.elapsed();
 	cout << "\nStudentu paskirstymas i 'gerus' ir 'blogus' " << filename << " uztruko: " << split_t << " s\n\n";
 	system("pause");
