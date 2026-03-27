@@ -150,16 +150,19 @@ void student_split(std::string filename, std::vector<Studentas>& studentai);
 template <typename StudentaiContainer>
 void student_split_testing(std::string filename, StudentaiContainer& studentai) {
 	//move students to new containers
-	StudentaiContainer studGeri, studBlogi;
+	StudentaiContainer studBlogi;
 
-	for (auto& s : studentai) {
-		if (s.galutinisVid < 5.0) {
-			studBlogi.push_back(std::move(s));
+	for (auto it = studentai.begin(); it != studentai.end()) {
+		if (it->galutinisVid < 5.0) {
+			studBlogi.push_back(std::move(*it));
+			//reset iterator
+			it = studentai.erase(it);
 		}
-		else
-			studGeri.push_back(std::move(s));
+		else {
+			++it;
+		}
 	}
-	studentai.clear();
+
 }
 
 void menu(int& choiceMenu);
@@ -191,7 +194,7 @@ void testing_v04_1(int nStud);
 //void test2_files
 void testing_v04_2(std::vector<Studentas>& studentai, const std::string filename, int& suma);
 
-//void do_test_files
+//void run_test_files
 
 //Initial test of containers: reading, sorting + splitting students, writing
 template<typename StudentaiContainer>
@@ -233,7 +236,7 @@ void test1_containers(int nStud) {
 
 //Test every num of students with one type of container
 template <typename StudentaiContainer>
-void do_test_containers() {
+void run_test_containers() {
 	test1_containers<StudentaiContainer>(1000);
 	test1_containers<StudentaiContainer>(10000);
 	test1_containers<StudentaiContainer>(100000);
