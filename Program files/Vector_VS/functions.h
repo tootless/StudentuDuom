@@ -189,7 +189,7 @@ void student_split_strategy2(StudentaiContainer& studentai) {
 
 template <typename StudentaiContainer>
 void student_split_strategy3(StudentaiContainer& studentai) {
-	//reorder
+	//reorder - good first, bad after
 	auto partition_point = std::stable_partition(
 		studentai.begin(), studentai.end(),
 		[](const Studentas& s) { return s.galutinisVid >= 5.0; }
@@ -302,6 +302,12 @@ void test1_splitting(int nStud) {
 
 	cout << "\n----STRATEGIJA 1----\n\n";
 
+	suma = 0;
+	//read
+	studentai = read_file_testing<StudentaiContainer>(filename, suma);
+	//sort
+	student_sort_testing(studentai);
+
 	//split students and time
 	Timer t1;
 	student_split_strategy1(studentai);
@@ -311,6 +317,10 @@ void test1_splitting(int nStud) {
 
 	cout << "\n----STRATEGIJA 2----\n\n";
 
+	suma = 0;
+	//read
+	studentai = read_file_testing<StudentaiContainer>(filename, suma);
+
 	//split students and time
 	Timer t2;
 	student_split_strategy2(studentai);
@@ -319,6 +329,10 @@ void test1_splitting(int nStud) {
 	system("pause");
 
 	cout << "\n----STRATEGIJA 3----\n\n";
+
+	suma = 0;
+	//read
+	studentai = read_file_testing<StudentaiContainer>(filename, suma);
 
 	//split students and time
 	Timer t3;

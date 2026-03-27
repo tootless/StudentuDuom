@@ -135,7 +135,7 @@ Rezultatai pateikiami sekundemis, suapvalinti (stengiamasi nevirsyti 3 skaitmenu
 
 ## Tyrimas 1 - Rezultatai
 
-#### STD::VECTOR
+### STD::VECTOR
 
 | Ivesciu sk. | Matavimo rodmuo | Test 1 (s) | Test 2 (s) | Test 3 (s) | Vidurkis (s) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -160,7 +160,7 @@ Rezultatai pateikiami sekundemis, suapvalinti (stengiamasi nevirsyti 3 skaitmenu
 | | Skirstymas | 2.28 | 2.45 | 2.38 | 2.37 |
 | | **Viskas** | **49.89** | **49.92** | **50.26** | **50.01** |
 
-#### STD::LIST
+### STD::LIST
 
 | Ivesciu sk. | Matavimo rodmuo | Test 1 (s) | Test 2 (s) | Test 3 (s) | Vidurkis (s) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -185,7 +185,7 @@ Rezultatai pateikiami sekundemis, suapvalinti (stengiamasi nevirsyti 3 skaitmenu
 | | Skirstymas | 5.014 | 4.936 | 4.968 | 4.973 |
 | | **Viskas** | **60.942** | **59.045** | **59.790** | **59.926** |
 
-#### STD::DEQUE
+### STD::DEQUE
 
 | Ivesciu sk. | Matavimo rodmuo | Test 1 (s) | Test 2 (s) | Test 3 (s) | Vidurkis (s) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -210,4 +210,34 @@ Rezultatai pateikiami sekundemis, suapvalinti (stengiamasi nevirsyti 3 skaitmenu
 | | Skirstymas | 3.309 | 3.179 | 3.211 | 3.233 |
 | | **Viskas** | **50.983** | **50.902** | **53.027** | **51.637** |
 
+## Tyrimo 1 rezultatu interpretacija
+
+
+
+
+# Testavimas - v1.0 optimizacija
+
+Tyrimai buvo atlikti su Visual Studio 2022 /O2 optimizacijos nustatymais.  
+Tyrimo 2 failai buvo sukurti viena karta pries bandymu pradzia.  
+Testavimo metu testavimo sistemoje nebuvo ijungtos jokios kitos programos.  
+
+## Tyrimas 2 - Aprasas
+
+Atliktas tyrimas su trejais skirtingais STL konteineriais (Vektoriai, Sarasai (list) ir Deque).  
+Atlikti 3 bandymai kiekvienam konteineriui ir apskaiciuotas spartos vidurkis.  
+Kadangi spartos duomenys (skaiciai) buvo gan mazi, nebuvo apvalinta.  
+
+Siame tyrime buvo ismatuota minetu konteineriu sparta, programai skirstant duomenis pagal 4 strategijas:
+1. Pirmajame tyrime naudota strategija - studentu konteinerio duomenu isvedimas i du naujus konteinerius naudojant std::move(), tuomet istrinimas tusciu duomenu is originalaus konteinerio;  
+2. Studentu konteinerio duomenu isvedimas i du naujus konteinerius naudojant push_back();  
+3. Studentu konteinerio duomenu isvedimas i viena nauja ('blogu' studentu) konteineri naudojant std::move() ir tuo pat metu istrinimas is originalaus konteinerio, naudojant iteratorius;
+4. 3 strategija, optimizuota naudojant std::stable_partition() ir std::move().
+
+
+## Tyrimas 2 - Rezultatai
+
+
+
+
+## Tyrimo 2 rezultatu interpretacija
 
