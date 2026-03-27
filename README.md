@@ -209,3 +209,5 @@ Rezultatai pateikiami sekundemis, suapvalinti (stengiamasi nevirsyti 3 skaitmenu
 | | Rusiavimas (sort) | 1.755 | 1.818 | 1.813 | 1.795 |
 | | Skirstymas | 3.309 | 3.179 | 3.211 | 3.233 |
 | | **Viskas** | **50.983** | **50.902** | **53.027** | **51.637** |
+
+
