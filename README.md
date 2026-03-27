@@ -116,18 +116,22 @@ Rezultatai pateikiami sekundemis, suapvalinti (stengiamasi nevirsyti 3 skaitmenu
 
 ### CPU
 
-**Speed**:
-**Thread count**:
+**Specification**: 12th Gen Intel Core i7-12650H  
+**Core count**: 10  
+**Thread count**: 16  
+**Hyperthreading**:	Not supported  
 
 ### RAM
 
-**Read/Write speed**:
-**Stick count**:
-**Multithread... somethin functionality**:
+**Specification**: DDR5-4800 (2400 MHz)  
+**Memory slots used**: 2 out of 2  
+**Total memory**: 16 GB  
 
 ### SSD
 
-**Read/Write speed**:
+**Specification**: NVMe SAMSUNG MZVLQ1T0HBLB-00B00  
+**Read/Write speed**: 2300/1350 (MB/s)  
+**Total capacity**: 953 GB  
 
 ## Tyrimas 1 - Rezultatai
 
@@ -181,8 +185,6 @@ Rezultatai pateikiami sekundemis, suapvalinti (stengiamasi nevirsyti 3 skaitmenu
 | | Skirstymas | 5.014 | 4.936 | 4.968 | 4.973 |
 | | **Viskas** | **60.942** | **59.045** | **59.790** | **59.926** |
 
-===
-
 #### STD::DEQUE
 
 | Ivesciu sk. | Matavimo rodmuo | Test 1 (s) | Test 2 (s) | Test 3 (s) | Vidurkis (s) |
@@ -207,5 +209,3 @@ Rezultatai pateikiami sekundemis, suapvalinti (stengiamasi nevirsyti 3 skaitmenu
 | | Rusiavimas (sort) | 1.755 | 1.818 | 1.813 | 1.795 |
 | | Skirstymas | 3.309 | 3.179 | 3.211 | 3.233 |
 | | **Viskas** | **50.983** | **50.902** | **53.027** | **51.637** |
-
-===
