@@ -1,6 +1,37 @@
 
 # StudentuDuom - studentu duomenu apdorojimo aplikacija
 
+# Aprasas
+
+# Instaliavimas / paleidimas 
+
+## Programos Kompiliavimas
+
+### Reikalavimai
+- CMake (versija 3.10 arba naujesne)
+- C++17 palaikantis kompiliatorius (g++, clang++ arba MSVC)
+
+### Kompiliavimo zingsniai
+
+# Sukuriame build folder
+mkdir build
+
+cd build
+
+# Konfiguruoti
+cmake ..
+
+# Kompiliuoti
+cmake --build .
+
+# Paleisti (Linux/macOS)
+./bin/student_program
+
+# Paleisti (Windows OS)
+# .\bin\Debug\student_program.ex
+
+
+
 # Testavimas - v0.2
 
 Tyrimas buvo atliktas su Visual Studio 2022 /O2 optimizacijos nustatymais.  
@@ -240,4 +271,7 @@ Siame tyrime buvo ismatuota minetu konteineriu sparta, programai skirstant duome
 
 
 ## Tyrimo 2 rezultatu interpretacija
+
+
+
 
