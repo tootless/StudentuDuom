@@ -283,7 +283,7 @@ void run_test_containers() {
 //Test every num of students with one type of container
 template <typename StudentaiContainer>
 void test1_splitting(int nStud) {
-	std::string filename = "studentai " + std::to_string(nStud) + ".txt";
+	std::string filename = "studentai" + std::to_string(nStud) + ".txt";
 
 	int suma = 0;
 	//read
@@ -326,6 +326,7 @@ void test1_splitting(int nStud) {
 	double split_t3 = t3.elapsed();
 	cout << "\nStudentu paskirstymas i 'gerus' ir 'blogus' " << filename << " uztruko: " << split_t3 << " s\n\n";
 	system("pause");
+	system("cls");
 }
 template <typename StudentaiContainer>
 void run_test_splitting() {

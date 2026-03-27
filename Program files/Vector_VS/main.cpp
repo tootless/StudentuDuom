@@ -227,6 +227,8 @@ int main()
 			cout << "Pabaiga std::deque testavimo\n";
 			system("pause");
 			system("cls");
+
+			
 		}
 
 		//Perkeliam vieno studento duomenis
