@@ -91,3 +91,29 @@ Kitas nuotraukas galima rasti repozitorijos assets aplanke (v0.4/Assets/...).
 !["test2_1.png"](/Assets/test2_1.png)  
 ---
 Kitas nuotraukas galima rasti repozitorijos assets aplanke (v0.4/Assets/...).
+
+
+# Testavimas - v1.0 subrelease
+
+Tyrimai buvo atlikti su Visual Studio 2022 /O2 optimizacijos nustatymais.  
+Tyrimo 1 ir tyrimo 2 failai buvo istrinti pries kiekviena bandyma, isskyrus tyrimo 2 failus, su kuriais buvo testuojamas skaitymo greitis (Tyrimas 2.1).  
+Testavimo metu testavimo sistemoje nebuvo ijungtos jokios kitos programos.
+
+## Tyrimas 1 - Aprasas
+
+Atliktas tyrimas su trejais skirtingais STL konteineriais (Vektoriai, Sarasai (list) ir Deque).
+Siame tyrime buvo ismatuoti minetu konteineriu 
+
+Rezultatai pateikiami sekundemis suapvalinti iki simtuju (neitakoja programos vykdymo laiko).  
+
+
+## Aktualus testavimo sistemos parametrai:
+
+**CPU**:
+
+**RAM**:
+
+**SSD**: 
+
+## Tyrimas 1 - Rezultatai
+
