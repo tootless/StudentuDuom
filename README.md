@@ -102,14 +102,14 @@ Testavimo metu testavimo sistemoje nebuvo ijungtos jokios kitos programos.
 ## Tyrimas 1 - Aprasas
 
 Atliktas tyrimas su trejais skirtingais STL konteineriais (Vektoriai, Sarasai (list) ir Deque).  
-Atlikti 4 bandymai kiekvienam konteineriui ir apskaiciuotas vidurkis, kuris pateikiamas kuo tikslesnis (daugiausia 5 simboliai po kablelio).  
+Atlikti 3 bandymai kiekvienam konteineriui ir apskaiciuotas vidurkis, kuris pateikiamas kuo tikslesnis (daugiausia 5 simboliai po kablelio).  
 
 Siame tyrime buvo ismatuota minetu konteineriu sparta, programai:  
 1. skaitant duomenis is failo, 
 2. rusiuojant duomenis didejimo tvarka pagal galutini vidurki (sort funkcija),
-3. skirstant duomenis pagal galutini vidurki, perkeliant vienus i nauja tokio pat tipo konteineri ir istrinant juos is studentu konteinerio (Veliau - *'Strategija 2'*).  
+3. skirstant duomenis pagal galutini vidurki, sukuriant du naujus tokio pat tipo konteinerius ir naudojant move() funkcija, kad perkelti duomenis is originalaus konteinerio.
 
-Rezultatai pateikiami sekundemis suapvalinti iki simtuju (neitakoja programos vykdymo laiko).  
+Rezultatai pateikiami sekundemis, suapvalinti (stengiamasi nevirsyti 3 skaitmenu po kablelio, taciau yra labai mazu duomenu).
 
 
 ## Aktualus testavimo sistemos parametrai:
@@ -133,10 +133,86 @@ Rezultatai pateikiami sekundemis suapvalinti iki simtuju (neitakoja programos vy
 
 ### Matavimas 1: Skaitymas
 
+#### STD::VECTOR
+
+
+
+#### STD::LIST
+
 |    |  1000  | 10000 | 100000 | 1000000 | 10000000 |
 |:--:|:------:|:-----:|:------:|:-------:|:--------:|
-| 1. | 0.026s | 0.09s |  0.78s |  8.83s  |   79.75s  |
-| 2. | 0.013s | 0.09s |  0.8s |  8.12s  |   80.25s  |
-| 3. | 0.011s | 0.099s |  0.81s |  8.04s  |   80.56s  |
-| 4. | 0.011s | 0.088s |  0.81s |  7.95s  |   80.2s  |
-| Vid. | 0.01525s | 0.09175s |  0.8s |  8.235s  |   80.19s  |
+| 1. | 0.005 | 0.04s |  0.45s |  4.50s  |   45.60s  |
+| 2. | 0.005s | 0.44s |  0.45s |  4.44s  |   45.02s  |
+| 1. | 0.005s | 0.05s |  0.45s |  4.54s  |   46.22s  |
+| Vid. | 0.005s | 0.05s |  0.45s |  4.54s  |   46.22s  |
+
+#### STD::DEQUE
+
+|    |  1000  | 10000 | 100000 | 1000000 | 10000000 |
+|:--:|:------:|:-----:|:------:|:-------:|:--------:|
+| 1. | 0.005s | 0.04s |  0.45s |  4.57s  |   46.77s  |
+| 1. | 0.005s | 0.05s |  0.45s |  4.54s  |   46.22s  |
+| 1. | 0.005s | 0.05s |  0.45s |  4.54s  |   46.22s  |
+| Vid. | 0.005s | 0.05s |  0.45s |  4.54s  |   46.22s  |
+
+===
+
+### Matavimas 2: Rusiavimas (sort)
+
+#### STD::VECTOR
+
+|    |  1000  | 10000 | 100000 | 1000000 | 10000000 |
+|:--:|:------:|:-----:|:------:|:-------:|:--------:|
+| 1. | - | 0.002s |  0.02s |  0.12s  |   1.16s  |
+| 1. | 0.005s | 0.44s |  0.45s |  4.44s  |   46.22s  |
+| 1. | 0.005s | 0.05s |  0.45s |  4.54s  |   46.22s  |
+| Vid. | 0.005s | 0.05s |  0.45s |  4.54s  |   46.22s  |
+
+#### STD::LIST
+
+|    |  1000  | 10000 | 100000 | 1000000 | 10000000 |
+|:--:|:------:|:-----:|:------:|:-------:|:--------:|
+| 1. | - | 0.001s |  0.02s |  0.44s  |   8.01s  |
+| 2. | - | 0.001s |  0.02s |  0.46s  |   8.08s  |
+| 1. | 0.005s | 0.05s |  0.45s |  4.54s  |   46.22s  |
+| Vid. | 0.005s | 0.05s |  0.45s |  4.54s  |   46.22s  |
+
+#### STD::DEQUE
+
+|    |  1000  | 10000 | 100000 | 1000000 | 10000000 |
+|:--:|:------:|:-----:|:------:|:-------:|:--------:|
+| 1. | 0.005s | 0.04s |  0.45s |  4.57s  |   46.77s  |
+| 1. | 0.005s | 0.05s |  0.45s |  4.54s  |   46.22s  |
+| 1. | 0.005s | 0.05s |  0.45s |  4.54s  |   46.22s  |
+| Vid. | 0.005s | 0.05s |  0.45s |  4.54s  |   46.22s  |
+
+===
+
+### Matavimas 3: Skirstymas
+
+#### STD::VECTOR
+
+|    |  1000  | 10000 | 100000 | 1000000 | 10000000 |
+|:--:|:------:|:-----:|:------:|:-------:|:--------:|
+| 1. | - | 0.002s |  0.02s |  0.19s  |   2.47s  |
+| . | 0.005s | 0.05s |  0.45s |  4.54s  |   46.22s  |
+| 1. | 0.005s | 0.05s |  0.45s |  4.54s  |   46.22s  |
+| Vid. | 0.005s | 0.05s |  0.45s |  4.54s  |   46.22s  |
+
+#### STD::LIST
+
+|    |  1000  | 10000 | 100000 | 1000000 | 10000000 |
+|:--:|:------:|:-----:|:------:|:-------:|:--------:|
+| 1. | - | 0.003s |  0.03s |  0.41s  |   5.47s  |
+| 2. | - | 0.003s |  0.03s |  0.41s  |   4.97s  |
+| 1. | - | 0.05s |  0.45s |  4.54s  |   46.22s  |
+| Vid. | - | 0.05s |  0.45s |  4.54s  |   46.22s  |
+
+#### STD::DEQUE
+
+|    |  1000  | 10000 | 100000 | 1000000 | 10000000 |
+|:--:|:------:|:-----:|:------:|:-------:|:--------:|
+| 1. | 0.005s | 0.04s |  0.45s |  4.57s  |   s  |
+| 1. | 0.005s | 0.05s |  0.45s |  4.54s  |   46.22s  |
+| 1. | 0.005s | 0.05s |  0.45s |  4.54s  |   46.22s  |
+| Vid. | 0.005s | 0.05s |  0.45s |  4.54s  |   46.22s  |
