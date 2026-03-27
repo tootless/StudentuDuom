@@ -193,19 +193,19 @@ int main()
 		else if (choiceMenu == 8) {
 
 			cout << "\n---STD::VECTOR---\n\n";
-			do_test_containers<std::vector<Studentas>>();
+			run_test_containers<std::vector<Studentas>>();
 			cout << "Pabaiga std::vector testavimo\n";
 			system("pause");
 			system("cls");
 
 			cout << "\n---STD::LIST---\n\n";
-			do_test_containers<std::list<Studentas>>();
+			run_test_containers<std::list<Studentas>>();
 			cout << "Pabaiga std::list testavimo\n";
 			system("pause");
 			system("cls");
 
 			cout << "\n---STD::DEQUE---\n\n";
-			do_test_containers<std::deque<Studentas>>();
+			run_test_containers<std::deque<Studentas>>();
 			cout << "Pabaiga std::deque testavimo\n";
 			system("pause");
 			system("cls");

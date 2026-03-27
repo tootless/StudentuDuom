@@ -96,24 +96,47 @@ Kitas nuotraukas galima rasti repozitorijos assets aplanke (v0.4/Assets/...).
 # Testavimas - v1.0 subrelease
 
 Tyrimai buvo atlikti su Visual Studio 2022 /O2 optimizacijos nustatymais.  
-Tyrimo 1 ir tyrimo 2 failai buvo istrinti pries kiekviena bandyma, isskyrus tyrimo 2 failus, su kuriais buvo testuojamas skaitymo greitis (Tyrimas 2.1).  
-Testavimo metu testavimo sistemoje nebuvo ijungtos jokios kitos programos.
+Tyrimo 1 failai buvo sukurti viena karta pries bandymu pradzia.  
+Testavimo metu testavimo sistemoje nebuvo ijungtos jokios kitos programos.  
 
 ## Tyrimas 1 - Aprasas
 
-Atliktas tyrimas su trejais skirtingais STL konteineriais (Vektoriai, Sarasai (list) ir Deque).
-Siame tyrime buvo ismatuoti minetu konteineriu 
+Atliktas tyrimas su trejais skirtingais STL konteineriais (Vektoriai, Sarasai (list) ir Deque).  
+Atlikti 4 bandymai kiekvienam konteineriui ir apskaiciuotas vidurkis, kuris pateikiamas kuo tikslesnis (daugiausia 5 simboliai po kablelio).  
+
+Siame tyrime buvo ismatuota minetu konteineriu sparta, programai:  
+1. skaitant duomenis is failo, 
+2. rusiuojant duomenis didejimo tvarka pagal galutini vidurki (sort funkcija),
+3. skirstant duomenis pagal galutini vidurki, perkeliant vienus i nauja tokio pat tipo konteineri ir istrinant juos is studentu konteinerio (Veliau - *'Strategija 2'*).  
 
 Rezultatai pateikiami sekundemis suapvalinti iki simtuju (neitakoja programos vykdymo laiko).  
 
 
 ## Aktualus testavimo sistemos parametrai:
 
-**CPU**:
+### CPU
 
-**RAM**:
+**Speed**:
+**Thread count**:
 
-**SSD**: 
+### RAM
+
+**Read/Write speed**:
+**Stick count**:
+**Multithread... somethin functionality**:
+
+### SSD
+
+**Read/Write speed**:
 
 ## Tyrimas 1 - Rezultatai
 
+### Matavimas 1: Skaitymas
+
+|    |  1000  | 10000 | 100000 | 1000000 | 10000000 |
+|:--:|:------:|:-----:|:------:|:-------:|:--------:|
+| 1. | 0.026s | 0.09s |  0.78s |  8.83s  |   79.75s  |
+| 2. | 0.013s | 0.09s |  0.8s |  8.12s  |   80.25s  |
+| 3. | 0.011s | 0.099s |  0.81s |  8.04s  |   80.56s  |
+| 4. | 0.011s | 0.088s |  0.81s |  7.95s  |   80.2s  |
+| Vid. | 0.01525s | 0.09175s |  0.8s |  8.235s  |   80.19s  |

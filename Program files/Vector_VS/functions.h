@@ -149,13 +149,13 @@ void student_split(std::string filename, std::vector<Studentas>& studentai);
 
 template <typename StudentaiContainer>
 void student_split_testing(std::string filename, StudentaiContainer& studentai) {
-	//move students to new containers
 	StudentaiContainer studBlogi;
 
-	for (auto it = studentai.begin(); it != studentai.end()) {
+	auto it = studentai.begin();
+	while (it != studentai.end()) {
 		if (it->galutinisVid < 5.0) {
 			studBlogi.push_back(std::move(*it));
-			//reset iterator
+			//push iterator and remove studBlogi from studentai
 			it = studentai.erase(it);
 		}
 		else {
